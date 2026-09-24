@@ -4,7 +4,7 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     PROJECT_NAME: str = "APIx - Real-Time Airfare Price Index for India"
     API_PREFIX: str = "/api"
-    DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite:///./apix.db")
+    DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite:////tmp/apix.db" if os.getenv("VERCEL") else "sqlite:///./apix.db")
     BASE_PERIOD: str = "2026-08"
     
     # 7 Canonical Route Basket (DGCA traffic aligned)
