@@ -7,8 +7,11 @@ from sqlalchemy.orm import Session
 from sqlalchemy import desc, func
 
 from app.db.session import get_db
-from app.db.models import IndexObservation, ValidatedQuote, DataQualityRun, RawQuote
+from app.db.models import IndexObservation, ValidatedQuote, DataQualityRun, RawQuote, Route, Provider, CollectionJob
 from app.config import settings
+from app.adapters.registry import provider_registry
+from app.pipeline.scheduler import scheduler
+from app.auth import get_current_user, User
 from app.engine.backtest import run_30_day_backtest
 from app.pipeline.orchestrator import PipelineOrchestrator
 from app.api.schemas import (
@@ -470,10 +473,95 @@ def get_fare_breakdown(db: Session = Depends(get_db)):
         "average_fees": round(fees / max(1, db.query(ValidatedQuote).count()), 2)
     }
 
-@router.post("/pipeline/run")
-def trigger_pipeline_run(date: Optional[str] = None, db: Session = Depends(get_db)):
+@router.get("/providers")
+def get_providers(db: Session = Depends(get_db)):
     """
-    Triggers on-demand collection cycle for demonstration / testing.
+    Returns registered airline and aggregator data providers.
+    """
+    db_providers = db.query(Provider).all()
+    if db_providers:
+        return [
+            {
+                "provider_id": p.provider_id,
+                "name": p.name,
+                "provider_type": p.provider_type,
+                "base_url": p.base_url,
+                "is_active": p.is_active,
+                "rate_limit_per_min": p.rate_limit_per_min,
+                "requires_browser": p.requires_browser
+            }
+            for p in db_providers
+        ]
+    return provider_registry.list_providers()
+
+@router.get("/routes")
+def get_routes(db: Session = Depends(get_db)):
+    """
+    Returns configured domestic flight routes and DGCA passenger traffic weights.
+    """
+    db_routes = db.query(Route).all()
+    if db_routes:
+        return [
+            {
+                "route_id": r.route_id,
+                "origin_airport": r.origin_airport,
+                "destination_airport": r.destination_airport,
+                "distance_km": r.distance_km,
+                "traffic_weight": r.traffic_weight,
+                "is_active": r.is_active
+            }
+            for r in db_routes
+        ]
+    total_traffic = sum(settings.DGCA_ROUTE_TRAFFIC.values())
+    return [
+        {
+            "route_id": r_id,
+            "origin_airport": r_id.split("-")[0],
+            "destination_airport": r_id.split("-")[1],
+            "traffic_weight": round(settings.DGCA_ROUTE_TRAFFIC.get(r_id, 2000.0) / total_traffic, 4),
+            "is_active": True
+        }
+        for r_id in settings.ROUTE_BASKET
+    ]
+
+@router.get("/jobs")
+def get_jobs(limit: int = Query(25, le=100), db: Session = Depends(get_db)):
+    """
+    Returns recent collection jobs with status, timestamps, and error classifications.
+    """
+    jobs = db.query(CollectionJob).order_by(desc(CollectionJob.created_at)).limit(limit).all()
+    return [
+        {
+            "job_id": j.job_id,
+            "target_date": j.target_date.isoformat(),
+            "lead_time_days": j.lead_time_days,
+            "route_id": j.route_id,
+            "provider_id": j.provider_id,
+            "status": j.status,
+            "quotes_count": j.quotes_count,
+            "error_type": j.error_type,
+            "error_message": j.error_message,
+            "started_at": j.started_at.isoformat() if j.started_at else None,
+            "completed_at": j.completed_at.isoformat() if j.completed_at else None
+        }
+        for j in jobs
+    ]
+
+@router.get("/scheduler/status")
+def get_scheduler_status():
+    """
+    Returns background collection scheduler state.
+    """
+    return scheduler.get_status()
+
+@router.post("/pipeline/run")
+def trigger_pipeline_run(
+    date: Optional[str] = None,
+    db: Session = Depends(get_db),
+    user: User = Depends(get_current_user)
+):
+    """
+    Triggers on-demand collection cycle for demonstration / testing (Auth-protected).
     """
     target = datetime.date.today()
     if date:
