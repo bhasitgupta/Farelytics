@@ -19,8 +19,8 @@ export default function LeadTimeView({ refreshTrigger }) {
   if (loading) {
     return (
       <div className="py-24 text-center">
-        <div className="w-5 h-5 mx-auto border-2 border-slate-900 border-t-transparent rounded-full animate-spin"></div>
-        <p className="text-xs text-slate-400 mt-2 font-medium">Loading lead-time curve...</p>
+        <div className="w-5 h-5 mx-auto border-2 border-[#171717] border-t-transparent rounded-full animate-spin"></div>
+        <p className="text-xs text-[#737373] mt-2 font-medium">Loading lead-time curve...</p>
       </div>
     );
   }
@@ -42,44 +42,44 @@ export default function LeadTimeView({ refreshTrigger }) {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-sm font-semibold text-slate-900 tracking-tight">
+        <h2 className="text-sm font-semibold text-[#171717] tracking-tight">
           Advance Purchase Lead-Time Elasticity Curve
         </h2>
-        <p className="text-xs text-slate-500 mt-0.5">
+        <p className="text-xs text-[#4D4D4D] mt-0.5">
           How flight prices surge as departure date approaches (from 45 days ahead down to 1 day before)
         </p>
       </div>
 
       {/* Headline Consumer Impact Box */}
-      <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs">
+      <div className="p-4 rounded-xl bg-white border border-[#DEDEDE] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs shadow-tactile">
         <div>
-          <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-[#737373] block">
             Consumer Elasticity Insight
           </span>
-          <span className="text-sm font-semibold text-slate-900 mt-0.5 block">
-            Booking 30 days ahead saves <AnimatedNumber value={savingsT30VsT1} decimals={0} prefix="₹" duration={700} /> (<AnimatedNumber value={savingsPct} decimals={0} suffix="%" duration={700} />) vs next-day departure
+          <span className="text-sm font-semibold text-[#171717] mt-0.5 block">
+            Booking 30 days ahead saves <span className="text-[#F25623] font-bold"><AnimatedNumber value={savingsT30VsT1} decimals={0} prefix="₹" duration={700} /></span> (<AnimatedNumber value={savingsPct} decimals={0} suffix="%" duration={700} />) vs next-day departure
           </span>
-          <span className="text-slate-500 mt-0.5 block">
+          <span className="text-[#4D4D4D] mt-0.5 block">
             Urgent T+1 booking averages ₹{Math.round(surgeT1).toLocaleString()} while planned T+30 booking averages ₹{Math.round(baselineT30).toLocaleString()}.
           </span>
         </div>
 
         <div className="shrink-0 flex items-center gap-2">
-          <span className="px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200 font-mono font-bold text-xs flex items-center gap-1">
-            <ArrowDown className="w-3.5 h-3.5" />
+          <span className="px-3 py-1.5 rounded-lg bg-[#FAFAFA] text-[#171717] border border-[#DEDEDE] font-mono font-bold text-xs flex items-center gap-1 shadow-tactile">
+            <ArrowDown className="w-3.5 h-3.5 text-[#F25623]" />
             -<AnimatedNumber value={savingsPct} decimals={0} suffix="% Advance Saving" duration={700} />
           </span>
         </div>
       </div>
 
       {/* Main Elasticity Card */}
-      <div className="mini-card p-6 sm:p-8 space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-slate-100 pb-4">
-          <span className="text-xs font-semibold text-slate-900 uppercase tracking-wider">
+      <div className="mini-card p-6 sm:p-8 space-y-6 bg-white border-[#DEDEDE] shadow-tactile">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-[#DEDEDE] pb-4">
+          <span className="text-xs font-semibold text-[#171717] uppercase tracking-wider">
             Fare Progression Across 5 Standard Horizons
           </span>
-          <span className="text-xs font-mono text-slate-400">
-            CPI Standard Reference: T+30 = 1.00x Baseline
+          <span className="text-xs font-mono text-[#737373]">
+            CPI Standard Reference: <strong className="text-[#F25623]">T+30 = 1.00x Baseline</strong>
           </span>
         </div>
 
@@ -90,49 +90,53 @@ export default function LeadTimeView({ refreshTrigger }) {
             const discountVsT1 = Math.round(((surgeT1 - item.average_fare) / surgeT1) * 100);
 
             const horizonDetails = {
-              1: { name: '1 Day Before (Departure Tomorrow)', tag: 'Urgent / Business Surge', color: 'bg-rose-50 text-rose-800 border-rose-200' },
-              7: { name: '7 Days Advance (1 Week Ahead)', tag: 'Near-Term Travel', color: 'bg-amber-50 text-amber-800 border-amber-200' },
-              14: { name: '14 Days Advance (2 Weeks Ahead)', tag: 'Moderate Window', color: 'bg-slate-100 text-slate-700 border-slate-200' },
-              30: { name: '30 Days Advance (1 Month Ahead)', tag: 'Official CPI Specification', color: 'bg-emerald-50 text-emerald-800 border-emerald-200' },
-              45: { name: '45 Days Advance (Early Bird)', tag: 'Advance Planning Window', color: 'bg-sky-50 text-sky-800 border-sky-200' },
-            }[item.days] || { name: `${item.days} Days Advance`, tag: 'Custom Horizon', color: 'bg-slate-100 text-slate-700 border-slate-200' };
+              1: { name: '1 Day Before (Departure Tomorrow)', tag: 'Urgent Surge', isSpecial: false },
+              7: { name: '7 Days Advance (1 Week Ahead)', tag: 'Near-Term Travel', isSpecial: false },
+              15: { name: '15 Days Advance (Mid Horizon)', tag: 'Moderate Window', isSpecial: false },
+              30: { name: '30 Days Advance (1 Month Ahead)', tag: 'Official CPI Specification', isSpecial: true },
+              45: { name: '45 Days Advance (Early Bird)', tag: 'Early Window', isSpecial: false },
+            }[item.days] || { name: `${item.days} Days Advance`, tag: 'Custom Horizon', isSpecial: false };
 
             return (
               <div key={item.lead_time} className="space-y-2">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs">
                   <div className="flex items-center gap-2.5">
-                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded bg-slate-100 text-slate-800 border border-slate-200/60">
+                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded bg-[#FAFAFA] text-[#171717] border border-[#DEDEDE]">
                       {item.lead_time}
                     </span>
-                    <span className="text-slate-800 font-semibold">
+                    <span className="text-[#171717] font-semibold">
                       {horizonDetails.name}
                     </span>
-                    <span className={`text-[10px] font-medium px-2 py-0.5 rounded border ${horizonDetails.color}`}>
+                    <span className={`text-[10px] font-medium px-2 py-0.5 rounded border ${
+                      horizonDetails.isSpecial
+                        ? 'bg-[#171717] text-white border-[#171717]'
+                        : 'bg-[#FAFAFA] text-[#4D4D4D] border-[#DEDEDE]'
+                    }`}>
                       {horizonDetails.tag}
                     </span>
                   </div>
 
                   <div className="flex items-center gap-4 font-mono text-xs">
                     {discountVsT1 > 0 && (
-                      <span className="text-emerald-700 font-medium">
+                      <span className="text-[#F25623] font-medium">
                         <AnimatedNumber value={discountVsT1} decimals={0} prefix="-" suffix="% vs T+1" duration={650} />
                       </span>
                     )}
-                    <span className="text-slate-400">
-                      Multiplier: <strong className="text-slate-700 font-medium"><AnimatedNumber value={ratioVsT30} decimals={2} suffix="x" duration={650} /></strong>
+                    <span className="text-[#737373]">
+                      Multiplier: <strong className="text-[#171717] font-medium"><AnimatedNumber value={ratioVsT30} decimals={2} suffix="x" duration={650} /></strong>
                     </span>
-                    <span className="font-bold text-base text-slate-900 tabular-nums">
+                    <span className="font-bold text-base text-[#171717] tabular-nums">
                       <AnimatedNumber value={item.average_fare} decimals={0} prefix="₹" duration={650} />
                     </span>
                   </div>
                 </div>
 
                 {/* Single-tone clean bar with smooth transition */}
-                <div className="w-full h-2 rounded-full bg-slate-100 overflow-hidden">
+                <div className="w-full h-2 rounded-full bg-[#EBEBEB] overflow-hidden">
                   <div
                     style={{ width: `${pctOfMax}%` }}
                     className={`h-full rounded-full transition-all duration-700 ${
-                      item.days === 30 ? 'bg-emerald-600' : (item.days === 1 ? 'bg-slate-900' : 'bg-slate-700')
+                      item.days === 30 ? 'bg-[#F25623]' : (item.days === 1 ? 'bg-[#171717]' : 'bg-[#4D4D4D]')
                     }`}
                   ></div>
                 </div>
@@ -142,10 +146,10 @@ export default function LeadTimeView({ refreshTrigger }) {
         </div>
 
         {/* Methodological Context */}
-        <div className="mt-8 pt-6 border-t border-slate-100 text-xs text-slate-500 leading-relaxed flex items-start gap-3">
-          <Info className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
+        <div className="mt-8 pt-6 border-t border-[#DEDEDE] text-xs text-[#4D4D4D] leading-relaxed flex items-start gap-3">
+          <Info className="w-4 h-4 text-[#F25623] shrink-0 mt-0.5" />
           <div>
-            <strong className="text-slate-800 font-medium block">
+            <strong className="text-[#171717] font-medium block">
               Why BLS, Eurostat, and MoSPI fix advance booking horizons:
             </strong>
             <p className="mt-0.5">
