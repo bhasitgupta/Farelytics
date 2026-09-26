@@ -63,7 +63,7 @@ class MakeMyTripAdapter(BaseSourceAdapter):
         flight_num = f"QP-{1100 + (date_hash % 200)}"
 
         quote = {
-            "timestamp": datetime.datetime.utcnow().isoformat(),
+            "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
             "source": self.source_id,
             "airline": "QP",
             "origin": origin,
