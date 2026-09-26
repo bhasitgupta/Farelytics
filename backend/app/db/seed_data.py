@@ -3,10 +3,42 @@ import json
 import logging
 from sqlalchemy.orm import Session
 from app.config import settings
-from app.db.models import RawQuote, ValidatedQuote, IndexObservation, DataQualityRun
+from app.db.models import RawQuote, ValidatedQuote, IndexObservation, DataQualityRun, Route, Provider
 from app.engine.weights import get_route_weights
 
 logger = logging.getLogger(__name__)
+
+def seed_routes_and_providers(db: Session):
+    """
+    Seeds canonical domestic route configurations and active providers.
+    """
+    if db.query(Route).count() == 0:
+        logger.info("Seeding canonical route configurations...")
+        routes_to_seed = [
+            Route(route_id="DEL-BOM", origin_airport="DEL", destination_airport="BOM", distance_km=1148, traffic_weight=0.2546, is_active=True),
+            Route(route_id="DEL-BLR", origin_airport="DEL", destination_airport="BLR", distance_km=1740, traffic_weight=0.2073, is_active=True),
+            Route(route_id="BOM-BLR", origin_airport="BOM", destination_airport="BLR", distance_km=842,  traffic_weight=0.1444, is_active=True),
+            Route(route_id="DEL-CCU", origin_airport="DEL", destination_airport="CCU", distance_km=1305, traffic_weight=0.1234, is_active=True),
+            Route(route_id="BLR-HYD", origin_airport="BLR", destination_airport="HYD", distance_km=500,  traffic_weight=0.1102, is_active=True),
+            Route(route_id="MAA-DEL", origin_airport="MAA", destination_airport="DEL", distance_km=1760, traffic_weight=0.1024, is_active=True),
+            Route(route_id="DEL-HYD", origin_airport="DEL", destination_airport="HYD", distance_km=1253, traffic_weight=0.0971, is_active=True),
+        ]
+        for r in routes_to_seed:
+            db.merge(r)
+        db.commit()
+
+    if db.query(Provider).count() == 0:
+        logger.info("Seeding configurable providers...")
+        providers_to_seed = [
+            Provider(provider_id="indigo",     name="IndiGo Direct",    provider_type="airline",    base_url="https://www.goindigo.in",   is_active=True, rate_limit_per_min=30, requires_browser=False),
+            Provider(provider_id="air_india",  name="Air India Direct", provider_type="airline",    base_url="https://www.airindia.com",  is_active=True, rate_limit_per_min=30, requires_browser=False),
+            Provider(provider_id="akasa",      name="Akasa Air Direct", provider_type="airline",    base_url="https://www.akasaair.com",  is_active=True, rate_limit_per_min=30, requires_browser=False),
+            Provider(provider_id="spicejet",   name="SpiceJet Direct",  provider_type="airline",    base_url="https://www.spicejet.com",  is_active=True, rate_limit_per_min=30, requires_browser=False),
+            Provider(provider_id="makemytrip", name="MakeMyTrip Portal", provider_type="aggregator", base_url="https://www.makemytrip.com", is_active=True, rate_limit_per_min=20, requires_browser=False),
+        ]
+        for p in providers_to_seed:
+            db.merge(p)
+        db.commit()
 
 def seed_30_day_history(db: Session):
     """
