@@ -1,6 +1,6 @@
 # Software Requirements Specification (SRS)
 ## Real-Time Airfare Price Index (APIx) for India
-**SIH 2026**
+**Production Specification: Domestic Airfare Price Index Platform**
 
 ---
 
