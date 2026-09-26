@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://farelytics.vercel.app">
-    <img src="docs/assets/farelytics-banner-dark.png" alt="Farelytics Banner" width="560" />
+    <img src="https://farelytics.vercel.app/farelytics-banner-dark.png" alt="Farelytics Banner" width="560" />
   </a>
 </p>
 
