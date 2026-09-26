@@ -18,8 +18,8 @@ export default function AirlineCompareView({ refreshTrigger }) {
   if (loading) {
     return (
       <div className="py-24 text-center">
-        <div className="w-5 h-5 mx-auto border-2 border-slate-900 border-t-transparent rounded-full animate-spin"></div>
-        <p className="text-xs text-slate-400 mt-2 font-medium">Loading carrier comparisons...</p>
+        <div className="w-5 h-5 mx-auto border-2 border-[#171717] border-t-transparent rounded-full animate-spin"></div>
+        <p className="text-xs text-[#737373] mt-2 font-medium">Loading carrier comparisons...</p>
       </div>
     );
   }
@@ -37,10 +37,10 @@ export default function AirlineCompareView({ refreshTrigger }) {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-sm font-semibold text-slate-900 tracking-tight">
+        <h2 className="text-sm font-semibold text-[#171717] tracking-tight">
           Carrier Pricing Comparison
         </h2>
-        <p className="text-xs text-slate-500 mt-0.5">
+        <p className="text-xs text-[#4D4D4D] mt-0.5">
           Side-by-side pricing structures comparing Low-Cost Carriers (LCC) and Full-Service Carriers (FSC) across the representative basket
         </p>
       </div>
@@ -55,40 +55,40 @@ export default function AirlineCompareView({ refreshTrigger }) {
           return (
             <div
               key={a.code}
-              className="card-tactile p-6 flex flex-col justify-between"
+              className="card-tactile p-6 flex flex-col justify-between bg-white border-[#DEDEDE]"
             >
               <div>
                 {/* Header */}
                 <div className="flex items-start justify-between">
                   <div>
-                    <span className="text-[11px] font-mono font-medium text-slate-400 uppercase tracking-wider">
+                    <span className="text-[11px] font-mono font-medium text-[#737373] uppercase tracking-wider">
                       {a.code}
                     </span>
-                    <h3 className="text-base font-bold text-slate-900 mt-0.5">
+                    <h3 className="text-base font-bold text-[#171717] mt-0.5">
                       {a.name}
                     </h3>
                   </div>
-                  <span className="text-[10px] font-medium px-2 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200/60">
+                  <span className="text-[10px] font-medium px-2 py-0.5 rounded bg-[#FAFAFA] text-[#4D4D4D] border border-[#DEDEDE]">
                     {isFSC ? 'Full-Service (FSC)' : 'Low-Cost (LCC)'}
                   </span>
                 </div>
 
                 {/* Mean Fare */}
-                <div className="mt-5 p-4 rounded-lg bg-slate-50/80 border border-slate-100">
-                  <span className="text-[10px] uppercase font-medium text-slate-400 tracking-wider block">
+                <div className="mt-5 p-4 rounded-lg bg-[#FAFAFA] border border-[#DEDEDE]">
+                  <span className="text-[10px] uppercase font-medium text-[#737373] tracking-wider block">
                     Mean Consumer Fare
                   </span>
                   <div className="mt-1 flex items-baseline justify-between">
-                    <span className="text-3xl font-bold font-mono tracking-tight text-slate-900 tabular-nums">
+                    <span className="text-3xl font-bold font-mono tracking-tight text-[#171717] tabular-nums">
                       <AnimatedNumber value={a.average_fare} decimals={0} prefix="₹" duration={700} />
                     </span>
                     {spreadVsLowest > 0 ? (
-                      <span className="text-xs font-mono text-slate-500 font-medium">
+                      <span className="text-xs font-mono text-[#F25623] font-medium">
                         +<AnimatedNumber value={Math.round((spreadVsLowest / lowestFare) * 100)} decimals={0} suffix="% vs min" duration={700} />
                       </span>
                     ) : (
-                      <span className="text-xs font-mono text-emerald-700 font-medium bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-100">
-                        Lowest
+                      <span className="text-xs font-mono text-[#171717] font-semibold bg-white px-2 py-0.5 rounded border border-[#DEDEDE] shadow-tactile">
+                        Lowest Baseline
                       </span>
                     )}
                   </div>
@@ -96,38 +96,38 @@ export default function AirlineCompareView({ refreshTrigger }) {
 
                 {/* Breakdown Details */}
                 <div className="mt-5 space-y-2.5 font-mono text-xs">
-                  <div className="flex justify-between text-slate-600">
+                  <div className="flex justify-between text-[#4D4D4D]">
                     <span className="flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-slate-900 inline-block"></span>
+                      <span className="w-2 h-2 rounded-full bg-[#171717] inline-block"></span>
                       Base Fare:
                     </span>
-                    <span className="font-semibold text-slate-900">
+                    <span className="font-semibold text-[#171717]">
                       <AnimatedNumber value={a.average_base} decimals={0} prefix="₹" duration={700} /> ({basePct}%)
                     </span>
                   </div>
 
-                  <div className="flex justify-between text-slate-600">
+                  <div className="flex justify-between text-[#4D4D4D]">
                     <span className="flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-slate-400 inline-block"></span>
+                      <span className="w-2 h-2 rounded-full bg-[#F25623] inline-block"></span>
                       Taxes & Fees:
                     </span>
-                    <span className="font-semibold text-slate-900">
+                    <span className="font-semibold text-[#171717]">
                       <AnimatedNumber value={a.average_taxes_fees} decimals={0} prefix="₹" duration={700} /> ({feesPct}%)
                     </span>
                   </div>
 
                   {/* Proportional Segmented Bar */}
-                  <div className="w-full h-1.5 rounded-full overflow-hidden flex bg-slate-100 mt-2">
-                    <div style={{ width: `${basePct}%` }} className="bg-slate-900 h-full transition-all duration-700"></div>
-                    <div style={{ width: `${feesPct}%` }} className="bg-slate-300 h-full transition-all duration-700"></div>
+                  <div className="w-full h-1.5 rounded-full overflow-hidden flex bg-[#EBEBEB] mt-2">
+                    <div style={{ width: `${basePct}%` }} className="bg-[#171717] h-full transition-all duration-700"></div>
+                    <div style={{ width: `${feesPct}%` }} className="bg-[#F25623] h-full transition-all duration-700"></div>
                   </div>
                 </div>
               </div>
 
               {/* Footer info */}
-              <div className="mt-6 pt-3 border-t border-slate-100 text-[11px] text-slate-400 flex items-center justify-between">
+              <div className="mt-6 pt-3 border-t border-[#DEDEDE] text-[11px] text-[#737373] flex items-center justify-between">
                 <span>Sample: <AnimatedNumber value={a.sample_size} decimals={0} suffix=" quotes" duration={700} /></span>
-                <span className="text-emerald-700 font-medium">Standardized</span>
+                <span className="text-[#171717] font-medium">Standardized</span>
               </div>
             </div>
           );
