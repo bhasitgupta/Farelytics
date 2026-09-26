@@ -71,7 +71,7 @@ class IndiGoAdapter(BaseSourceAdapter):
         flight_num = f"6E-{200 + (date_hash % 800)}"
 
         quote = {
-            "timestamp": datetime.datetime.utcnow().isoformat(),
+            "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
             "source": self.source_id,
             "airline": "6E",
             "origin": origin,
