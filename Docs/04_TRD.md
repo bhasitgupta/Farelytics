@@ -1,6 +1,6 @@
 # Technical Requirements Document (TRD)
 ## Real-Time Airfare Price Index (APIx) for India
-**SIH 2026**
+**Production Specification: Domestic Airfare Price Index Platform**
 
 ---
 
@@ -90,13 +90,13 @@ For any source where live automated extraction isn't authorised, the demo runs o
 | Database | PostgreSQL |
 | Backend / API | FastAPI |
 | Scheduling | Celery or APScheduler (cron acceptable as MVP fallback) |
-| Dashboard | React + Plotly/ECharts (or Streamlit for a faster hackathon MVP) |
-| Deployment | Docker on a cloud VM/container |
+| Dashboard | React + TailwindCSS + Lucide Icons + Three.js/WebGL |
+| Deployment | Docker on a cloud VM/container or Vercel serverless |
 | Testing | Pytest |
 
-**Do not introduce Kubernetes, Kafka, microservices, or heavy cloud infrastructure for the MVP** — judges care whether the system works and whether the index is defensible, not infrastructure sophistication.
+**Do not introduce premature distributed systems complexity** — prioritize statistical defensibility, clean API contracts, and robust data collection.
 
-**Tooling reconciliation (ASSUMPTION-004):** if the team's standing tooling context (Anti Gravity + Claude Code + ChatGPT as the AI dev trio, Vercel as default deployment) applies to this problem statement, note that a Python/FastAPI/PostgreSQL backend is not a natural fit for static Vercel hosting. Two options: (a) deploy the FastAPI backend + PostgreSQL on a small cloud VM/container (Docker) and use Vercel only for the React dashboard's static frontend, calling the VM-hosted API; or (b) adapt the backend into Vercel-compatible serverless functions with a managed Postgres (e.g. Neon/Supabase) if a fully-Vercel deployment is required. Recommendation: option (a) for the hackathon, since it keeps the backend simple and matches the Docker/Cloud-VM guidance above.
+**Tooling reconciliation (ASSUMPTION-004):** Deploy the FastAPI backend + PostgreSQL on a managed cloud VM/container or Supabase PostgreSQL, and use Vercel for the React dashboard with serverless API integration.
 
 ---
 
@@ -236,7 +236,7 @@ Query params: `run_id` or `date`. Returns `{ quotes_collected, valid_quotes, dup
 - Malformed input → `400` with a documented error schema.
 - All endpoints are read-only (no POST/PUT/DELETE in MVP).
 
-**Phase-4 (post-hackathon) versioned surface:** `/api/v1/index`, `/api/v1/routes`, `/api/v1/airlines`, `/api/v1/lead-time`, `/api/v1/metadata`, `/api/v1/quality` — with authentication, rate limits, versioning, documentation and audit logs (out of scope for the 36-hour MVP).
+**Phase-4 versioned surface:** `/api/v1/index`, `/api/v1/routes`, `/api/v1/airlines`, `/api/v1/lead-time`, `/api/v1/metadata`, `/api/v1/quality` — with authentication, rate limits, versioning, documentation and audit logs (scheduled for subsequent release).
 
 ---
 
