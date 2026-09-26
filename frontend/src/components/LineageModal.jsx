@@ -38,7 +38,7 @@ export default function LineageModal({ indexId, onClose }) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-900/30 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-brand-dark/40 backdrop-blur-sm"
       role="dialog"
       aria-modal="true"
       aria-labelledby="lineage-modal-title"
@@ -48,15 +48,16 @@ export default function LineageModal({ indexId, onClose }) {
     >
       <div
         ref={modalRef}
-        className="bg-white border border-slate-200 rounded-xl max-w-4xl w-full max-h-[85vh] flex flex-col shadow-xl overflow-hidden"
+        className="bg-white border border-brand-border rounded-xl max-w-4xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden"
       >
         {/* Header */}
-        <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+        <div className="px-6 py-4 border-b border-brand-border flex items-center justify-between">
           <div>
-            <h2 id="lineage-modal-title" className="text-sm font-semibold text-slate-900">
+            <h2 id="lineage-modal-title" className="text-sm font-bold text-brand-dark flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-brand-accent"></span>
               Data Lineage & Audit Trail
             </h2>
-            <p className="text-xs text-slate-400 mt-0.5">
+            <p className="text-xs text-brand-muted mt-0.5">
               Trace from published index point #{indexId} back to contributing observations
             </p>
           </div>
@@ -64,7 +65,7 @@ export default function LineageModal({ indexId, onClose }) {
             type="button"
             onClick={onClose}
             aria-label="Close dialog"
-            className="p-1 rounded-md text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+            className="p-1 rounded-md text-brand-muted hover:text-brand-dark hover:bg-brand-surface transition-colors"
           >
             <X className="w-4 h-4" />
           </button>
@@ -74,8 +75,8 @@ export default function LineageModal({ indexId, onClose }) {
         <div className="p-6 overflow-y-auto space-y-6">
           {loading && (
             <div className="text-center py-16 space-y-2">
-              <div className="w-5 h-5 mx-auto border-2 border-slate-900 border-t-transparent rounded-full animate-spin"></div>
-              <p className="text-xs text-slate-400">Tracing calculation lineage...</p>
+              <div className="w-5 h-5 mx-auto border-2 border-brand-accent border-t-transparent rounded-full animate-spin"></div>
+              <p className="text-xs text-brand-muted">Tracing calculation lineage...</p>
             </div>
           )}
 
@@ -88,30 +89,30 @@ export default function LineageModal({ indexId, onClose }) {
           {lineage && (
             <>
               {/* Pipeline Flow Card */}
-              <div className="p-4 rounded-lg bg-slate-50/80 border border-slate-100">
+              <div className="p-4 rounded-lg bg-brand-surface border border-brand-border">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3 items-center">
-                  <div className="p-3 bg-white rounded-md border border-slate-200/80 text-center">
-                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                  <div className="p-3 bg-white rounded-md border border-brand-border text-center">
+                    <span className="text-[10px] font-bold text-brand-muted uppercase tracking-wider block">
                       Contributing Quotes
                     </span>
-                    <span className="text-base font-bold font-mono text-slate-900 tabular-nums">
+                    <span className="text-base font-bold font-mono text-brand-dark tabular-nums">
                       {lineage.contributing_sample_size} Quotes
                     </span>
-                    <span className="text-[10px] text-slate-400 block mt-0.5">Raw observations</span>
+                    <span className="text-[10px] text-brand-muted block mt-0.5">Raw observations</span>
                   </div>
 
-                  <div className="flex items-center justify-center text-slate-400">
-                    <ArrowRight className="w-4 h-4 hidden md:block" />
+                  <div className="flex items-center justify-center text-brand-muted">
+                    <ArrowRight className="w-4 h-4 hidden md:block text-brand-accent" />
                   </div>
 
-                  <div className="p-3 bg-white rounded-md border border-slate-200/80 text-center">
-                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                  <div className="p-3 bg-white rounded-md border border-brand-border text-center">
+                    <span className="text-[10px] font-bold text-brand-muted uppercase tracking-wider block">
                       Published Index Point
                     </span>
-                    <span className="text-base font-bold font-mono text-slate-900 tabular-nums">
+                    <span className="text-base font-bold font-mono text-brand-dark tabular-nums">
                       APIx {lineage.apix_value.toFixed(2)}
                     </span>
-                    <span className="text-[10px] text-slate-400 block mt-0.5">Period: {lineage.period_date}</span>
+                    <span className="text-[10px] text-brand-muted block mt-0.5">Period: {lineage.period_date}</span>
                   </div>
                 </div>
               </div>
@@ -119,53 +120,53 @@ export default function LineageModal({ indexId, onClose }) {
               {/* Table & Filter */}
               <div className="space-y-3">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                  <span className="text-xs font-semibold text-slate-900 uppercase tracking-wider">
+                  <span className="text-xs font-bold text-brand-dark uppercase tracking-wider">
                     Normalized Observations (Sample of {lineage.sample_quotes.length})
                   </span>
 
                   <div className="relative">
-                    <Search className="w-3.5 h-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400" />
+                    <Search className="w-3.5 h-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-brand-muted" />
                     <input
                       type="text"
                       placeholder="Filter by sector or carrier..."
                       value={filterQuery}
                       onChange={(e) => setFilterQuery(e.target.value)}
-                      className="text-xs pl-8 pr-3 py-1 rounded-md bg-white border border-slate-200 text-slate-800 w-52 focus:w-60 transition-all placeholder:text-slate-400 focus:outline-none focus:border-slate-400"
+                      className="text-xs pl-8 pr-3 py-1.5 rounded-md bg-white border border-brand-border text-brand-dark w-56 focus:w-64 transition-all placeholder:text-brand-muted/60 focus:outline-none focus:border-brand-accent"
                     />
                   </div>
                 </div>
 
-                <div className="overflow-x-auto border border-slate-200 rounded-lg">
+                <div className="overflow-x-auto border border-brand-border rounded-lg">
                   <table className="w-full text-left text-xs">
-                    <thead className="bg-slate-50 text-slate-600 font-semibold border-b border-slate-200">
+                    <thead className="bg-brand-surface text-brand-dark font-bold border-b border-brand-border">
                       <tr>
-                        <th className="py-2 px-3">Val ID</th>
-                        <th className="py-2 px-3">Raw ID</th>
-                        <th className="py-2 px-3">Sector</th>
-                        <th className="py-2 px-3">Carrier</th>
-                        <th className="py-2 px-3">Lead Time</th>
-                        <th className="py-2 px-3">Base Fare</th>
-                        <th className="py-2 px-3">Taxes & Fees</th>
-                        <th className="py-2 px-3 font-semibold text-slate-900">Total Price</th>
-                        <th className="py-2 px-3">Status</th>
+                        <th className="py-2.5 px-3">Val ID</th>
+                        <th className="py-2.5 px-3">Raw ID</th>
+                        <th className="py-2.5 px-3">Sector</th>
+                        <th className="py-2.5 px-3">Carrier</th>
+                        <th className="py-2.5 px-3">Lead Time</th>
+                        <th className="py-2.5 px-3">Base Fare</th>
+                        <th className="py-2.5 px-3">Taxes & Fees</th>
+                        <th className="py-2.5 px-3 font-bold text-brand-dark">Total Price</th>
+                        <th className="py-2.5 px-3">Status</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-slate-100 font-mono text-[11px]">
+                    <tbody className="divide-y divide-brand-border/60 font-mono text-[11px]">
                       {filteredQuotes.map((q) => (
-                        <tr key={q.validated_id} className="hover:bg-slate-50/60">
-                          <td className="py-2 px-3 text-slate-400">#{q.validated_id}</td>
-                          <td className="py-2 px-3 text-slate-400">#{q.raw_id}</td>
-                          <td className="py-2 px-3 font-medium text-slate-900">{q.route_id}</td>
-                          <td className="py-2 px-3 text-slate-600">{q.carrier}</td>
-                          <td className="py-2 px-3 text-slate-600">T+{q.lead_time}</td>
-                          <td className="py-2 px-3 text-slate-600">₹{q.base_fare.toLocaleString()}</td>
-                          <td className="py-2 px-3 text-slate-600">₹{(q.mandatory_taxes + q.mandatory_fees).toLocaleString()}</td>
-                          <td className="py-2 px-3 font-bold text-slate-900">₹{q.total_consumer_price.toLocaleString()}</td>
+                        <tr key={q.validated_id} className="hover:bg-brand-surface/70 transition-colors">
+                          <td className="py-2 px-3 text-brand-muted">#{q.validated_id}</td>
+                          <td className="py-2 px-3 text-brand-muted">#{q.raw_id}</td>
+                          <td className="py-2 px-3 font-semibold text-brand-dark">{q.route_id}</td>
+                          <td className="py-2 px-3 text-brand-muted">{q.carrier}</td>
+                          <td className="py-2 px-3 text-brand-muted">T+{q.lead_time}</td>
+                          <td className="py-2 px-3 text-brand-muted">₹{q.base_fare.toLocaleString()}</td>
+                          <td className="py-2 px-3 text-brand-muted">₹{(q.mandatory_taxes + q.mandatory_fees).toLocaleString()}</td>
+                          <td className="py-2 px-3 font-bold text-brand-dark">₹{q.total_consumer_price.toLocaleString()}</td>
                           <td className="py-2 px-3">
-                            <span className={`inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium ${
+                            <span className={`inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-semibold ${
                               q.availability_status === 'available'
-                                ? 'bg-emerald-50 text-emerald-700 border border-emerald-100'
-                                : 'bg-amber-50 text-amber-700 border border-amber-100'
+                                ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                                : 'bg-amber-50 text-amber-700 border border-amber-200'
                             }`}>
                               {q.availability_status}
                             </span>
@@ -174,7 +175,7 @@ export default function LineageModal({ indexId, onClose }) {
                       ))}
                       {filteredQuotes.length === 0 && (
                         <tr>
-                          <td colSpan="9" className="py-8 text-center text-slate-400">
+                          <td colSpan="9" className="py-8 text-center text-brand-muted">
                             No quotes match filter "{filterQuery}"
                           </td>
                         </tr>
@@ -188,12 +189,12 @@ export default function LineageModal({ indexId, onClose }) {
         </div>
 
         {/* Footer */}
-        <div className="px-6 py-3 border-t border-slate-100 bg-slate-50/60 flex items-center justify-between text-xs text-slate-400">
+        <div className="px-6 py-3 border-t border-brand-border bg-brand-surface/60 flex items-center justify-between text-xs text-brand-muted">
           <span>Cryptographic hash verified across observation chain.</span>
           <button
             type="button"
             onClick={onClose}
-            className="px-3 py-1 rounded bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 font-medium transition-colors"
+            className="px-3 py-1.5 rounded bg-white hover:bg-brand-surface border border-brand-border text-brand-dark font-medium transition-colors"
           >
             Close
           </button>
