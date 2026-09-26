@@ -1,6 +1,6 @@
 # Business Requirements Document (BRD)
 ## Real-Time Airfare Price Index (APIx) for India
-**SIH 2026 | Problem Statement: Development of a Real-time Airfare Price Index for India through Automated Web Scraping of Airline and OTA Portals for Augmentation of the CPI**
+**Production Platform: Automated Multi-Source Domestic Airfare Price Index for India for Augmentation of the CPI**
 
 ---
 
@@ -47,7 +47,7 @@ India's Consumer Price Index (CPI), released by NSO/MoSPI and used by RBI for mo
 | Airlines | Their fare structures represented correctly and fairly |
 | Consumers | Prices reflecting real, current booking conditions |
 | Researchers | Historical, reproducible airfare data for study |
-| Hackathon judges / evaluators | Evidence the system is statistically and technically credible |
+| Technical & statistical evaluators | Evidence the system is statistically and technically credible |
 
 ---
 
@@ -80,7 +80,7 @@ Build an augmentation mechanism that supplies NSO/MoSPI and RBI with **higher-fr
 - **[ASSUMPTION-001]** The solution must include documentation and automated testing, and must demonstrate at least 30 days of back-tested results against publicly available DGCA monthly average-fare data. This is an explicit, non-negotiable deliverable.
 - **[ASSUMPTION-002]** If official CPI weights are unavailable for the prototype, all route weights must be explicitly labelled "prototype weights," with a stated plan for how they would ultimately be replaced/calibrated using official traffic/expenditure data.
 - **[ASSUMPTION-003]** Correlation with the DGCA benchmark is evidence of external validation, not proof that the index is officially CPI-suitable — this distinction must be stated clearly wherever the backtest is presented.
-- **[ASSUMPTION-004]** Team's standing tooling context (from prior SIH prep, may or may not apply here): core AI dev trio is Anti Gravity + Claude Code + ChatGPT; Vercel is the default deployment platform. A Python/FastAPI/PostgreSQL backend may need a VM or a Vercel-compatible serverless adaptation rather than a static Vercel deployment — reconcile in the TRD.
+- **[ASSUMPTION-004]** Production deployment architecture: Production PostgreSQL is hosted on Supabase; containerized/FastAPI backend deployed with resilient connection pooling.
 - The complete national-scale production system is **not** a realistic 36-hour build; only a focused prototype proving the methodology is in scope.
 
 ---
@@ -89,7 +89,7 @@ Build an augmentation mechanism that supplies NSO/MoSPI and RBI with **higher-fr
 
 | Risk | Mitigation |
 |---|---|
-| Scraping violates a source's terms of service (Air India and IndiGo both restrict automated data-mining/robots in their terms) | Source-adapter architecture with permitted-source / demo-data fallback; never make CAPTCHA/IP-rotation bypass the hackathon "innovation" |
+| Scraping violates a source's terms of service (Air India and IndiGo both restrict automated data-mining/robots in their terms) | Source-adapter architecture with permitted-source / demo-data fallback; never make CAPTCHA/IP-rotation bypass the core platform innovation |
 | Building an impressive scraper while the index itself is an afterthought | Make the statistical methodology the hero; scraper is only the ingestion mechanism |
 | Claiming "real-time" pricing when data is actually static/scheduled | State collection frequency precisely everywhere in the UI and docs |
 | Beautiful dashboard, weak statistics | Be ready to explain exactly how APIx is calculated, step by step, on demand |
