@@ -1,9 +1,11 @@
 <p align="center">
-  <img src="frontend/public/farelytics-logo.png" alt="Farelytics Logo" width="560"/>
+  <a href="https://farelytics.vercel.app">
+    <img src="docs/assets/farelytics-banner-dark.png" alt="Farelytics Banner" width="560" />
+  </a>
 </p>
 
 <p align="center">
-  <strong>Government-Grade Real-Time Domestic Airfare Price Index & Analytics Engine for India</strong>
+  <strong>Government-Grade Real-Time Domestic Airfare Price Index & Analytics Platform for India</strong>
 </p>
 
 <p align="center">
@@ -24,7 +26,7 @@
 Traditional airfare price collection for CPI relies on monthly point-in-time sampling, which misses dynamic intra-month yield spikes, seasonal festival premiums, and advance-purchase curve discounts. Farelytics bridges this measurement gap through **high-frequency automated price quote ingestion**, **strict normalisation pipelines**, and **defensible statistical index aggregation**.
 
 > [!NOTE]
-> **Methodology Stance:** Farelytics serves as an official augmentation mechanism. It complements existing official statistical workflows with high-frequency empirical price distributions across top domestic travel corridors and advance-purchase horizons ($T+1$ to $T+45$ days).
+> **Methodology Stance:** Farelytics serves as an official augmentation mechanism. It complements existing official statistical workflows with high-frequency empirical price distributions across top domestic travel corridors and advance-purchase horizons (T+1 to T+45 days).
 
 ---
 
@@ -53,9 +55,9 @@ Traditional airfare price collection for CPI relies on monthly point-in-time sam
                                       │
                                       ▼
                           STATISTICAL INDEX ENGINE
-             • Route median prices $P(r,t)$ across advance windows (ALGO-001)
-             • Price relatives $R(r,t)$ benchmarked against base period $P(r,0)$ (ALGO-002)
-             • Empirical DGCA annual passenger volume weights $w_r$ (ALGO-005)
+             • Route median prices P(r,t) across advance windows (ALGO-001)
+             • Price relatives R(r,t) benchmarked against base period P(r,0) (ALGO-002)
+             • Empirical DGCA annual passenger volume weights w_r (ALGO-005)
              • Laspeyres-type weighted national index aggregation (ALGO-003)
              • 5-factor index decomposition (Trend, Carrier, Distance, Advance, Seasonality)
                                       │
@@ -76,9 +78,9 @@ Traditional airfare price collection for CPI relies on monthly point-in-time sam
 
 ## ✈️ Representative Route Basket & DGCA Weights
 
-Farelytics tracks 7 canonical Indian trunk sectors representing **over 19.8 million annual domestic passengers**, sampled systematically across 5 advance-booking horizons ($T+1, T+7, T+15, T+30, T+45$):
+Farelytics tracks 7 canonical Indian trunk sectors representing **over 19.8 million annual domestic passengers**, sampled systematically across 5 advance-booking horizons (T+1, T+7, T+15, T+30, T+45):
 
-| Route Code | Sector | Annual Passengers (k) | Prototype Weight ($w_r$) | Primary Carriers |
+| Route Code | Sector | Annual Passengers (k) | Prototype Weight (w_r) | Primary Carriers |
 |:---:|:---|:---:|:---:|:---|
 | **DEL–BOM** | Delhi ⇄ Mumbai | 4,850 | **0.24495** | 6E, AI, QP, SG |
 | **DEL–BLR** | Delhi ⇄ Bengaluru | 3,950 | **0.19950** | 6E, AI, QP |
