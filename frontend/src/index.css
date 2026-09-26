@@ -4,33 +4,37 @@
 
 @layer base {
   :root {
-    /* Pure Minimalist Light Theme System */
-    --bg-app: #fcfcfd;
-    --bg-card: #ffffff;
-    --bg-muted: #f8fafc;
-    --bg-hover: #f1f5f9;
+    /* Strict Brand Palette System */
+    --brand-black: #171717;
+    --brand-orange: #F25623;
+    --brand-dark: #4D4D4D;
+    --brand-light: #DEDEDE;
+    --brand-surface: #FFFFFF;
+    --brand-bg: #FAFAFA;
 
-    --text-main: #0f172a;
-    --text-body: #334155;
-    --text-muted: #64748b;
-    --text-faint: #94a3b8;
+    --bg-app: #FAFAFA;
+    --bg-card: #FFFFFF;
+    --bg-muted: #F5F5F5;
+    --bg-hover: #F0F0F0;
 
-    --border-light: #f1f5f9;
-    --border-card: #e2e8f0;
-    --border-hover: #cbd5e1;
+    --text-main: #171717;
+    --text-body: #4D4D4D;
+    --text-muted: #737373;
+    --text-faint: #A3A3A3;
 
-    --accent-blue: #0284c7;
-    --accent-emerald: #059669;
-    --accent-amber: #d97706;
-    --accent-rose: #e11d48;
+    --border-card: #DEDEDE;
+    --border-light: #EBEBEB;
+    --border-hover: #B5B5B5;
+
+    --accent-orange: #F25623;
 
     /* High-Craft Motion System Tokens */
     --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
     --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.15);
-    --duration-micro: 140ms;
-    --duration-fast: 220ms;
-    --duration-base: 280ms;
-    --duration-section: 340ms;
+    --duration-micro: 120ms;
+    --duration-fast: 200ms;
+    --duration-base: 260ms;
+    --duration-section: 320ms;
   }
 
   body {
@@ -44,27 +48,76 @@
   }
 }
 
-/* Minimalist Card Primitive */
+/* Swiss Editorial Typography Accent */
+.font-editorial {
+  font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+}
+
+/* Technical Graph Paper Grid Texture (Ramp / Editorial Geometry) */
+.bg-grid-swiss {
+  background-image: 
+    linear-gradient(to right, rgba(23, 23, 23, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(23, 23, 23, 0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.bg-dots-swiss {
+  background-image: radial-gradient(rgba(23, 23, 23, 0.12) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+/* Floating Frosted Glass Capsule (Worklife Inspiration) */
+.glass-capsule {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(229, 229, 229, 0.95);
+  box-shadow: 0 10px 35px -5px rgba(23, 23, 23, 0.07), 0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+}
+
+/* Precision Corner Crop Marks (Editorial Blueprint Marks) */
+.crop-box {
+  position: relative;
+}
+
+.crop-mark {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-color: #171717;
+  pointer-events: none;
+}
+.crop-mark-tl { top: -1px; left: -1px; border-top: 1.5px solid; border-left: 1.5px solid; }
+.crop-mark-tr { top: -1px; right: -1px; border-top: 1.5px solid; border-right: 1.5px solid; }
+.crop-mark-bl { bottom: -1px; left: -1px; border-bottom: 1.5px solid; border-left: 1.5px solid; }
+.crop-mark-br { bottom: -1px; right: -1px; border-bottom: 1.5px solid; border-right: 1.5px solid; }
+
+/* Continuous Ledger Line Hairlines */
+.ledger-hairline {
+  border-bottom: 1px solid #E5E5E5;
+}
+
+/* Minimalist Tactile Card Primitive */
 .mini-card {
-  background: #ffffff;
-  border: 1px solid rgba(226, 232, 240, 0.9);
-  border-radius: 18px;
-  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.02), 0 1px 2px -1px rgba(15, 23, 42, 0.02);
+  background: #FFFFFF;
+  border: 1px solid #DEDEDE;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(23, 23, 23, 0.03);
   transition: box-shadow var(--duration-fast) var(--ease-smooth),
               border-color var(--duration-fast) var(--ease-smooth);
 }
 
 .mini-card:hover {
-  border-color: #cbd5e1;
-  box-shadow: 0 6px 18px -3px rgba(15, 23, 42, 0.04);
+  border-color: #B5B5B5;
+  box-shadow: 0 4px 12px -2px rgba(23, 23, 23, 0.06);
 }
 
-/* Tactile Interactive Card (Wander Inspiration) */
+/* Tactile Interactive Card */
 .card-tactile {
-  background: #ffffff;
-  border: 1px solid rgba(226, 232, 240, 0.85);
-  border-radius: 18px;
-  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.02);
+  background: #FFFFFF;
+  border: 1px solid #DEDEDE;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(23, 23, 23, 0.03);
   transition: transform var(--duration-fast) var(--ease-smooth),
               border-color var(--duration-fast) var(--ease-smooth),
               box-shadow var(--duration-fast) var(--ease-smooth);
@@ -72,15 +125,15 @@
 
 .card-tactile:hover {
   transform: translateY(-2px);
-  border-color: #cbd5e1;
-  box-shadow: 0 10px 25px -4px rgba(15, 23, 42, 0.06), 0 4px 6px -2px rgba(15, 23, 42, 0.02);
+  border-color: #B5B5B5;
+  box-shadow: 0 8px 20px -3px rgba(23, 23, 23, 0.08);
 }
 
 .card-tactile:active {
   transform: translateY(0) scale(0.995);
 }
 
-/* Tactile Button Press (Brainwave Inspiration) */
+/* Tactile Button Primitives */
 .btn-tactile {
   transition: transform var(--duration-micro) var(--ease-smooth),
               background-color var(--duration-micro) ease,
@@ -90,17 +143,35 @@
 
 .btn-tactile:hover:not(:disabled) {
   transform: translateY(-1px);
-  box-shadow: 0 4px 10px -2px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 3px 8px -1px rgba(23, 23, 23, 0.1);
 }
 
 .btn-tactile:active:not(:disabled) {
-  transform: scale(0.96);
+  transform: scale(0.97);
 }
 
-/* Flight Ticket Style Notch / Divider (Inspired by Reference 4) */
+.btn-orange {
+  background-color: #F25623;
+  color: #FFFFFF;
+}
+
+.btn-orange:hover:not(:disabled) {
+  background-color: #D94412;
+}
+
+.btn-black {
+  background-color: #171717;
+  color: #FFFFFF;
+}
+
+.btn-black:hover:not(:disabled) {
+  background-color: #2D2D2D;
+}
+
+/* Flight Ticket Style Notch / Divider */
 .ticket-notch-divider {
   position: relative;
-  border-top: 1px dashed #e2e8f0;
+  border-top: 1px dashed #DEDEDE;
 }
 
 .ticket-notch-divider::before,
@@ -126,7 +197,7 @@
 @keyframes viewEnterSmooth {
   0% {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(6px);
   }
   100% {
     opacity: 1;
@@ -151,7 +222,7 @@
 
 .chart-line-animated {
   stroke-dasharray: 1400;
-  animation: chartLineReveal 1.3s var(--ease-smooth) forwards;
+  animation: chartLineReveal 1.2s var(--ease-smooth) forwards;
 }
 
 /* Numeric alignment */
@@ -160,9 +231,9 @@
   font-feature-settings: 'tnum';
 }
 
-/* Subtle focus ring */
+/* Accessible focus ring using #F25623 */
 :focus-visible {
-  outline: 2px solid #0284c7;
+  outline: 2px solid #F25623;
   outline-offset: 2px;
 }
 
@@ -177,12 +248,33 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #DEDEDE;
   border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #B5B5B5;
+}
+
+/* Continuous Infinite Horizontal Marquee */
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 24s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
 }
 
 /* Reduced Motion Compliance */
@@ -195,4 +287,8 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+  .animate-marquee {
+    animation: none !important;
+  }
 }
+
