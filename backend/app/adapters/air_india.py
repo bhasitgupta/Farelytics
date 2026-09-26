@@ -62,7 +62,7 @@ class AirIndiaAdapter(BaseSourceAdapter):
         flight_num = f"AI-{400 + (date_hash % 500)}"
 
         quote = {
-            "timestamp": datetime.datetime.utcnow().isoformat(),
+            "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
             "source": self.source_id,
             "airline": "AI",
             "origin": origin,
