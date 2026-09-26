@@ -2,9 +2,10 @@ import datetime
 import json
 import logging
 import statistics
+import uuid
 from sqlalchemy.orm import Session
 from app.config import settings
-from app.adapters.registry import source_registry
+from app.adapters.registry import provider_registry
 from app.pipeline.validator import validate_raw_quote
 from app.pipeline.cleaner import deduplicate_quotes, clean_quote_components
 from app.pipeline.normalizer import normalize_fare_record
@@ -16,7 +17,7 @@ from app.engine.index_calculator import (
     calculate_national_apix
 )
 from app.engine.decomposition import calculate_index_decomposition
-from app.db.models import RawQuote, ValidatedQuote, IndexObservation, DataQualityRun
+from app.db.models import RawQuote, ValidatedQuote, IndexObservation, DataQualityRun, Route, CollectionJob
 
 logger = logging.getLogger(__name__)
 
@@ -29,34 +30,72 @@ class PipelineOrchestrator:
         Executes end-to-end data pipeline cycle:
         Source Adapters -> Raw Store -> Validation -> Cleaning -> Normalisation ->
         Quality Engine -> Index Engine -> Lineage Storage.
+        Supports configurable routes, providers, lead times, and enforces idempotency.
         """
+        now_utc = datetime.datetime.now(datetime.timezone.utc)
         if target_date is None:
             target_date = datetime.date.today()
 
-        routes = settings.ROUTE_BASKET
+        # Fetch active routes from DB or fall back to settings
+        db_routes = self.db.query(Route).filter(Route.is_active == True).all()
+        if db_routes:
+            routes = [r.route_id for r in db_routes]
+        else:
+            routes = settings.ROUTE_BASKET
+
         lead_times = settings.LEAD_TIMES
-        sources = source_registry.list_sources()
+        providers = provider_registry.list_providers()
 
         raw_collected = []
         invalid_quotes_count = 0
+        jobs_created = []
 
-        # Step 1: Collect quotes via source adapters
+        # Step 1: Collect quotes via provider adapters with job tracking
         for r_code in routes:
-            origin, dest = r_code.split("-")
+            parts = r_code.split("-")
+            if len(parts) != 2:
+                continue
+            origin, dest = parts[0], parts[1]
+
             for lt in lead_times:
                 travel_date = target_date + datetime.timedelta(days=lt)
-                for src_info in sources:
-                    adapter = source_registry.get(src_info["source_id"])
-                    if not adapter:
+
+                for prov_info in providers:
+                    prov_id = prov_info["provider_id"]
+                    adapter = provider_registry.get(prov_id)
+                    if not adapter or not prov_info.get("is_active", True):
                         continue
+
+                    job = CollectionJob(
+                        job_id=str(uuid.uuid4()),
+                        target_date=target_date,
+                        lead_time_days=lt,
+                        route_id=r_code,
+                        provider_id=prov_id,
+                        status="running",
+                        started_at=now_utc
+                    )
+                    self.db.add(job)
+                    self.db.flush()
+                    jobs_created.append(job)
+
                     quotes = adapter.collect_quotes(origin, dest, travel_date, lt)
+                    valid_for_job = 0
+
                     for q in quotes:
+                        q["_job_id"] = job.job_id
                         is_valid, reason = validate_raw_quote(q)
                         if is_valid:
                             raw_collected.append(q)
+                            valid_for_job += 1
                         else:
                             invalid_quotes_count += 1
                             logger.warning(f"Rejected raw quote: {reason}")
+
+                    job.status = "completed"
+                    job.quotes_count = valid_for_job
+                    job.completed_at = datetime.datetime.now(datetime.timezone.utc)
+                    self.db.flush()
 
         # Step 2: Persist immutable raw quotes (DATA-001)
         persisted_raw = []
@@ -66,7 +105,8 @@ class PipelineOrchestrator:
                 dep_date = datetime.date.fromisoformat(dep_date)
 
             raw_row = RawQuote(
-                timestamp=datetime.datetime.utcnow(),
+                job_id=q.get("_job_id"),
+                timestamp=now_utc,
                 source=q["source"],
                 airline=q["airline"],
                 origin=q["origin"],
@@ -139,7 +179,6 @@ class PipelineOrchestrator:
             val_id = val_row.validated_id
             persisted_val_ids.append(val_id)
 
-            # Accumulate valid fares for index math (exclude sold out & outliers)
             if val_dict["availability_status"] == "available" and val_dict["quality_flag"] != "outlier":
                 r_id = val_dict["route_id"]
                 p = val_dict["total_consumer_price"]
@@ -161,7 +200,7 @@ class PipelineOrchestrator:
         )
 
         dq_run = DataQualityRun(
-            run_timestamp=datetime.datetime.utcnow(),
+            run_timestamp=now_utc,
             quotes_collected=total_collected,
             valid_quotes=len(persisted_val_ids),
             duplicates=duplicate_count,
@@ -177,7 +216,14 @@ class PipelineOrchestrator:
         self.db.add(dq_run)
         self.db.flush()
 
-        # Step 9: Statistical Index Calculation (FEATURE-003)
+        # Step 9: Statistical Index Calculation with Idempotent Replacement
+        # Clear existing observations for this target_date to guarantee idempotency
+        self.db.query(IndexObservation).filter(
+            IndexObservation.period_date == target_date,
+            IndexObservation.granularity == "daily"
+        ).delete()
+        self.db.flush()
+
         route_weights = get_route_weights()
         base_route_nominal_prices = {
             "DEL-BOM": 6800.0,
@@ -206,7 +252,7 @@ class PipelineOrchestrator:
                     base_period=settings.BASE_PERIOD,
                     price_relative=rel,
                     apix_value=rel,
-                    contributing_validated_ids=json.dumps(persisted_val_ids),
+                    contributing_validated_ids=json.dumps(persisted_val_ids[:10]),
                     coverage_ratio=1.0
                 )
                 self.db.add(route_obs)
