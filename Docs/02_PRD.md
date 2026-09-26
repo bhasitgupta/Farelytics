@@ -1,6 +1,6 @@
 # Product Requirements Document (PRD)
 ## Real-Time Airfare Price Index (APIx) for India
-**SIH 2026**
+**Production Specification: Domestic Airfare Price Index Platform**
 
 ---
 
@@ -126,11 +126,11 @@ Weighting: `w_r = PassengerTraffic_r / Σ(PassengerTraffic across selected route
 
 ---
 
-## 8. Roadmap Beyond the Hackathon
+## 8. Strategic Product Roadmap
 
 | Phase | Timeline | Focus |
 |---|---|---|
-| P0 | 0–36h | Working prototype |
+| P0 | Milestone 1 | Working prototype & core index engine |
 | P1 | Week 1–2 | Data reliability — source adapters, monitoring, retry logic, data-quality alerts, historical storage, better normalisation |
 | P2 | Week 3–4 | Scale — 5→20→50 routes→national basket; 2→5 airlines→OTAs→multi-source reconciliation |
 | P3 | Month 2 | Statistical validation — basket methodology, route weighting, base-period selection, sampling methodology, fare-class treatment, cancellations, sold-out handling, seasonal adjustment, revision policy, missing-data treatment |
