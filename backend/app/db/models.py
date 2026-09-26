@@ -1,13 +1,67 @@
 import datetime
-from sqlalchemy import Column, Integer, BigInteger, String, Float, Date, DateTime, ForeignKey, Text
+import uuid
+from sqlalchemy import Column, Integer, BigInteger, String, Float, Date, DateTime, ForeignKey, Text, Boolean
 from sqlalchemy.orm import declarative_base, relationship
 
 Base = declarative_base()
+
+def get_uuid_str() -> str:
+    return str(uuid.uuid4())
+
+class Route(Base):
+    __tablename__ = "routes"
+
+    route_id = Column(String(10), primary_key=True)  # e.g., 'DEL-BOM'
+    origin_airport = Column(String(3), nullable=False)
+    destination_airport = Column(String(3), nullable=False)
+    distance_km = Column(Integer, nullable=True)
+    traffic_weight = Column(Float, default=0.0, nullable=False)
+    is_active = Column(Boolean, default=True, nullable=False)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow, nullable=False)
+
+    jobs = relationship("CollectionJob", back_populates="route")
+
+
+class Provider(Base):
+    __tablename__ = "providers"
+
+    provider_id = Column(String(50), primary_key=True)  # e.g., 'indigo', 'air_india', 'akasa', 'spicejet'
+    name = Column(String(100), nullable=False)
+    provider_type = Column(String(30), default="airline", nullable=False)  # airline / ota / aggregator
+    base_url = Column(Text, nullable=False)
+    is_active = Column(Boolean, default=True, nullable=False)
+    rate_limit_per_min = Column(Integer, default=30, nullable=False)
+    requires_browser = Column(Boolean, default=False, nullable=False)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow, nullable=False)
+
+    jobs = relationship("CollectionJob", back_populates="provider")
+
+
+class CollectionJob(Base):
+    __tablename__ = "collection_jobs"
+
+    job_id = Column(String(36), primary_key=True, default=get_uuid_str)
+    target_date = Column(Date, nullable=False)
+    lead_time_days = Column(Integer, nullable=False)
+    route_id = Column(String(10), ForeignKey("routes.route_id"), nullable=True)
+    provider_id = Column(String(50), ForeignKey("providers.provider_id"), nullable=True)
+    status = Column(String(30), default="pending", nullable=False)  # pending, running, completed, failed, challenge_encountered
+    quotes_count = Column(Integer, default=0, nullable=False)
+    error_type = Column(String(50), nullable=True)  # timeout, challenge_detected, rate_limited, parsing_error
+    error_message = Column(Text, nullable=True)
+    started_at = Column(DateTime, nullable=True)
+    completed_at = Column(DateTime, nullable=True)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow, nullable=False)
+
+    route = relationship("Route", back_populates="jobs")
+    provider = relationship("Provider", back_populates="jobs")
+
 
 class RawQuote(Base):
     __tablename__ = "raw_quotes"
 
     raw_id = Column(BigInteger().with_variant(Integer, "sqlite"), primary_key=True, autoincrement=True)
+    job_id = Column(String(36), nullable=True)
     timestamp = Column(DateTime, default=datetime.datetime.utcnow, nullable=False)
     source = Column(String(50), nullable=False)
     airline = Column(String(20), nullable=False)
@@ -39,7 +93,7 @@ class ValidatedQuote(Base):
     validated_id = Column(BigInteger().with_variant(Integer, "sqlite"), primary_key=True, autoincrement=True)
     raw_id = Column(BigInteger().with_variant(Integer, "sqlite"), ForeignKey("raw_quotes.raw_id"), nullable=False)
     route_id = Column(String(20), nullable=False)  # DEL-BOM
-    carrier = Column(String(20), nullable=False)   # 6E, AI, etc.
+    carrier = Column(String(20), nullable=False)   # 6E, AI, QP, SG, etc.
     travel_date = Column(Date, nullable=False)
     booking_date = Column(Date, nullable=False)
     lead_time = Column(Integer, nullable=False)
@@ -84,7 +138,7 @@ class IndexObservation(Base):
     index_id = Column(BigInteger().with_variant(Integer, "sqlite"), primary_key=True, autoincrement=True)
     period_date = Column(Date, nullable=False)
     granularity = Column(String(20), nullable=False)  # daily / weekly / monthly
-    route_id = Column(String(20), nullable=True)     # NULL or route code (e.g. DEL-BOM)
+    route_id = Column(String(20), nullable=True)     # NULL or route code (e.g. DEL-BOM, NATIONAL)
     route_weight = Column(Float, nullable=True)
     base_period = Column(String(20), nullable=False)
     price_relative = Column(Float, nullable=True)
