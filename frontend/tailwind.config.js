@@ -4,26 +4,33 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: ['selector', '[data-theme="dark"]'],
   theme: {
     extend: {
       colors: {
+        brand: {
+          black: '#171717',
+          orange: '#F25623',
+          dark: '#4D4D4D',
+          light: '#DEDEDE',
+          surface: '#FFFFFF',
+          bg: '#FAFAFA',
+          muted: '#F5F5F5',
+          border: '#DEDEDE',
+        },
         primary: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0284c7',
-          600: '#0369a1',
-          700: '#075985',
-          800: '#0c4a6e',
-          900: '#082f49',
+          DEFAULT: '#171717',
+          black: '#171717',
+          orange: '#F25623',
         }
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace']
+      },
+      boxShadow: {
+        'tactile': '0 1px 3px rgba(23, 23, 23, 0.05)',
+        'tactile-hover': '0 4px 12px rgba(23, 23, 23, 0.08)',
+        'tactile-active': '0 1px 2px rgba(23, 23, 23, 0.08)',
       }
     },
   },
