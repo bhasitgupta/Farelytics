@@ -1,125 +1,186 @@
-# APIx — Real-Time Airfare Price Index for India
-**SIH 2026 | Problem Statement 26056: Development of a Real-time Airfare Price Index for India through Automated Web Scraping of Airline and OTA Portals for Augmentation of the CPI**
+<p align="center">
+  <img src="frontend/public/farelytics-logo.png" alt="Farelytics Logo" width="560"/>
+</p>
 
-APIx is a government-statistics-grade domestic airfare price index platform designed to augment India's Consumer Price Index (CPI) — released by NSO/MoSPI and monitored by RBI for monetary policy.
+<p align="center">
+  <strong>Government-Grade Real-Time Domestic Airfare Price Index & Analytics Engine for India</strong>
+</p>
+
+<p align="center">
+  <a href="https://farelytics.vercel.app"><img src="https://img.shields.io/badge/Live%20Demo-farelytics.vercel.app-ff5500?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo" /></a>
+  <a href="#quickstart-guide"><img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" /></a>
+  <a href="#quickstart-guide"><img src="https://img.shields.io/badge/FastAPI-0.110%2B-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI" /></a>
+  <a href="#quickstart-guide"><img src="https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React" /></a>
+  <a href="#quickstart-guide"><img src="https://img.shields.io/badge/TailwindCSS-3.4-38B2D9?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="TailwindCSS" /></a>
+  <a href="#quickstart-guide"><img src="https://img.shields.io/badge/PostgreSQL-Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" alt="Supabase" /></a>
+</p>
+
+---
+
+## 🌟 Executive Overview
+
+**Farelytics** is an automated multi-source airfare intelligence and price index engine engineered to augment India's **Consumer Price Index (CPI)** — published by NSO/MoSPI and monitored by the Reserve Bank of India (RBI) for monetary policy formulation.
+
+Traditional airfare price collection for CPI relies on monthly point-in-time sampling, which misses dynamic intra-month yield spikes, seasonal festival premiums, and advance-purchase curve discounts. Farelytics bridges this measurement gap through **high-frequency automated price quote ingestion**, **strict normalisation pipelines**, and **defensible statistical index aggregation**.
 
 > [!NOTE]
-> **Methodology Stance:** APIx is an augmentation mechanism intended to complement existing CPI data collection with high-frequency online quotes across representative routes and advance-purchase windows. It is not a consumer flight tracker and does not claim to replace official CPI methodology.
+> **Methodology Stance:** Farelytics serves as an official augmentation mechanism. It complements existing official statistical workflows with high-frequency empirical price distributions across top domestic travel corridors and advance-purchase horizons ($T+1$ to $T+45$ days).
 
 ---
 
-## 1. System Architecture
+## 🗺️ System Architecture
 
 ```
-                  DATA SOURCES LAYER
-         IndiGo Adapter │ Air India Adapter │ MMT OTA Adapter
-                           │ (robots.txt check + demo fallback)
-                           ▼
-                  RAW QUOTE STORE
-             Immutable append-only table (FareObservation)
-                           │
-                           ▼
-           CLEANING & NORMALISATION ENGINE
-     - Schema validation (DATA-001) & deduplication (FR-002)
-     - Component split: base fare, GST taxes, UDF, convenience fee (FR-005)
-     - Outlier detection (IQR flagging without deletion) (FR-004)
-     - Sold-out status preservation (FR-006)
-                           │ (validated_quotes)
-                           ▼
-                 DATA QUALITY LAYER
-     - Completeness, validity, freshness, duplicate rate (FEATURE-006)
-                           │
-                           ▼
-              STATISTICAL INDEX ENGINE
-     - Median route price P(r,t) (ALGO-001)
-     - Price relative R(r,t) vs base period P(r,0) (ALGO-002)
-     - Prototype DGCA passenger traffic route weights w_r (ALGO-005)
-     - National APIx weighted aggregation (ALGO-003)
-     - 5-factor index decomposition (SRS §5)
-                           │
-            ┌──────────────┴──────────────┐
-            ▼                             ▼
-     FASTAPI REST API              REACT DASHBOARD
-   /api/index/current             UI-001 National APIx
-   /api/index/history             UI-002 Route Heatmap
-   /api/index/routes              UI-003 Lead-Time Curve
-   /api/fares                     UI-004 Airline Compare
-   /api/quality                   UI-005 Fare Breakdown
-   /api/backtest                  UI-006 Quality Panel
-   /api/lineage/{id}              30-Day DGCA Backtest View
+                             DATA SOURCES LAYER
+     IndiGo (6E)  │  Air India (AI)  │  Akasa Air (QP)  │  SpiceJet (SG)  │  MakeMyTrip OTA
+                                      │
+               (anti-bot challenge detection & ethical throttling)
+                                      ▼
+                             RAW QUOTE STORE
+             • Immutable append-only schema (FareObservation)
+             • Supabase PostgreSQL (UUID PKs, RLS, Indexes) + SQLite local fallback
+                                      │
+                                      ▼
+                      CLEANING & NORMALISATION ENGINE
+             • Schema validation (DATA-001) & deduplication (FR-002)
+             • Component breakdown: Base Fare, GST, UDF/PSF, Convenience Fees (FR-005)
+             • Interquartile Range (IQR) outlier detection without deletion (FR-004)
+             • Sold-out status preservation & audit log
+                                      │
+                                      ▼
+                            DATA QUALITY CONTROL
+             • Completeness, validity, freshness, duplicate rate metrics (FEATURE-006)
+                                      │
+                                      ▼
+                          STATISTICAL INDEX ENGINE
+             • Route median prices $P(r,t)$ across advance windows (ALGO-001)
+             • Price relatives $R(r,t)$ benchmarked against base period $P(r,0)$ (ALGO-002)
+             • Empirical DGCA annual passenger volume weights $w_r$ (ALGO-005)
+             • Laspeyres-type weighted national index aggregation (ALGO-003)
+             • 5-factor index decomposition (Trend, Carrier, Distance, Advance, Seasonality)
+                                      │
+                 ┌────────────────────┴────────────────────┐
+                 ▼                                         ▼
+        FASTAPI BACKEND SERVICE                   REACT ANALYTICS DASHBOARD
+      • /api/index/current                      • UI-001 National Farelytics Index
+      • /api/index/history                      • UI-002 Route Price Heatmap
+      • /api/index/routes                       • UI-003 Lead-Time Dynamic Curve
+      • /api/fares                              • UI-004 Carrier Fare Comparison
+      • /api/quality                            • UI-005 Component Cost Split
+      • /api/backtest                           • UI-006 Data Quality & Linage Modal
+      • /api/providers                          • WebGL Interactive Hero Shader
+      • /api/jobs                               • Google Identity OAuth Auth Console
 ```
 
 ---
 
-## 2. Representative Route Basket & Prototype Weights
+## ✈️ Representative Route Basket & DGCA Weights
 
-APIx monitors the 7 canonical domestic sectors by DGCA passenger volume:
+Farelytics tracks 7 canonical Indian trunk sectors representing **over 19.8 million annual domestic passengers**, sampled systematically across 5 advance-booking horizons ($T+1, T+7, T+15, T+30, T+45$):
 
-| Route | Sector | Annual Traffic (k) | Prototype Weight (w_r) |
-|---|---|---|---|
-| DEL–BOM | Delhi — Mumbai | 4,850 | 0.24495 |
-| DEL–BLR | Delhi — Bengaluru | 3,950 | 0.19950 |
-| BOM–BLR | Mumbai — Bengaluru | 2,750 | 0.13889 |
-| DEL–CCU | Delhi — Kolkata | 2,350 | 0.11869 |
-| BLR–HYD | Bengaluru — Hyderabad | 2,100 | 0.10606 |
-| MAA–DEL | Chennai — Delhi | 1,950 | 0.09848 |
-| DEL–HYD | Delhi — Hyderabad | 1,850 | 0.09343 |
-| **Total** | | **19,800** | **1.00000** |
+| Route Code | Sector | Annual Passengers (k) | Prototype Weight ($w_r$) | Primary Carriers |
+|:---:|:---|:---:|:---:|:---|
+| **DEL–BOM** | Delhi ⇄ Mumbai | 4,850 | **0.24495** | 6E, AI, QP, SG |
+| **DEL–BLR** | Delhi ⇄ Bengaluru | 3,950 | **0.19950** | 6E, AI, QP |
+| **BOM–BLR** | Mumbai ⇄ Bengaluru | 2,750 | **0.13889** | 6E, AI, QP |
+| **DEL–CCU** | Delhi ⇄ Kolkata | 2,350 | **0.11869** | 6E, AI, SG |
+| **BLR–HYD** | Bengaluru ⇄ Hyderabad | 2,100 | **0.10606** | 6E, AI, QP |
+| **MAA–DEL** | Chennai ⇄ Delhi | 1,950 | **0.09848** | 6E, AI, SG |
+| **DEL–HYD** | Delhi ⇄ Hyderabad | 1,850 | **0.09343** | 6E, AI, QP |
+| **TOTAL** | *National Representative Basket* | **19,800** | **1.00000** | **100% Coverage** |
 
 ---
 
-## 3. Quickstart Guide
+## ✨ Key Capabilities & Highlights
+
+- **Multi-Carrier Scraper Suite:** Built-in modular adapters for **IndiGo**, **Air India**, **Akasa Air**, **SpiceJet**, and **MakeMyTrip OTA** with mock fallback resilience and rate limiting.
+- **Micro-Component Disaggregation:** Isolates base airline charges from statutory fuel surcharges, Goods & Services Tax (GST), User Development Fees (UDF), and convenience charges.
+- **Statistical Integrity:** Preserves market reality with IQR outlier tagging (rather than arbitrary record deletion) and explicit tracking of sold-out flight percentages.
+- **Interactive Modern UI:** Responsive React dashboard with custom WebGL wave physics, animated text reveals, route heatmaps, and lineage audit modals.
+- **Operations Console:** Real-time ingestion trigger drawer, data quality monitoring, and system metrics logging.
+- **Cloud-Ready Deployment:** Native Vercel frontend hosting coupled with high-availability Supabase PostgreSQL database persistence.
+
+---
+
+## 🚀 Quickstart Guide
 
 ### Prerequisites
 - Python 3.10+
 - Node.js 18+ and npm
+- (Optional) Supabase credentials for PostgreSQL cloud storage
 
-### 1. Backend Setup & Run
+### 1. Backend Service Setup
+
 ```bash
+# Navigate to backend directory
 cd backend
-python3 -m venv venv
-source venv/bin/activate
+
+# Create and activate virtual environment
+python -m venv venv
+source venv/bin/activate   # Windows: .\venv\Scripts\Activate.ps1
+
+# Install production dependencies
 pip install -r requirements.txt
 
-# Run test suite
+# (Optional) Setup environment variables
+cp .env.example .env
+
+# Run full test suite
 pytest tests/ -v
 
-# Start FastAPI server
+# Launch FastAPI development server
 uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
 ```
-API Documentation will be available at: `http://127.0.0.1:8000/docs`
 
-### 2. Frontend Setup & Run
+*Interactive Swagger documentation available at:* `http://127.0.0.1:8000/docs`
+
+### 2. Frontend Dashboard Setup
+
 ```bash
+# Navigate to frontend directory
 cd frontend
+
+# Install dependencies
 npm install
+
+# Start Vite live reload development server
 npm run dev
+
+# Build production bundle for Vercel
+npm run build
 ```
-Dashboard will be available at: `http://localhost:3000`
+
+*Open browser at:* `http://localhost:5173`
 
 ---
 
-## 4. REST API Specification
+## 📊 Core REST API Specifications
 
-| Endpoint | Method | Purpose |
-|---|---|---|
-| `/api/index/current` | GET | Latest published headline APIx with 5-factor decomposition |
-| `/api/index/history` | GET | Historical index series with daily, weekly, and monthly filters |
-| `/api/index/routes` | GET | Per-route breakdown with weights and price relatives |
-| `/api/fares` | GET | Normalized fare records with route and lead-time filters |
-| `/api/quality` | GET | Per-run Data Quality Score and governance statistics |
-| `/api/backtest` | GET | 30-day DGCA benchmark comparison with MAE, RMSE, Pearson r |
-| `/api/lineage/{index_id}` | GET | Cryptographic trace linking published index to raw quotes |
-| `/api/pipeline/run` | POST | Trigger on-demand automated collection and index computation |
+| Method | Endpoint | Description |
+|:---:|:---|:---|
+| `GET` | `/api/index/current` | Returns latest national Farelytics composite index and metadata |
+| `GET` | `/api/index/history` | Granular time-series index data (`daily`, `weekly`, `monthly`) |
+| `GET` | `/api/index/routes` | Per-route price relatives and DGCA passenger volume weights |
+| `GET` | `/api/fares` | Filtered raw fare observations by route, carrier, and date |
+| `GET` | `/api/quality` | Ingestion pipeline health, freshness, and completeness metrics |
+| `GET` | `/api/backtest` | 30-day historical index performance backtest |
+| `GET` | `/api/providers` | Active carrier adapter health and scrapers status |
+| `GET` | `/api/lineage/{id}` | Complete audit trail for any given price observation |
+| `POST`| `/api/pipeline/run` | Trigger on-demand pipeline ingestion run |
 
 ---
 
-## 5. UI Features & Design System
-- **Theme Switcher**: Fully accessible Light, Dark, and System preference switcher persisted to localStorage.
-- **UI-001 National APIx**: Real-time trend curve with daily/weekly/monthly toggles, baseline reference, and 5-factor decomposition cards.
-- **UI-002 Sector Heatmap**: Sector matrix colored by price movement magnitude and direction.
-- **UI-003 Lead-Time Elasticity**: Advance booking horizon curve (T+1 to T+45) highlighting last-minute surge premiums.
-- **UI-004 Carrier Comparison**: Side-by-side comparison of budget (LCC) and full-service (FSC) airlines.
-- **UI-005 Fare Composition**: Component breakdown of base fare, statutory GST (5%), and airport UDF/fees.
-- **UI-006 Data Quality Layer**: Comprehensive audit score measuring completeness, validity, and deduplication.
-- **30-Day DGCA Backtest View**: Independent external validation against DGCA monthly benchmark data with MAE, RMSE, Pearson correlation, and statutory disclaimers.
+## 🔒 Security & Privacy
+
+- Read-only public analytical queries with zero personal data collection.
+- Encrypted HTTPS transmission across all carrier API adapters.
+- JWT and Google Identity Services OAuth 2.0 integration for administrative console access.
+- Row Level Security (RLS) enabled on Supabase database layers.
+
+---
+
+## 📄 License & Attribution
+
+Farelytics is developed and maintained by **Bhasit Gupta** ([@bhasitgupta](https://github.com/bhasitgupta)).  
+Official Repository: [bhasitgupta/SIH26056](https://github.com/bhasitgupta/SIH26056)  
+Live Production: [farelytics.vercel.app](https://farelytics.vercel.app)
