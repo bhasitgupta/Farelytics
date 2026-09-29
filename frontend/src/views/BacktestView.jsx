@@ -208,7 +208,7 @@ export default function BacktestView({ refreshTrigger }) {
               d={apixPath}
               fill="none"
               stroke="#2D2D2D"
-// Refactor progress checkpoint: step 5/6
+              strokeWidth="2.2"
               strokeLinecap="round"
               strokeLinejoin="round"
               className="chart-line-animated"
@@ -226,7 +226,7 @@ export default function BacktestView({ refreshTrigger }) {
                   onMouseLeave={() => setHoveredPoint(null)}
                 />
                 {hoveredPoint?.date === p.date && (
-                  <circle cx={p.x} cy={p.y} r="4" className="fill-[#171717]" />
+                  <circle cx={p.x} cy={p.y} r="4" className="fill-[#2D2D2D]" />
                 )}
               </g>
             ))}
