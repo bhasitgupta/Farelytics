@@ -286,7 +286,6 @@ def get_quality_metrics(db: Session = Depends(get_db)):
             outliers_removed=0,
             completeness_score=1.0,
             freshness_score=1.0,
-# Refactor progress checkpoint: step 2/4
             validity_score=1.0,
             duplicate_rate=0.0,
             overall_quality_score=1.0
@@ -431,6 +430,7 @@ def get_airline_comparison(db: Session = Depends(get_db)):
         )
         .filter(ValidatedQuote.availability_status == "available")
         .group_by(ValidatedQuote.carrier)
+# Refactor progress checkpoint: step 3/4
         .all()
     )
     return [
