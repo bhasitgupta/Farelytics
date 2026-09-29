@@ -19,31 +19,28 @@ export default function Header({
         { y: 0, opacity: 1, scale: 1, duration: 1.1, ease: 'power4.out', delay: 0.05 }
       );
     }
-// Refactor progress checkpoint: step 1/5
+  }, []);
+
+  return (
+    <header className={`${viewMode === 'landing' ? 'fixed top-3 sm:top-5 inset-x-0' : 'sticky top-3 sm:top-5'} z-50 w-full px-4 flex justify-center pointer-events-none transition-all`}>
       <div 
         ref={navRef}
-        className={`pointer-events-auto max-w-4xl w-full rounded-full backdrop-blur-xl px-3 sm:px-5 py-2 flex items-center justify-between gap-3 sm:gap-6 transition-all ${
-          viewMode === 'landing'
-            ? 'bg-black/50 border border-white/15 shadow-[0_8px_32px_rgba(0,0,0,0.35)] text-white'
-            : 'bg-white/90 border border-white/60 shadow-[0_8px_32px_rgba(0,0,0,0.08)] text-[#171717]'
-        }`}
+        className="pointer-events-auto max-w-4xl w-full rounded-full bg-white/80 backdrop-blur-xl border border-black/[0.08] shadow-[0_2px_16px_rgba(0,0,0,0.06)] px-3.5 sm:px-5 py-2 flex items-center justify-between gap-3 sm:gap-6 transition-all text-[#111111]"
       >
-        {/* Left: Brand Logo (Capital F Icon Mark) */}
+        {/* Left: Brand Logo */}
         <button 
           type="button" 
           onClick={() => onViewModeChange && onViewModeChange('landing')}
-          className="flex items-center text-left focus:outline-none group shrink-0 pl-1"
+          className="flex items-center text-left focus:outline-none group shrink-0 pl-1 cursor-pointer"
           aria-label="Farelytics Home"
         >
           <img 
             src="/farelytics-icon.png" 
-            alt="Farelytics" 
-            className="h-7 sm:h-8 w-auto object-contain transition-transform group-hover:scale-105 duration-200"
+            alt="Farelytics — India's Airfare Price Index" 
+            className="h-7 sm:h-7.5 w-auto object-contain transition-transform group-hover:scale-105 duration-200"
           />
         </button>
-
-        {/* Center: Simplified Navigation Links (Single Line, Never Wraps) */}
-        {viewMode === 'landing' && onNavigateSection && (
+// Refactor progress checkpoint: step 2/5
           <nav className="hidden md:flex items-center gap-1 sm:gap-1.5 text-xs sm:text-[13px] font-medium text-neutral-300" aria-label="Main Navigation">
             <button 
               type="button" 
