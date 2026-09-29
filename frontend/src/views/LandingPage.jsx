@@ -393,58 +393,30 @@ export default function LandingPage({ onLaunchDashboard, onSelectTab, onSectionC
                 >
                   The real price
                 </motion.span>
-// Refactor progress checkpoint: step 17/36
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="flex items-center gap-2 text-[#F25623]">
-                  <CheckCircle2 className="w-4 h-4 shrink-0" />
-                  <span>Observation: 30 of 30 days tracked (100%)</span>
-                </div>
-                <div className="flex items-center gap-2 text-white">
-                  <Activity className="w-4 h-4 text-[#F25623] shrink-0" />
-                  <span>5 Horizons: 1d, 7d, 15d, 30d, 45d out</span>
-                </div>
-                <div className="flex items-center gap-2 text-[#DEDEDE]">
-                  <ShieldCheck className="w-4 h-4 text-[#F25623] shrink-0" />
-                  <span>Weighted across 19.8M real travelers</span>
-                </div>
-              </>
-            )}
-          </div>
-        </div>
-
-        {/* ========================================================================= */}
-        {/* B. FIVE KINETIC DIMENSION SELECTOR CARDS */}
-        {/* ========================================================================= */}
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#737373]">
-              Five Structural Methodology Discrepancies
-            </span>
-            <span className="text-xs text-[#A3A3A3] font-medium hidden sm:inline">
-              Click any card to inspect the statistical audit
-            </span>
-          </div>
-
-          {/* 5 Tactile Dimension Cards */}
-          <div className="scroll-reveal-grid grid grid-cols-1 sm:grid-cols-5 gap-3.5">
-            {blindspotDimensions.map((item, idx) => {
-              const IconComp = item.icon;
-              const isSelected = selectedDimension === idx;
-
-              return (
-                <div
-                  key={item.id}
-                  onClick={() => setSelectedDimension(idx)}
-                  className={`scroll-reveal-card p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between group ${
-                    isSelected
-                      ? 'bg-white border-[#171717] shadow-tactile ring-2 ring-[#171717]/10 -translate-y-0.5'
-                      : 'bg-[#FAFAFA] border-[#E5E5E5] hover:bg-white hover:border-[#171717]/50'
-                  }`}
+              </span>
+              <span className="block overflow-hidden py-1">
+                <motion.span 
+                  initial={{ y: "115%", opacity: 0 }}
+                  animate={{ y: "0%", opacity: 1 }}
+                  transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: 0.22 }}
+                  className="inline-block will-change-transform"
                 >
-                  <div>
+                  of flying in India.
+                </motion.span>
+              </span>
+            </h1>
+
+            {/* Subheading with Smooth Spring Fade */}
+            <motion.p
+              initial={{ opacity: 0, y: 22 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.34 }}
+              className="text-lg sm:text-xl text-[#555555] leading-relaxed max-w-[620px] mx-auto font-normal"
+            >
+              Airlines add airport fees and change ticket prices every hour. We track 50,000 real domestic fares every day so you see true prices.
+            </motion.p>
+          </div>
+// Refactor progress checkpoint: step 18/36
                     <div className="flex items-center justify-between mb-3">
                       <span className={`font-mono text-[11px] font-bold ${isSelected ? 'text-[#F25623]' : 'text-[#A3A3A3]'}`}>
                         {item.num}
