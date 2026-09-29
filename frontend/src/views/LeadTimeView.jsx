@@ -95,22 +95,22 @@ export default function LeadTimeView({ refreshTrigger }) {
               15: { name: '15 Days Advance (Mid Horizon)', tag: 'Moderate Window', isSpecial: false },
               30: { name: '30 Days Advance (1 Month Ahead)', tag: 'Official CPI Specification', isSpecial: true },
               45: { name: '45 Days Advance (Early Bird)', tag: 'Early Window', isSpecial: false },
-// Refactor progress checkpoint: step 3/5
+            }[item.days] || { name: `${item.days} Days Advance`, tag: 'Custom Horizon', isSpecial: false };
 
             return (
               <div key={item.lead_time} className="space-y-2">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs">
                   <div className="flex items-center gap-2.5">
-                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded bg-[#FAFAFA] text-[#171717] border border-[#DEDEDE]">
+                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded bg-[#F4F3F1] text-[#2D2D2D] border border-[#DFDDD8]">
                       {item.lead_time}
                     </span>
-                    <span className="text-[#171717] font-semibold">
+                    <span className="text-[#2D2D2D] font-semibold">
                       {horizonDetails.name}
                     </span>
                     <span className={`text-[10px] font-medium px-2 py-0.5 rounded border ${
                       horizonDetails.isSpecial
-                        ? 'bg-[#171717] text-white border-[#171717]'
-                        : 'bg-[#FAFAFA] text-[#4D4D4D] border-[#DEDEDE]'
+                        ? 'bg-[#2D2D2D] text-white border-[#2D2D2D]'
+                        : 'bg-[#F4F3F1] text-[#4D4D4D] border-[#DFDDD8]'
                     }`}>
                       {horizonDetails.tag}
                     </span>
@@ -118,17 +118,17 @@ export default function LeadTimeView({ refreshTrigger }) {
 
                   <div className="flex items-center gap-4 font-mono text-xs">
                     {discountVsT1 > 0 && (
-                      <span className="text-[#F25623] font-medium">
+                      <span className="text-[#3171C6] font-medium">
                         <AnimatedNumber value={discountVsT1} decimals={0} prefix="-" suffix="% vs T+1" duration={650} />
                       </span>
                     )}
                     <span className="text-[#737373]">
-                      Multiplier: <strong className="text-[#171717] font-medium"><AnimatedNumber value={ratioVsT30} decimals={2} suffix="x" duration={650} /></strong>
+                      Multiplier: <strong className="text-[#2D2D2D] font-medium"><AnimatedNumber value={ratioVsT30} decimals={2} suffix="x" duration={650} /></strong>
                     </span>
-                    <span className="font-bold text-base text-[#171717] tabular-nums">
+                    <span className="font-bold text-base text-[#2D2D2D] tabular-nums">
                       <AnimatedNumber value={item.average_fare} decimals={0} prefix="₹" duration={650} />
                     </span>
-                  </div>
+// Refactor progress checkpoint: step 4/5
                 </div>
 
                 {/* Single-tone clean bar with smooth transition */}
