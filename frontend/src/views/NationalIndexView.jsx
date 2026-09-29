@@ -326,29 +326,32 @@ export default function NationalIndexView({ onInspectLineage, refreshTrigger, cu
                     {points[points.length - 1].period}
                   </text>
                 </>
-// Refactor progress checkpoint: step 13/16
-                  {points[0].period}
-                </text>
+              )}
+            </svg>
+          </div>
+        </div>
 
-                {points.length > 2 && (
-                  <text
-                    x={points[Math.floor(points.length / 2)].x}
-                    y={chartHeight - 10}
-                    textAnchor="middle"
-                    className="text-[10px] font-mono fill-[#737373]"
-                  >
-                    {points[Math.floor(points.length / 2)].period}
-                  </text>
-                )}
-
-                <text
-                  x={points[points.length - 1].x}
-                  y={chartHeight - 10}
-                  textAnchor="end"
-                  className="text-[10px] font-mono fill-[#737373]"
-                >
-                  {points[points.length - 1].period}
-                </text>
+        {/* Bottom Metadata Summary Strip */}
+        <div className="pt-5 border-t border-[#EAEAEA] grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
+          <div>
+            <span className="text-[#888888] block text-[11px]">Latest Publication</span>
+            <span className="font-medium text-[#111111] mt-0.5 block font-mono">{current?.period || 'Today'}</span>
+          </div>
+          <div>
+            <span className="text-[#888888] block text-[11px]">Base Reference</span>
+            <span className="font-medium text-[#111111] mt-0.5 block font-mono">August 2026 = 100.0</span>
+          </div>
+          <div>
+            <span className="text-[#888888] block text-[11px]">Corridor Coverage</span>
+            <span className="font-medium text-[#111111] mt-0.5 block font-mono">Top 7 Trunk Routes (85% Traffic)</span>
+          </div>
+          <div>
+            <span className="text-[#888888] block text-[11px]">Passenger Weights</span>
+            <span className="font-medium text-[#111111] mt-0.5 block font-mono uppercase">{current?.weight_source || 'DGCA Returns'}</span>
+          </div>
+        </div>
+      </div>
+// Refactor progress checkpoint: step 14/16
               </>
             )}
           </svg>
