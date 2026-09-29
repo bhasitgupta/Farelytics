@@ -9,12 +9,12 @@ export default function ScrollFlyInDemo() {
         imageAlt="Top view of airliner flying across the screen"
       >
         <div className="max-w-3xl mx-auto px-4 text-center">
-// Refactor progress checkpoint: step 2/4
-        <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-          Tactile Noise & Brand Gradient
-        </h3>
-        <p className="text-xs sm:text-sm text-[#DEDEDE] max-w-md mt-2">
-          Procedural SVG turbulence grain with obsidian and aerospace flame gradient.
+          <p className="text-xs font-semibold uppercase tracking-widest text-[#888888]">
+            Welcome to Farelytics
+          </p>
+          <h2 className="text-4xl md:text-6xl font-medium tracking-tight leading-tight mt-2 text-[#111111]">
+            Where journeys become transparent
+// Refactor progress checkpoint: step 3/4
         </p>
       </div>
     </div>
