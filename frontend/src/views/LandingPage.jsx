@@ -695,59 +695,30 @@ export default function LandingPage({ onLaunchDashboard, onSelectTab, onSectionC
                     <span className="text-[10px] text-[#888888] block">Average total</span>
                     <span className="font-semibold text-[#111111]">{r.total}</span>
                   </div>
-// Refactor progress checkpoint: step 30/36
-                    }`}
-                  >
-                    <div className="col-span-3 flex items-center gap-2">
-                      <span className={`w-1.5 h-1.5 rounded-full ${isSelected ? 'bg-[#F25623]' : 'bg-transparent'}`}></span>
-                      <span className="font-mono font-bold text-[#171717]">{r.code}</span>
-                    </div>
-                    <div className="col-span-4 text-[#4D4D4D]">
-                      {r.name}
-                    </div>
-                    <div className="col-span-2 text-right font-mono text-[#737373]">
-                      {r.pax}
-                    </div>
-                    <div className="col-span-3 text-right font-mono flex items-center justify-end gap-2">
-                      <span className="text-[#171717] font-bold">{r.pct}</span>
-                      <span className="text-[#F25623] font-bold">{r.surge}</span>
-                    </div>
+                  <div className="text-right">
+                    <span className="text-[10px] text-[#888888] block">Passengers</span>
+                    <span className="text-[#555555]">{r.pax}</span>
                   </div>
-                );
-              })}
-            </div>
-
-            {/* Total Coverage Footer Row */}
-            <div className="p-4 bg-[#F9F9F8] border-t border-[#E5E5E5] flex items-center justify-between text-xs font-mono">
-              <span className="text-[#737373] uppercase font-bold">Total Monitored Route Volume</span>
-              <span className="text-[#171717] font-bold">19.8M Pax · 100% Traffic Covered</span>
-            </div>
+                </div>
+              </div>
+            ))}
           </div>
 
-          {/* Right: Boarding Ticket Stub Breakdown Card (4 cols) */}
-          <div className="lg:col-span-4 bg-white border border-[#E5E5E5] rounded-2xl shadow-sm p-6 space-y-5">
-            <div className="flex items-center justify-between border-b border-[#E5E5E5] pb-3">
-              <div>
-                <span className="text-xs uppercase tracking-wider text-[#F25623] font-bold">
-                  Route Inspector
-                </span>
-                <h4 className="text-xl font-black font-mono text-[#171717] mt-0.5">
-                  {selectedRoute.code}
-                </h4>
-              </div>
-              <span className="text-xs font-bold text-[#F25623] bg-[#F25623]/10 px-2 py-0.5 rounded">
-                {selectedRoute.surge} Surge
-              </span>
-            </div>
+        </div>
+      </section>
 
-            <div className="space-y-1">
-              <span className="text-xs text-[#737373] block">Route Details</span>
-              <span className="text-sm font-bold text-[#171717] block">{selectedRoute.name}</span>
-            </div>
-
-            {/* Ticket Perforation Notch */}
-            <div className="ticket-notch-divider pt-4 space-y-3 font-mono text-xs">
-              <div className="flex justify-between items-center text-[#737373]">
+      {/* ========================================================================= */}
+      {/* 5. GRAND CALL TO ACTION */}
+      {/* ========================================================================= */}
+      <section id="cta" className="py-24 sm:py-36">
+        <div className="max-w-[1120px] mx-auto px-6 sm:px-8">
+          <div className="rounded-3xl bg-[#111111] text-white p-8 sm:p-14 lg:p-16 space-y-12">
+            
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+              <div className="lg:col-span-7 space-y-6">
+                <span className="text-xs font-mono uppercase tracking-widest text-[#888888] font-medium block">
+                  Live index
+// Refactor progress checkpoint: step 31/36
                 <span>Annual Passenger Trips:</span>
                 <span className="font-bold text-[#171717]">{selectedRoute.pax}</span>
               </div>
