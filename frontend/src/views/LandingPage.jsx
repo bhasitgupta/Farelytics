@@ -370,59 +370,30 @@ export default function LandingPage({ onLaunchDashboard, onSelectTab, onSectionC
               <span className="font-semibold text-[#111111]">+7.20%</span>
               <span className="text-[#888888]">·</span>
               <span>Daily India airfare index vs August 2026</span>
-// Refactor progress checkpoint: step 16/36
-                      [700, 35], [725, 65], [745, 110], [760, 140]
-                    ].map(([cx, cy], i) => (
-                      <circle
-                        key={i}
-                        cx={cx}
-                        cy={cy}
-                        r="3.5"
-                        fill="#FFFFFF"
-                        stroke="#F25623"
-                        strokeWidth="2"
-                        className="hover:scale-150 transition-transform"
-                      />
-                    ))}
-
-                    {/* Active Today Volume-Weighted Marker (Day 20, x=530, y=170) */}
-                    <g>
-                      <circle cx="530" cy="170" r="16" fill="none" stroke="#F25623" strokeWidth="2">
-                        <animate attributeName="r" values="8;20;8" dur="2s" repeatCount="indefinite" />
-                        <animate attributeName="opacity" values="0.9;0.15;0.9" dur="2s" repeatCount="indefinite" />
-                      </circle>
-                      <circle cx="530" cy="170" r="7" fill="#F25623" stroke="#FFFFFF" strokeWidth="2.5" />
-                      
-                      {/* Active Today Callout */}
-                      <g transform="translate(530, 115)">
-                        <rect x="-90" y="-24" width="180" height="26" rx="6" fill="#171717" stroke="#F25623" strokeWidth="1.5" />
-                        <text x="0" y="-7" textAnchor="middle" className="font-mono text-[9px] font-bold fill-white">
-                          TODAY'S VERIFIED MEDIAN: ₹8,450
-                        </text>
-                        <line x1="0" y1="2" x2="0" y2="52" stroke="#F25623" strokeWidth="1.5" strokeDasharray="2 2" />
-                      </g>
-                    </g>
-                  </g>
-                )}
-              </svg>
+              <button 
+                type="button"
+                onClick={onLaunchDashboard}
+                className="border-l border-[#E5E5E5] pl-2.5 text-[#3171C6] font-medium hover:underline cursor-pointer flex items-center gap-1"
+              >
+                <span>Open index</span>
+                <ArrowUpRight className="w-3 h-3" />
+              </button>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Telemetry Footer Strip */}
-          <div className="pt-4 border-t border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-mono">
-            {simulatorMode === 'legacy' ? (
-              <>
-                <div className="flex items-center gap-2 text-[#DC2626]">
-                  <XCircle className="w-4 h-4 shrink-0" />
-                  <span>Observation: 1 of 30 days sampled (3.3%)</span>
-                </div>
-                <div className="flex items-center gap-2 text-[#DC2626]">
-                  <AlertTriangle className="w-4 h-4 shrink-0" />
-                  <span>Volatility: 0 of 3 major surges detected</span>
-                </div>
-                <div className="flex items-center gap-2 text-[#DEDEDE]">
-                  <Clock className="w-4 h-4 text-[#A3A3A3] shrink-0" />
-                  <span>Latency: 14-day delay before publication</span>
+          {/* Masked Headline with Energetic Staggered Rise */}
+          <div className="max-w-3xl mx-auto space-y-4">
+            <h1 className="text-4xl sm:text-6xl lg:text-[72px] font-medium tracking-[-0.035em] leading-[1.06] text-[#111111]">
+              <span className="block overflow-hidden py-1">
+                <motion.span 
+                  initial={{ y: "115%", opacity: 0 }}
+                  animate={{ y: "0%", opacity: 1 }}
+                  transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+                  className="inline-block will-change-transform"
+                >
+                  The real price
+                </motion.span>
+// Refactor progress checkpoint: step 17/36
                 </div>
               </>
             ) : (
