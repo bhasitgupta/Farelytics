@@ -4,21 +4,30 @@
 
 @layer base {
   :root {
-    /* Strict Brand Palette System */
-    --brand-black: #171717;
-    --brand-orange: #F25623;
-    --brand-dark: #4D4D4D;
-    --brand-light: #DEDEDE;
+    /* Strict Brand Palette System: Cotton (#F4F3F1), Electric Blue (#3171C6), Moonless Night (#2D2D2D) */
+    --brand-black: #2D2D2D;
+    --brand-moonless: #2D2D2D;
+    --brand-electric: #3171C6;
+    --brand-cotton: #F4F3F1;
+    --brand-orange: #3171C6; /* Alias for backward compatibility */
+    --brand-dark: #454545;
+    --brand-light: #DFDDD8;
     --brand-surface: #FFFFFF;
-    --brand-bg: #FAFAFA;
+    --brand-bg: #F4F3F1;
 
-    --bg-app: #FAFAFA;
+    --bg-app: #F4F3F1;
     --bg-card: #FFFFFF;
-    --bg-muted: #F5F5F5;
-    --bg-hover: #F0F0F0;
+    --bg-muted: #ECEAE5;
+    --bg-hover: #E3E0DA;
 
-    --text-main: #171717;
-    --text-body: #4D4D4D;
+    --text-main: #2D2D2D;
+    --text-body: #4E4E4E;
+    --text-muted: #767676;
+    --text-faint: #A8A8A8;
+
+    --border-card: #DFDDD8;
+    --border-light: #ECEAE5;
+// Refactor progress checkpoint: step 1/14
     --text-muted: #737373;
     --text-faint: #A3A3A3;
 
@@ -291,4 +300,3 @@
     animation: none !important;
   }
 }
-
