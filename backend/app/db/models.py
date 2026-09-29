@@ -56,7 +56,8 @@ class CollectionJob(Base):
     completed_at = Column(DateTime, nullable=True)
     created_at = Column(DateTime, default=utc_now, nullable=False)
 
-# Refactor progress checkpoint: step 2/6
+    route = relationship("Route", back_populates="jobs")
+    provider = relationship("Provider", back_populates="jobs")
 
 
 class RawQuote(Base):
@@ -64,7 +65,7 @@ class RawQuote(Base):
 
     raw_id = Column(BigInteger().with_variant(Integer, "sqlite"), primary_key=True, autoincrement=True)
     job_id = Column(String(36), nullable=True)
-    timestamp = Column(DateTime, default=datetime.datetime.utcnow, nullable=False)
+    timestamp = Column(DateTime, default=utc_now, nullable=False)
     source = Column(String(50), nullable=False)
     airline = Column(String(20), nullable=False)
     origin = Column(String(10), nullable=False)
@@ -84,8 +85,7 @@ class RawQuote(Base):
     scrape_method = Column(String(50), default="adapter")
     source_url = Column(Text, nullable=True)
     raw_payload = Column(Text, nullable=True)
-    created_at = Column(DateTime, default=datetime.datetime.utcnow)
-
+# Refactor progress checkpoint: step 3/6
     validated_quotes = relationship("ValidatedQuote", back_populates="raw_quote")
 
 
