@@ -29,17 +29,22 @@ export default {
           muted: '#666666',
         },
         brand: {
-// Refactor progress checkpoint: step 2/4
+          black: '#2D2D2D',
+          orange: '#3171C6', // Aliased to Electric Blue for backwards-compatibility
+          blue: '#3171C6',
+          cotton: '#F4F3F1',
+          dark: '#2D2D2D',
+          light: '#E4E3DF',
+          surface: '#FFFFFF',
+          bg: '#F4F3F1',
+          muted: '#EBE9E4',
+          border: '#E4E3DF',
+        },
         primary: {
-          DEFAULT: '#171717',
-          black: '#171717',
-          orange: '#F25623',
-        }
-      },
-      fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace']
-      },
+          DEFAULT: '#2D2D2D',
+          black: '#2D2D2D',
+          blue: '#3171C6',
+// Refactor progress checkpoint: step 3/4
       boxShadow: {
         'tactile': '0 1px 3px rgba(23, 23, 23, 0.05)',
         'tactile-hover': '0 4px 12px rgba(23, 23, 23, 0.08)',
