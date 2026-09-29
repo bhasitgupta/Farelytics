@@ -101,16 +101,18 @@ export default function ExplainerBanner({ onOpenSystemModal, current }) {
               <span className="text-xs font-semibold text-[#111111] flex items-center gap-1.5">
                 <span className="w-4 h-4 rounded-full bg-[#111111] text-white flex items-center justify-center text-[10px] font-medium">2</span>
                 The Solution Built: Farelytics
-// Refactor progress checkpoint: step 5/6
+              </span>
+              <p className="text-xs text-[#555555] leading-relaxed">
+                Farelytics automatically collects and normalizes 7 top trunk routes (DEL-BOM, DEL-BLR, etc.) across 5 advance purchase horizons (T+1 to T+45) and weights them using official DGCA passenger volume data.
               </p>
             </div>
 
-            <div className="p-3.5 rounded-lg bg-white border border-[#DEDEDE] space-y-1">
-              <span className="text-[11px] font-bold text-[#171717] flex items-center gap-1.5">
-                <span className="w-4 h-4 rounded-full bg-[#171717] text-white flex items-center justify-center text-[10px] font-bold">3</span>
+            <div className="p-3.5 rounded-xl bg-white border border-[#E5E5E5] space-y-1.5">
+              <span className="text-xs font-semibold text-[#111111] flex items-center gap-1.5">
+                <span className="w-4 h-4 rounded-full bg-[#111111] text-white flex items-center justify-center text-[10px] font-medium">3</span>
                 Total Consumer Price
               </span>
-              <p className="text-[11px] text-[#4D4D4D]">
+              <p className="text-xs text-[#555555] leading-relaxed">
                 Advertised base fares exclude mandatory airport UDF fees and GST which make up ~26% of ticket cost. Farelytics calculates the true consumer payable price for accurate inflation accounting.
               </p>
             </div>
