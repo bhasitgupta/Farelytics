@@ -124,23 +124,23 @@ export default function BacktestView({ refreshTrigger }) {
         </div>
       </div>
 
-// Refactor progress checkpoint: step 3/6
-      <div className="card-tactile p-6 sm:p-8 relative bg-white border-[#DEDEDE]">
+      {/* Dual Series Line Chart */}
+      <div className="card-tactile p-6 sm:p-8 relative bg-white border-[#DFDDD8]">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
           <div>
-            <h3 className="text-xs font-semibold text-[#171717] uppercase tracking-wider">
+            <h3 className="text-xs font-semibold text-[#2D2D2D] uppercase tracking-wider">
               Dual Tracking Timeline
             </h3>
             <p className="text-xs text-[#737373] mt-0.5">30-day continuous timeline comparison</p>
           </div>
           <div className="flex items-center gap-4 text-xs font-mono">
             <div className="flex items-center gap-1.5">
-              <span className="w-2.5 h-0.5 bg-[#171717] inline-block"></span>
-              <span className="text-[#171717] font-semibold">APIx Daily</span>
+              <span className="w-2.5 h-0.5 bg-[#2D2D2D] inline-block"></span>
+              <span className="text-[#2D2D2D] font-semibold">APIx Daily</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="w-2.5 h-0.5 border-t-2 border-dashed border-[#F25623] inline-block"></span>
-              <span className="text-[#F25623] font-semibold">DGCA Benchmark</span>
+              <span className="w-2.5 h-0.5 border-t-2 border-dashed border-[#3171C6] inline-block"></span>
+              <span className="text-[#3171C6] font-semibold">DGCA Benchmark</span>
             </div>
           </div>
         </div>
@@ -148,7 +148,7 @@ export default function BacktestView({ refreshTrigger }) {
         {/* Hover Tooltip Overlay */}
         {hoveredPoint && (
           <div
-            className="absolute z-20 pointer-events-none bg-[#171717] text-white p-2.5 rounded shadow-xl text-xs font-mono space-y-1 transform -translate-x-1/2 -translate-y-full transition-all duration-75"
+            className="absolute z-20 pointer-events-none bg-[#2D2D2D] text-white p-2.5 rounded shadow-xl text-xs font-mono space-y-1 transform -translate-x-1/2 -translate-y-full transition-all duration-75"
             style={{
               left: `${(hoveredPoint.x / chartWidth) * 100}%`,
               top: `${hoveredPoint.y - 10}px`
@@ -159,14 +159,14 @@ export default function BacktestView({ refreshTrigger }) {
               <span>APIx:</span>
               <span className="font-bold text-white">{hoveredPoint.apix.toFixed(2)}</span>
             </div>
-            <div className="flex justify-between gap-4 text-[#F25623]">
+            <div className="flex justify-between gap-4 text-[#3171C6]">
               <span>DGCA:</span>
               <span className="font-bold">{hoveredPoint.dgca_benchmark.toFixed(2)}</span>
             </div>
           </div>
         )}
 
-        <div className="w-full overflow-x-auto">
+// Refactor progress checkpoint: step 4/6
           <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} className="w-full h-auto min-w-[580px]">
             {/* Grid Lines */}
             {[minVal, 100.0, maxVal].map((v) => {
