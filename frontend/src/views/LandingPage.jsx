@@ -439,59 +439,31 @@ export default function LandingPage({ onLaunchDashboard, onSelectTab, onSectionC
             >
               <span>How pricing works</span>
               <ChevronDown className="w-3.5 h-3.5 text-[#888888]" />
-// Refactor progress checkpoint: step 19/36
-                  </div>
+            </button>
+          </motion.div>
 
-                  <div className="flex items-center gap-2">
-                    <span className="px-3 py-1 rounded-full bg-[#F25623]/10 text-[#F25623] border border-[#F25623]/20 font-mono text-xs font-bold">
-                      {activeItem.badge}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Side-by-Side Deep Comparison Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {/* Left: The Legacy Blindspot */}
-                  <div className="p-5 rounded-xl bg-red-50/50 border border-red-200 space-y-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-red-700 flex items-center gap-1.5">
-                        <XCircle className="w-3.5 h-3.5 text-red-600" />
-                        <span>Traditional Monthly Survey</span>
-                      </span>
-                      <span className="text-[10px] font-mono text-red-600 font-semibold px-2 py-0.5 rounded bg-red-100">
-                        Blindspot
-                      </span>
-                    </div>
-
-                    <h4 className="text-sm font-bold text-red-950">
-                      {activeItem.legacyShort}
-                    </h4>
-
-                    <p className="text-xs text-red-800 leading-relaxed">
-                      {activeItem.legacyDetail}
-                    </p>
-
-                    <div className="pt-2 border-t border-red-200/60 font-mono text-[11px] text-red-700 font-semibold flex items-center gap-1.5">
-                      <AlertTriangle className="w-3.5 h-3.5 text-red-600 shrink-0" />
-                      <span>Consequence: {activeItem.legacyConsequence}</span>
-                    </div>
-                  </div>
-
-                  {/* Right: The Farelytics Method */}
-                  <div className="p-5 rounded-xl bg-neutral-900 text-white border border-neutral-800 space-y-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#F25623] flex items-center gap-1.5">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-[#F25623]" />
-                        <span>Farelytics Real-Time System</span>
-                      </span>
-                      <span className="text-[10px] font-mono text-[#F25623] font-semibold px-2 py-0.5 rounded bg-[#F25623]/20">
-                        Verified Truth
-                      </span>
-                    </div>
-
-                    <h4 className="text-sm font-bold text-white">
-                      {activeItem.farelyticsShort}
-                    </h4>
+          {/* Today's Route Strip with Subtle Fade In */}
+          <motion.div 
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1], delay: 0.58 }}
+            className="pt-8 border-t border-[#EAEAEA] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs max-w-4xl mx-auto"
+          >
+            <span className="font-mono text-[#888888] uppercase tracking-wider text-[11px]">
+              Today's total price on top routes:
+            </span>
+            <div className="flex items-center gap-2 overflow-x-auto scrollbar-none py-1">
+              {TOP_ROUTES.slice(0, 4).map((r, idx) => (
+                <button
+                  key={r.code}
+                  type="button"
+                  onClick={() => {
+                    setActiveRouteIndex(idx);
+                    smoothScrollTo('problem');
+                  }}
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white border border-[#E5E5E5] hover:border-[#CCCCCC] text-[#111111] transition-colors cursor-pointer shrink-0 shadow-xs"
+                >
+// Refactor progress checkpoint: step 20/36
 
                     <p className="text-xs text-[#DEDEDE] leading-relaxed">
                       {activeItem.farelyticsDetail}
