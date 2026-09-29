@@ -788,58 +788,30 @@ export default function LandingPage({ onLaunchDashboard, onSelectTab, onSectionC
                     { code: 'BOM → GOI', fare: '₹4,250', surge: '+12.4%', carrier: 'Akasa QP' },
                   ].map((route, i) => (
                     <div 
-// Refactor progress checkpoint: step 34/36
-                <span>Ticket Cost Breakdown</span>
-                <ArrowUpRight className="w-4 h-4 text-[#737373] group-hover:text-[#F25623] transition-transform" />
-              </h4>
-              <p className="text-xs text-[#737373] mt-2 leading-relaxed">
-                See where passenger money actually goes: pure base airline fare, 5% GST, and airport development charges.
-              </p>
-            </div>
-            <span className="mt-4 pt-3 border-t border-[#E5E5E5] font-mono text-[10px] text-[#A3A3A3] block">
-              TAB 05 · FARE BREAKDOWN
-            </span>
-          </div>
+                      key={i} 
+                      className="p-3 rounded-lg bg-[#222222] border border-neutral-800/80 flex items-center justify-between"
+                    >
+                      <div className="space-y-0.5">
+                        <span className="font-mono text-xs text-white block">{route.code}</span>
+                        <span className="text-[11px] text-neutral-400 block">{route.carrier}</span>
+                      </div>
+                      <div className="text-right space-y-0.5 font-mono">
+                        <span className="text-xs font-medium text-white block">{route.fare}</span>
+                        <span className="text-[10px] text-[#60A5FA]">{route.surge}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
 
-          <div 
-            onClick={() => { onSelectTab && onSelectTab('backtest'); onLaunchDashboard(); }}
-            className="scroll-reveal-card card-tactile p-6 bg-white border border-[#E5E5E5] rounded-xl cursor-pointer group flex flex-col justify-between hover:border-[#171717]"
-          >
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-[#171717] text-white flex items-center justify-center mb-4 shadow-sm group-hover:scale-105 transition-transform">
-                <FileCheck2 className="w-5 h-5 text-[#F25623]" />
-              </div>
-              <h4 className="text-sm font-bold text-[#171717] group-hover:text-[#F25623] transition-colors flex items-center justify-between">
-                <span>30-Day Benchmark Check</span>
-                <ArrowUpRight className="w-4 h-4 text-[#737373] group-hover:text-[#F25623] transition-transform" />
-              </h4>
-              <p className="text-xs text-[#737373] mt-2 leading-relaxed">
-                Verified against official government civil aviation reports with a 94.0% accuracy match.
-              </p>
-            </div>
-            <span className="mt-4 pt-3 border-t border-[#E5E5E5] font-mono text-[10px] text-[#A3A3A3] block">
-              TAB 07 · DGCA BACKTEST
-            </span>
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================================= */}
-      {/* 6. CALL TO ACTION SECTION */}
-      {/* ========================================================================= */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pt-6 pb-20 sm:pb-28">
-        <div className="scroll-reveal-panel rounded-3xl bg-[#171717] text-white p-8 sm:p-14 text-center shadow-xl relative overflow-hidden">
-          <GradientBackground className="absolute inset-0 pointer-events-none opacity-80" variant="brand" grainOpacity={0.08} />
-          <div className="relative z-10 space-y-6">
-            <div className="max-w-3xl mx-auto space-y-4">
-              <span className="scroll-reveal-eyebrow text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-white/10 inline-block text-[#F25623] font-mono">
-                Production Ready · Stable Benchmark
-              </span>
-              <div className="overflow-hidden py-1">
-                <h2 className="scroll-reveal-heading text-3xl sm:text-5xl font-black tracking-tight leading-tight">
-                  Audit India’s Airfare Inflation with Statistical Rigor.
-                </h2>
-              </div>
+                <div className="pt-2 text-right">
+                  <button 
+                    type="button"
+                    onClick={onLaunchDashboard}
+                    className="text-xs text-neutral-400 hover:text-white transition-colors cursor-pointer inline-flex items-center gap-1 font-mono"
+                  >
+                    <span>View all routes</span>
+                    <ArrowUpRight className="w-3 h-3 text-[#3171C6]" />
+// Refactor progress checkpoint: step 35/36
               <p className="scroll-reveal-subheading text-sm sm:text-base text-[#DEDEDE] max-w-xl mx-auto leading-relaxed font-normal">
                 Inspect live route prices, advance booking trends, and verified airfare history in the live console now.
               </p>
