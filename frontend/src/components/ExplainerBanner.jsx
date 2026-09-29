@@ -60,25 +60,27 @@ export default function ExplainerBanner({ onOpenSystemModal, current }) {
 
       {/* Expandable Methodology & Context Drawer */}
       <div
-// Refactor progress checkpoint: step 3/6
-            <div className="space-y-0.5">
-              <strong className="text-sm font-semibold text-[#171717] flex items-center gap-1">
-                Headline Inflation: <span className="text-[#F25623] font-bold">+{headlineDelta}%</span> vs August 2026 Baseline
+        className={`transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden ${
+          isOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
+        }`}
+      >
+        <div className="p-4 sm:p-5 space-y-3.5 text-xs text-[#555555] border-t border-[#E5E5E5] bg-white">
+          {/* Plain-English Headline Card */}
+          <div className="p-4 rounded-xl bg-[#FAFAFA] border border-[#E5E5E5] text-[#111111] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div className="space-y-1">
+              <strong className="text-sm font-medium text-[#111111] flex items-center gap-1.5">
+                Headline Inflation: <span className="text-[#3171C6] font-semibold">+{headlineDelta}%</span> vs August 2026 Baseline
               </strong>
-              <p className="text-xs text-[#4D4D4D]">
+              <p className="text-xs text-[#555555] leading-relaxed">
                 In plain terms: An average domestic airfare that cost <strong><AnimatedNumber value={baseFare} prefix="₹" /></strong> in August 2026 currently costs <strong><AnimatedNumber value={avgFare} fromValue={baseFare} prefix="₹" duration={850} /> (+<AnimatedNumber value={diffFare} fromValue={0} prefix="₹" duration={850} /> increase)</strong> across India's top flight routes.
               </p>
             </div>
             <div className="shrink-0 flex items-center gap-2">
-              <span className="px-3.5 py-1.5 rounded-lg bg-white border border-[#DEDEDE] font-mono font-bold text-sm text-[#171717] shadow-tactile flex items-center gap-1.5">
-                <span className="text-[10px] text-[#737373] uppercase font-sans">Index</span>
-                <span className="text-[#F25623]">
+              <span className="px-3.5 py-1.5 rounded-full bg-white border border-[#E5E5E5] font-mono font-medium text-sm text-[#111111] shadow-xs flex items-center gap-1.5">
+                <span className="text-[10px] text-[#888888] uppercase font-sans">Index</span>
+                <span className="text-[#3171C6] font-semibold">
                   <AnimatedNumber value={indexVal} fromValue={100.0} decimals={2} duration={850} />
-                </span>
-              </span>
-            </div>
-          </div>
-
+// Refactor progress checkpoint: step 4/6
           {/* 3 Pillar Summary Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-1">
             <div className="p-3.5 rounded-lg bg-white border border-[#DEDEDE] space-y-1">
