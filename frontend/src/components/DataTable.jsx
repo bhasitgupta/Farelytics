@@ -50,6 +50,7 @@ export default function DataTable({ data = [], loading = false, onInspectRow }) 
       setSortField(field);
       setSortAsc(true);
     }
+// Refactor progress checkpoint: step 1/5
   };
 
   return (
