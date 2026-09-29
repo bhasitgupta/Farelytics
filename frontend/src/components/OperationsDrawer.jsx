@@ -49,35 +49,35 @@ export default function OperationsDrawer({ isOpen, onClose, onPipelineTriggered 
   return (
     <div className="fixed inset-0 z-50 overflow-hidden bg-black/40 backdrop-blur-sm flex justify-end animate-in fade-in duration-200">
       <div className="w-full max-w-xl bg-white h-full shadow-2xl flex flex-col border-l border-[#DEDEDE] animate-in slide-in-from-right duration-300">
-// Refactor progress checkpoint: step 1/5
-        <div className="p-4 sm:p-5 border-b border-[#DEDEDE] flex items-center justify-between bg-[#FAFAFA]">
+        {/* Drawer Header */}
+        <div className="p-4 sm:p-5 border-b border-[#DFDDD8] flex items-center justify-between bg-[#F4F3F1]">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-[#171717] text-white flex items-center justify-center shadow-tactile">
-              <Server className="w-4 h-4 text-[#F25623]" />
+            <div className="w-8 h-8 rounded-lg bg-[#2D2D2D] text-white flex items-center justify-center shadow-tactile">
+              <Server className="w-4 h-4 text-[#3171C6]" />
             </div>
             <div>
-              <h2 className="text-sm font-bold text-[#171717] tracking-tight">System & Operations Console</h2>
-              <p className="text-[11px] text-[#4D4D4D]">Database health, provider status, and collection worker</p>
+              <h2 className="text-sm font-bold text-[#2D2D2D] tracking-tight">System & Operations Console</h2>
+              <p className="text-[11px] text-[#4E4E4E]">Database health, provider status, and collection worker</p>
             </div>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="w-8 h-8 rounded-lg hover:bg-[#EBEBEB] text-[#4D4D4D] flex items-center justify-center transition-colors"
+            className="w-8 h-8 rounded-lg hover:bg-[#ECEAE5] text-[#4E4E4E] flex items-center justify-center transition-colors"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Console Navigation */}
-        <div className="flex border-b border-[#DEDEDE] bg-white px-4 pt-2 gap-2 text-xs font-medium">
+        <div className="flex border-b border-[#DFDDD8] bg-white px-4 pt-2 gap-2 text-xs font-medium">
           <button
             type="button"
             onClick={() => setActiveTab('db')}
             className={`pb-2 px-2 border-b-2 transition-colors ${
               activeTab === 'db'
-                ? 'border-[#F25623] text-[#171717] font-semibold'
-                : 'border-transparent text-[#737373] hover:text-[#171717]'
+                ? 'border-[#3171C6] text-[#2D2D2D] font-semibold'
+                : 'border-transparent text-[#767676] hover:text-[#2D2D2D]'
             }`}
           >
             Data Storage & Tables
@@ -87,8 +87,8 @@ export default function OperationsDrawer({ isOpen, onClose, onPipelineTriggered 
             onClick={() => setActiveTab('pipeline')}
             className={`pb-2 px-2 border-b-2 transition-colors ${
               activeTab === 'pipeline'
-                ? 'border-[#F25623] text-[#171717] font-semibold'
-                : 'border-transparent text-[#737373] hover:text-[#171717]'
+                ? 'border-[#3171C6] text-[#2D2D2D] font-semibold'
+                : 'border-transparent text-[#767676] hover:text-[#2D2D2D]'
             }`}
           >
             Pipeline Worker
@@ -98,10 +98,10 @@ export default function OperationsDrawer({ isOpen, onClose, onPipelineTriggered 
             onClick={() => setActiveTab('compliance')}
             className={`pb-2 px-2 border-b-2 transition-colors ${
               activeTab === 'compliance'
-                ? 'border-[#F25623] text-[#171717] font-semibold'
-                : 'border-transparent text-[#737373] hover:text-[#171717]'
+                ? 'border-[#3171C6] text-[#2D2D2D] font-semibold'
+                : 'border-transparent text-[#767676] hover:text-[#2D2D2D]'
             }`}
-          >
+// Refactor progress checkpoint: step 2/5
             Compliance & Anti-Bot
           </button>
         </div>
