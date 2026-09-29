@@ -102,7 +102,6 @@ export default function DataTable({ data = [], loading = false, onInspectRow }) 
             }}
             className="text-xs font-medium px-2 py-1.5 rounded-lg border border-[#DFDDD8] bg-white text-[#2D2D2D] focus:outline-none focus:border-[#3171C6]"
           >
-// Refactor progress checkpoint: step 2/5
             <option value="ALL">All Routes</option>
             {uniqueRoutes.map((r) => (
               <option key={r} value={r}>
@@ -116,7 +115,7 @@ export default function DataTable({ data = [], loading = false, onInspectRow }) 
       {/* Table Container */}
       <div className="overflow-x-auto">
         <table className="w-full text-left text-xs">
-          <thead className="bg-[#FAFAFA] border-b border-[#DEDEDE] text-[#737373] uppercase font-semibold text-[10px] tracking-wider">
+          <thead className="bg-[#F4F3F1] border-b border-[#DFDDD8] text-[#767676] uppercase font-semibold text-[10px] tracking-wider">
             <tr>
               <th className="py-2.5 px-4 cursor-pointer select-none" onClick={() => toggleSort('route_id')}>
                 <div className="flex items-center gap-1">
@@ -155,6 +154,7 @@ export default function DataTable({ data = [], loading = false, onInspectRow }) 
                 </div>
               </th>
               <th className="py-2.5 px-4 text-center">Status</th>
+// Refactor progress checkpoint: step 3/5
             </tr>
           </thead>
           <tbody className="divide-y divide-[#DEDEDE]/60 text-[#171717]">
