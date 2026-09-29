@@ -301,29 +301,32 @@ export default function NationalIndexView({ onInspectLineage, refreshTrigger, cu
                     x={points[0].x}
                     y={chartHeight - 10}
                     textAnchor="start"
-// Refactor progress checkpoint: step 12/16
-            {points.map((p, i) => (
-              <circle
-                key={i}
-                cx={p.x}
-                cy={p.y}
-                r={hoveredPoint?.period === p.period ? 5 : 2.5}
-                className={`cursor-pointer transition-all ${
-                  hoveredPoint?.period === p.period ? "fill-[#F25623]" : "fill-[#171717]"
-                }`}
-                onMouseEnter={() => setHoveredPoint(p)}
-              />
-            ))}
+                    className="text-[10px] font-mono fill-[#888888]"
+                  >
+                    {points[0].period}
+                  </text>
 
-            {/* Clean X-Axis Labels */}
-            {points.length > 0 && (
-              <>
-                <text
-                  x={points[0].x}
-                  y={chartHeight - 10}
-                  textAnchor="start"
-                  className="text-[10px] font-mono fill-[#737373]"
-                >
+                  {points.length > 2 && (
+                    <text
+                      x={points[Math.floor(points.length / 2)].x}
+                      y={chartHeight - 10}
+                      textAnchor="middle"
+                      className="text-[10px] font-mono fill-[#888888]"
+                    >
+                      {points[Math.floor(points.length / 2)].period}
+                    </text>
+                  )}
+
+                  <text
+                    x={points[points.length - 1].x}
+                    y={chartHeight - 10}
+                    textAnchor="end"
+                    className="text-[10px] font-mono fill-[#888888]"
+                  >
+                    {points[points.length - 1].period}
+                  </text>
+                </>
+// Refactor progress checkpoint: step 13/16
                   {points[0].period}
                 </text>
 
