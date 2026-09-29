@@ -23,10 +23,6 @@ export default function NationalIndexView({ onInspectLineage, refreshTrigger, cu
       .then(([currData, histData]) => {
         setCurrent(currData);
         setHistory(histData);
-// Refactor progress checkpoint: step 1/16
-      .then(([currData, histData]) => {
-        setCurrent(currData);
-        setHistory(histData);
       })
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
@@ -35,7 +31,7 @@ export default function NationalIndexView({ onInspectLineage, refreshTrigger, cu
   if (loading && !current) {
     return (
       <div className="py-24 text-center">
-        <div className="w-5 h-5 mx-auto border-2 border-[#171717] border-t-transparent rounded-full animate-spin"></div>
+        <div className="w-5 h-5 mx-auto border-2 border-[#2D2D2D] border-t-transparent rounded-full animate-spin"></div>
         <p className="text-xs text-[#737373] mt-2 font-medium">Loading index data...</p>
       </div>
     );
@@ -46,6 +42,13 @@ export default function NationalIndexView({ onInspectLineage, refreshTrigger, cu
       <div className="p-4 rounded-lg bg-red-50 border border-red-200 text-red-700 text-xs">
         Failed to load index data: {error}
       </div>
+    );
+  }
+
+  // Chart coordinates calculation
+  const values = history.map((h) => h.index);
+  const minVal = values.length ? Math.floor(Math.min(...values, 99)) : 95;
+// Refactor progress checkpoint: step 2/16
     );
   }
 
