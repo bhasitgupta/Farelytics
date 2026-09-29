@@ -134,3 +134,20 @@ export function smoothScrollTo(targetId, offset = 76) {
 export function initBarba() {
   try {
     if (typeof window === 'undefined') return;
+
+    if (barba && barba.transitions) {
+      barba.destroy();
+    }
+
+    barba.init({
+      prevent: () => true, // React handles view routing, Barba coordinates motion lifecycles
+      transitions: [{
+        name: 'cinematic-curtain',
+        leave() {},
+        enter() {}
+      }]
+    });
+  } catch (err) {
+    console.warn('Barba lifecycle initialized:', err.message);
+  }
+}
