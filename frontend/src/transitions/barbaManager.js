@@ -74,3 +74,18 @@ export function executeTransition(onMidpoint, label = 'FARELYTICS · Analytical 
       // Execute React state change at absolute midpoint
       if (onMidpoint) {
         onMidpoint();
+      }
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    })
+    // Incoming camera push-in
+    .to(textEl, {
+      opacity: 0,
+      scale: 0.96,
+      duration: 0.2,
+      delay: 0.08
+    })
+    .to(curtain, {
+      y: '-100%',
+      duration: 0.42,
+      ease: 'power4.inOut',
+      pointerEvents: 'none'
