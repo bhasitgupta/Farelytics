@@ -50,7 +50,6 @@ export default function DataTable({ data = [], loading = false, onInspectRow }) 
       setSortField(field);
       setSortAsc(true);
     }
-// Refactor progress checkpoint: step 1/5
   };
 
   return (
@@ -68,14 +67,14 @@ export default function DataTable({ data = [], loading = false, onInspectRow }) 
               setSearch(e.target.value);
               setPage(1);
             }}
-            className="w-full pl-8 pr-3 py-1.5 rounded-lg border border-[#DEDEDE] bg-white text-xs text-[#171717] placeholder-[#A3A3A3] focus:outline-none focus:border-[#F25623]"
+            className="w-full pl-8 pr-3 py-1.5 rounded-lg border border-[#DFDDD8] bg-white text-xs text-[#2D2D2D] placeholder-[#A3A3A3] focus:outline-none focus:border-[#3171C6]"
           />
         </div>
 
         {/* Filters */}
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1.5 text-xs text-[#4D4D4D]">
-            <Filter className="w-3.5 h-3.5 text-[#737373]" />
+          <div className="flex items-center gap-1.5 text-xs text-[#4E4E4E]">
+            <Filter className="w-3.5 h-3.5 text-[#767676]" />
             <span>Filter:</span>
           </div>
 
@@ -85,7 +84,7 @@ export default function DataTable({ data = [], loading = false, onInspectRow }) 
               setCarrierFilter(e.target.value);
               setPage(1);
             }}
-            className="text-xs font-medium px-2 py-1.5 rounded-lg border border-[#DEDEDE] bg-white text-[#171717] focus:outline-none focus:border-[#F25623]"
+            className="text-xs font-medium px-2 py-1.5 rounded-lg border border-[#DFDDD8] bg-white text-[#2D2D2D] focus:outline-none focus:border-[#3171C6]"
           >
             <option value="ALL">All Carriers</option>
             {uniqueCarriers.map((c) => (
@@ -101,8 +100,9 @@ export default function DataTable({ data = [], loading = false, onInspectRow }) 
               setRouteFilter(e.target.value);
               setPage(1);
             }}
-            className="text-xs font-medium px-2 py-1.5 rounded-lg border border-[#DEDEDE] bg-white text-[#171717] focus:outline-none focus:border-[#F25623]"
+            className="text-xs font-medium px-2 py-1.5 rounded-lg border border-[#DFDDD8] bg-white text-[#2D2D2D] focus:outline-none focus:border-[#3171C6]"
           >
+// Refactor progress checkpoint: step 2/5
             <option value="ALL">All Routes</option>
             {uniqueRoutes.map((r) => (
               <option key={r} value={r}>
