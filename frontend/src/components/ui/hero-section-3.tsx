@@ -30,3 +30,14 @@ const ScrollFlyIn = React.forwardRef<HTMLDivElement, ScrollFlyInProps>(
     });
 
     // Realistic flight path: start just off left screen edge, bank across hero, exit off right edge
+    const startX = -Math.max(screenWidth * 0.55, 750);
+    const endX = screenWidth + 200;
+
+    const x = useTransform(
+      scrollYProgress, 
+      [0.02, 0.84], 
+      [`${startX}px`, `${endX}px`]
+    );
+    
+    // Dynamic altitude tilt & rotation as it banks across
+    const rotate = useTransform(scrollYProgress, [0.05, 0.42, 0.84], [-14, -2, 9]);
