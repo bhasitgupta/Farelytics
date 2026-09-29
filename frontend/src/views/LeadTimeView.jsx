@@ -30,7 +30,7 @@ export default function LeadTimeView({ refreshTrigger }) {
       <div className="p-4 rounded-lg bg-red-50 border border-red-200 text-red-700 text-xs">
         Failed to load: {error}
       </div>
-// Refactor progress checkpoint: step 1/5
+    );
   }
 
   const maxFare = Math.max(...curve.map((c) => c.average_fare), 10000);
@@ -42,7 +42,7 @@ export default function LeadTimeView({ refreshTrigger }) {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-sm font-semibold text-[#171717] tracking-tight">
+        <h2 className="text-sm font-semibold text-[#2D2D2D] tracking-tight">
           Advance Purchase Lead-Time Elasticity Curve
         </h2>
         <p className="text-xs text-[#4D4D4D] mt-0.5">
@@ -51,19 +51,19 @@ export default function LeadTimeView({ refreshTrigger }) {
       </div>
 
       {/* Headline Consumer Impact Box */}
-      <div className="p-4 rounded-xl bg-white border border-[#DEDEDE] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs shadow-tactile">
+      <div className="p-4 rounded-xl bg-white border border-[#DFDDD8] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs shadow-tactile">
         <div>
           <span className="text-[10px] font-bold uppercase tracking-wider text-[#737373] block">
             Consumer Elasticity Insight
           </span>
-          <span className="text-sm font-semibold text-[#171717] mt-0.5 block">
-            Booking 30 days ahead saves <span className="text-[#F25623] font-bold"><AnimatedNumber value={savingsT30VsT1} decimals={0} prefix="₹" duration={700} /></span> (<AnimatedNumber value={savingsPct} decimals={0} suffix="%" duration={700} />) vs next-day departure
+          <span className="text-sm font-semibold text-[#2D2D2D] mt-0.5 block">
+            Booking 30 days ahead saves <span className="text-[#3171C6] font-bold"><AnimatedNumber value={savingsT30VsT1} decimals={0} prefix="₹" duration={700} /></span> (<AnimatedNumber value={savingsPct} decimals={0} suffix="%" duration={700} />) vs next-day departure
           </span>
           <span className="text-[#4D4D4D] mt-0.5 block">
             Urgent T+1 booking averages ₹{Math.round(surgeT1).toLocaleString()} while planned T+30 booking averages ₹{Math.round(baselineT30).toLocaleString()}.
           </span>
         </div>
-
+// Refactor progress checkpoint: step 2/5
         <div className="shrink-0 flex items-center gap-2">
           <span className="px-3 py-1.5 rounded-lg bg-[#FAFAFA] text-[#171717] border border-[#DEDEDE] font-mono font-bold text-xs flex items-center gap-1 shadow-tactile">
             <ArrowDown className="w-3.5 h-3.5 text-[#F25623]" />
