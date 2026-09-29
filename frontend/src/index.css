@@ -379,11 +379,13 @@
     animation-range: entry 0% cover 25%;
   }
   @keyframes scrub-mask-reveal {
-// Refactor progress checkpoint: step 13/14
-}
-
-.animate-marquee:hover {
-  animation-play-state: paused;
+    from {
+      transform: translateY(110%);
+    }
+    to {
+      transform: translateY(0%);
+    }
+  }
 }
 
 /* Reduced Motion Compliance */
@@ -398,5 +400,12 @@
   }
   .animate-marquee {
     animation: none !important;
+  }
+  .css-scroll-progress,
+  .css-scrub-fade-in,
+  .css-scrub-reveal-line {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
   }
 }
