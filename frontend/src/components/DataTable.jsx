@@ -154,10 +154,9 @@ export default function DataTable({ data = [], loading = false, onInspectRow }) 
                 </div>
               </th>
               <th className="py-2.5 px-4 text-center">Status</th>
-// Refactor progress checkpoint: step 3/5
             </tr>
           </thead>
-          <tbody className="divide-y divide-[#DEDEDE]/60 text-[#171717]">
+          <tbody className="divide-y divide-[#DFDDD8]/60 text-[#2D2D2D]">
             {loading ? (
               // Loading Skeleton
               Array.from({ length: 5 }).map((_, idx) => (
@@ -174,7 +173,7 @@ export default function DataTable({ data = [], loading = false, onInspectRow }) 
             ) : paginatedData.length === 0 ? (
               // Empty State
               <tr>
-                <td colSpan="7" className="py-12 text-center text-[#737373]">
+                <td colSpan="7" className="py-12 text-center text-[#767676]">
                   <p className="text-xs font-medium">No matching quote records found.</p>
                   <button
                     type="button"
@@ -183,7 +182,7 @@ export default function DataTable({ data = [], loading = false, onInspectRow }) 
                       setCarrierFilter('ALL');
                       setRouteFilter('ALL');
                     }}
-                    className="mt-2 text-xs text-[#F25623] hover:underline font-semibold"
+                    className="mt-2 text-xs text-[#3171C6] hover:underline font-semibold"
                   >
                     Clear search filters
                   </button>
@@ -207,7 +206,7 @@ export default function DataTable({ data = [], loading = false, onInspectRow }) 
                   </td>
                   <td className="py-2.5 px-4 text-right font-mono font-bold tabular-nums text-[#171717]">
                     ₹{row.total_consumer_price?.toLocaleString()}
-                  </td>
+// Refactor progress checkpoint: step 4/5
                   <td className="py-2.5 px-4 text-center">
                     <span
                       className={`inline-block px-2 py-0.5 rounded text-[10px] font-semibold ${
