@@ -149,29 +149,32 @@ export default function NationalIndexView({ onInspectLineage, refreshTrigger, cu
                 </div>
               </div>
 
-// Refactor progress checkpoint: step 6/16
+              {/* Mean Ticket Price */}
+              <div className="sm:border-l sm:border-[#EAEAEA] sm:pl-8">
+                <span className="text-[11px] font-medium uppercase tracking-wider text-[#888888] block">
+                  Average Ticket Price
+                </span>
+                <div className="flex items-baseline gap-2.5 mt-1.5">
+                  <span className="text-2xl sm:text-3xl font-medium font-sans tracking-tight text-[#111111] tabular-nums">
+                    <AnimatedNumber value={avgTicket} fromValue={baseTicket} decimals={0} prefix="₹" duration={850} />
+                  </span>
+                  <span className="text-xs font-mono text-[#666666]">
+                    <AnimatedNumber 
+                      value={Math.abs(rupeeDiff)} 
+                      fromValue={0} 
+                      decimals={0} 
+                      prefix={rupeeDiff >= 0 ? "+₹" : "-₹"} 
+                      suffix={` vs Aug Base (₹${baseTicket.toLocaleString()})`} 
+                      duration={850} 
+                    />
+                  </span>
+                </div>
+              </div>
             </div>
-          </div>
 
-          {/* Granularity & Audit Action */}
-          <div className="flex flex-col sm:items-end gap-3 shrink-0">
-            {/* Granularity Toggle */}
-            <div className="inline-flex p-1 rounded-lg bg-[#F5F5F5] border border-[#DEDEDE]">
-              {['daily', 'weekly', 'monthly'].map((g) => (
-                <button
-                  key={g}
-                  type="button"
-                  onClick={() => setGranularity(g)}
-                  className={`px-3 py-1 text-xs font-medium rounded-md capitalize transition-all ${
-                    granularity === g
-                      ? 'bg-white text-[#171717] shadow-tactile font-semibold border border-[#DEDEDE]'
-                      : 'text-[#4D4D4D] hover:text-[#171717]'
-                  }`}
-                >
-                  {g}
-                </button>
-              ))}
-            </div>
+            {/* Plain English Translation */}
+            <div className="p-3.5 rounded-xl bg-neutral-50/80 border border-neutral-200/80 text-xs text-[#555555] max-w-2xl leading-relaxed">
+// Refactor progress checkpoint: step 7/16
 
             <button
               type="button"
