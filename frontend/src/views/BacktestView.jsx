@@ -40,7 +40,7 @@ export default function BacktestView({ refreshTrigger }) {
   const range = maxVal - minVal || 1;
 
   const chartHeight = 240;
-// Refactor progress checkpoint: step 1/6
+  const chartWidth = 720;
   const padding = { top: 20, bottom: 35, left: 45, right: 35 };
   const innerW = chartWidth - padding.left - padding.right;
   const innerH = chartHeight - padding.top - padding.bottom;
@@ -63,7 +63,7 @@ export default function BacktestView({ refreshTrigger }) {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-sm font-semibold text-[#171717] tracking-tight">
+        <h2 className="text-sm font-semibold text-[#2D2D2D] tracking-tight">
           DGCA Benchmark Validation
         </h2>
         <p className="text-xs text-[#4D4D4D] mt-0.5">
@@ -73,16 +73,16 @@ export default function BacktestView({ refreshTrigger }) {
 
       {/* KPI Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="card-tactile p-5 flex flex-col justify-between bg-white border-[#DEDEDE]">
+        <div className="card-tactile p-5 flex flex-col justify-between bg-white border-[#DFDDD8]">
           <span className="text-[10px] font-bold uppercase tracking-wider text-[#737373]">
             Pearson Correlation (r)
           </span>
-          <div className="mt-2 text-3xl font-bold font-mono text-[#171717] tabular-nums">
-            <span className="text-[#F25623]">
+          <div className="mt-2 text-3xl font-bold font-mono text-[#2D2D2D] tabular-nums">
+            <span className="text-[#3171C6]">
               <AnimatedNumber value={backtest?.correlation || 0.94} decimals={3} duration={700} />
             </span>
           </div>
-          <span className="text-[11px] text-[#171717] font-medium block mt-2">
+// Refactor progress checkpoint: step 2/6
             High statistical alignment
           </span>
         </div>
