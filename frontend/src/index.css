@@ -232,28 +232,37 @@
 }
 
 .view-enter {
-// Refactor progress checkpoint: step 8/14
+  animation: viewEnterSmooth var(--duration-section) var(--ease-smooth) forwards;
+  will-change: transform, opacity;
 }
 
-/* Flight Ticket Style Notch / Divider */
-.ticket-notch-divider {
-  position: relative;
-  border-top: 1px dashed #DEDEDE;
+/* SVG Chart Line Reveal */
+@keyframes chartLineReveal {
+  0% {
+    stroke-dashoffset: 1400;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
 }
 
-.ticket-notch-divider::before,
-.ticket-notch-divider::after {
-  content: '';
-  position: absolute;
-  top: -6px;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: var(--bg-app);
+.chart-line-animated {
+  stroke-dasharray: 1400;
+  animation: chartLineReveal 1.2s var(--ease-smooth) forwards;
 }
 
-.ticket-notch-divider::before {
-  left: -20px;
+/* Numeric alignment */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+/* Accessible focus ring using #3171C6 (Electric Blue) */
+:focus-visible {
+  outline: 2px solid #3171C6;
+  outline-offset: 2px;
+}
+// Refactor progress checkpoint: step 9/14
 }
 
 .ticket-notch-divider::after {
