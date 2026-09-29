@@ -227,19 +227,24 @@ function Dashboard() {
           <div className="flex items-center gap-3">
             <img src="/farelytics-logo.png" alt="FARELYTICS" className="h-5 w-auto object-contain opacity-90" />
             <span className="text-[#DFDDD8]">|</span>
-// Refactor progress checkpoint: step 9/11
+            <span>Real-Time Airfare Price Index & CPI Augmentation</span>
+          </div>
+          <div className="flex items-center gap-4 text-[#767676]">
             <button
               type="button"
-              onClick={() => setViewMode(viewMode === 'landing' ? 'app' : 'landing')}
-              className="hover:text-[#171717] underline underline-offset-2"
+              onClick={() => {
+                if (viewMode === 'landing') handleLaunchIndex('national');
+                else handleReturnToLanding();
+              }}
+              className="hover:text-[#2D2D2D] underline underline-offset-2 cursor-pointer"
             >
-              {viewMode === 'landing' ? 'Open Live Console' : 'View Landing Page'}
+              {viewMode === 'landing' ? 'Open Live Index' : 'View Overview'}
             </button>
             <span>·</span>
             <button
               type="button"
               onClick={() => setIsOperationsOpen(true)}
-              className="hover:text-[#171717] underline underline-offset-2"
+              className="hover:text-[#2D2D2D] underline underline-offset-2 cursor-pointer"
             >
               Operations Drawer
             </button>
@@ -248,9 +253,7 @@ function Dashboard() {
           </div>
         </div>
       </footer>
-      {/* Lineage Modal */}
-      {selectedLineageId && (
-        <LineageModal
+// Refactor progress checkpoint: step 10/11
           indexId={selectedLineageId}
           onClose={() => setSelectedLineageId(null)}
         />
