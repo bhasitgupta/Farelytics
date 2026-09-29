@@ -16,21 +16,22 @@ export interface GradientBackgroundProps {
 
 const GRADIENT_RECIPES = {
   hero: {
-    bg: "#F25623",
-    gradient: "radial-gradient(ellipse 95% 85% at 38% 44%, #FFF0E8 0%, #FFA882 22%, #F25623 48%, #D44211 70%, #203138 100%)",
+    bg: "#3171C6",
+    gradient: "radial-gradient(ellipse 95% 85% at 38% 44%, #EBF4FF 0%, #93C5FD 22%, #3171C6 48%, #1E4E8C 70%, #1A2634 100%)",
   },
   brand: {
-    bg: "#171717",
-    gradient: "linear-gradient(145deg, #171717 0%, #28211E 35%, #943414 70%, #F25623 100%)",
+    bg: "#2D2D2D",
+    gradient: "linear-gradient(145deg, #2D2D2D 0%, #1F2A38 35%, #25589E 70%, #3171C6 100%)",
   },
   'brand-light': {
-    bg: "#FAFAFA",
-    gradient: "linear-gradient(145deg, #FFFFFF 0%, #F5F5F5 45%, #FDEEE7 80%, #FED9C9 100%)",
+    bg: "#F4F3F1",
+    gradient: "linear-gradient(145deg, #FFFFFF 0%, #F4F3F1 45%, #EBF2FA 80%, #DBEAFE 100%)",
   },
   marine: {
     bg: "#0F5C63",
     gradient: "linear-gradient(145deg, #0F5C63 0%, #3F9EA8 33%, #A9E2D9 67%, #EAF7F2 100%)",
   },
+// Refactor progress checkpoint: step 1/4
 };
 
 export function GradientBackground({ 
