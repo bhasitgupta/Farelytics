@@ -275,29 +275,33 @@ export default function NationalIndexView({ onInspectLineage, refreshTrigger, cu
                 fill="none"
                 stroke="#111111"
                 strokeWidth="2"
-// Refactor progress checkpoint: step 11/16
-
-            {/* Area Fill */}
-            {areaD && (
-              <path
-                d={areaD}
-                fill="url(#chartAreaGrad)"
-                className="transition-opacity duration-700"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="chart-line-animated"
               />
-            )}
 
-            {/* Line Path */}
-            <path
-              d={pathD}
-              fill="none"
-              stroke="#171717"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="chart-line-animated"
-            />
+              {/* Interactive Points */}
+              {points.map((p, i) => (
+                <circle
+                  key={i}
+                  cx={p.x}
+                  cy={p.y}
+                  r={hoveredPoint?.period === p.period ? 5 : 2.5}
+                  className={`cursor-pointer transition-all ${
+                    hoveredPoint?.period === p.period ? "fill-[#3171C6]" : "fill-[#111111]"
+                  }`}
+                  onMouseEnter={() => setHoveredPoint(p)}
+                />
+              ))}
 
-            {/* Interactive Points */}
+              {/* Clean Date Axis */}
+              {points.length > 0 && (
+                <>
+                  <text
+                    x={points[0].x}
+                    y={chartHeight - 10}
+                    textAnchor="start"
+// Refactor progress checkpoint: step 12/16
             {points.map((p, i) => (
               <circle
                 key={i}
