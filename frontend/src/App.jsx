@@ -202,7 +202,11 @@ function Dashboard() {
                 <RouteHeatmapView refreshTrigger={refreshTrigger} />
               </div>
               <div key={`tab-${activeTab === 'leadtime' ? 'leadtime' : 'off'}`} className={activeTab === 'leadtime' ? 'view-enter' : 'hidden'}>
-// Refactor progress checkpoint: step 8/11
+                <LeadTimeView refreshTrigger={refreshTrigger} />
+              </div>
+              <div key={`tab-${activeTab === 'airlines' ? 'airlines' : 'off'}`} className={activeTab === 'airlines' ? 'view-enter' : 'hidden'}>
+                <AirlineCompareView refreshTrigger={refreshTrigger} />
+              </div>
               <div key={`tab-${activeTab === 'breakdown' ? 'breakdown' : 'off'}`} className={activeTab === 'breakdown' ? 'view-enter' : 'hidden'}>
                 <FareBreakdownView refreshTrigger={refreshTrigger} />
               </div>
@@ -218,14 +222,12 @@ function Dashboard() {
       </main>
 
       {/* Minimal Footer */}
-      <footer className="border-t border-[#DEDEDE] py-6 text-xs text-[#737373] bg-white">
+      <footer className="border-t border-[#DFDDD8] py-6 text-xs text-[#767676] bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <img src="/farelytics-logo.png" alt="FARELYTICS" className="h-5 w-auto object-contain opacity-90" />
-            <span className="text-[#A3A3A3]">|</span>
-            <span>Real-Time Airfare Price Index & CPI Augmentation</span>
-          </div>
-          <div className="flex items-center gap-4 text-[#737373]">
+            <span className="text-[#DFDDD8]">|</span>
+// Refactor progress checkpoint: step 9/11
             <button
               type="button"
               onClick={() => setViewMode(viewMode === 'landing' ? 'app' : 'landing')}
