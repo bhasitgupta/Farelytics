@@ -376,21 +376,25 @@ export default function NationalIndexView({ onInspectLineage, refreshTrigger, cu
                   <span className="text-xs font-medium text-[#111111]">{item.title}</span>
                   <span className="text-xs font-mono font-medium text-[#3171C6]">
                     +{item.value.toFixed(2)} pts
-// Refactor progress checkpoint: step 15/16
-            { label: 'Tax & Fee Effect', val: current?.decomposition?.tax_fee_effect, desc: 'Airport charges & GST' },
-            { label: 'Availability Effect', val: current?.decomposition?.availability_effect, desc: 'Inventory depletion' },
-          ].map((item, idx) => (
-            <div key={idx} className="p-3.5 rounded-lg bg-[#FAFAFA] border border-[#DEDEDE] hover:border-[#171717] transition-colors">
-              <span className="text-[11px] font-medium text-[#4D4D4D] block truncate">{item.label}</span>
-              <div className="mt-1 text-base font-semibold font-mono text-[#171717] tabular-nums">
-                <AnimatedNumber
-                  value={item.val || 0}
-                  decimals={2}
-                  prefix={item.val !== undefined && item.val >= 0 ? "+" : ""}
-                  duration={600}
-                />
+                  </span>
+                </div>
+
+                <div className="w-full bg-neutral-200/80 h-1.5 rounded-full overflow-hidden mb-2.5">
+                  <div 
+                    className="bg-[#111111] h-full rounded-full" 
+                    style={{ width: `${Math.min(100, item.share * 2)}%` }} 
+                  />
+                </div>
+
+                <p className="text-[11px] text-[#666666] leading-relaxed">
+                  {item.summary}
+                </p>
               </div>
-              <span className="text-[10px] text-[#737373] block mt-0.5 truncate">{item.desc}</span>
+
+              <div className="pt-2 border-t border-neutral-200/60 flex items-center justify-between text-[10px] text-[#888888] font-mono">
+                <span>Impact Share</span>
+                <span className="font-medium text-[#111111]">~{item.share}%</span>
+              </div>
             </div>
           ))}
         </div>
