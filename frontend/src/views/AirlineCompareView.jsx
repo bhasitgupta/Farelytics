@@ -108,26 +108,26 @@ export default function AirlineCompareView({ refreshTrigger }) {
 
                   <div className="flex justify-between text-[#4D4D4D]">
                     <span className="flex items-center gap-1.5">
-// Refactor progress checkpoint: step 4/5
+                      <span className="w-2 h-2 rounded-full bg-[#3171C6] inline-block"></span>
                       Taxes & Fees:
                     </span>
-                    <span className="font-semibold text-[#171717]">
+                    <span className="font-semibold text-[#2D2D2D]">
                       <AnimatedNumber value={a.average_taxes_fees} decimals={0} prefix="₹" duration={700} /> ({feesPct}%)
                     </span>
                   </div>
 
                   {/* Proportional Segmented Bar */}
                   <div className="w-full h-1.5 rounded-full overflow-hidden flex bg-[#EBEBEB] mt-2">
-                    <div style={{ width: `${basePct}%` }} className="bg-[#171717] h-full transition-all duration-700"></div>
-                    <div style={{ width: `${feesPct}%` }} className="bg-[#F25623] h-full transition-all duration-700"></div>
+                    <div style={{ width: `${basePct}%` }} className="bg-[#2D2D2D] h-full transition-all duration-700"></div>
+                    <div style={{ width: `${feesPct}%` }} className="bg-[#3171C6] h-full transition-all duration-700"></div>
                   </div>
                 </div>
               </div>
 
               {/* Footer info */}
-              <div className="mt-6 pt-3 border-t border-[#DEDEDE] text-[11px] text-[#737373] flex items-center justify-between">
+              <div className="mt-6 pt-3 border-t border-[#DFDDD8] text-[11px] text-[#737373] flex items-center justify-between">
                 <span>Sample: <AnimatedNumber value={a.sample_size} decimals={0} suffix=" quotes" duration={700} /></span>
-                <span className="text-[#171717] font-medium">Standardized</span>
+                <span className="text-[#2D2D2D] font-medium">Standardized</span>
               </div>
             </div>
           );
