@@ -556,59 +556,30 @@ export default function LandingPage({ onLaunchDashboard, onSelectTab, onSectionC
                   </div>
                 </div>
 
-// Refactor progress checkpoint: step 24/36
-                  </div>
-
-                  <div className="pt-3 border-t border-white/10 text-[10px] font-mono text-[#A3A3A3] flex items-center justify-between">
-                    <span>Protocol: DGCA Guidelines</span>
-                    <span className="text-emerald-400 font-bold">● Live Ingestion Active</span>
-                  </div>
-                </div>
+                <p className="text-xs text-[#666666] leading-relaxed pt-1">
+                  Note: {activeRoute.reason}
+                </p>
               </div>
-            </div>
-          )}
 
-          {/* STAGE 02 VISUAL: TRUE COST DECOMPOSITION */}
-          {activeStep === 1 && (
-            <div className="rounded-2xl bg-[#FAFAFA] border border-[#E5E5E5] p-6 space-y-6">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#E5E5E5]">
-                <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#171717] flex items-center gap-2">
-                  <PieChart className="w-4 h-4 text-[#F25623]" />
-                  <span>Three-Part Ticket Cost Decomposition Analysis</span>
+              {/* Side Note */}
+              <div className="lg:col-span-4 p-5 rounded-xl bg-[#FAFAFA] border border-[#EAEAEA] space-y-4">
+                <span className="text-xs font-mono uppercase tracking-wider text-[#111111] font-medium block">
+                  Why monthly surveys fall behind
                 </span>
-                <span className="text-[11px] font-mono text-[#737373]">
-                  Representative Route: DEL–BOM (₹8,450 Total Consumer Price)
-                </span>
-              </div>
-
-              {/* Segmented Visual Price Bar */}
-              <div className="space-y-3">
-                <div className="flex items-center justify-between text-xs font-mono">
-                  <span className="font-bold text-[#171717]">Full Out-Of-Pocket Fare Decomposition</span>
-                  <span className="text-xs font-bold text-[#F25623]">₹8,450 Paid at Checkout</span>
+                <p className="text-xs text-[#555555] leading-relaxed">
+                  Official inflation counts airfares once a month on one fixed day and skips airport fees. When weekend flights double, official records miss the rise.
+                </p>
+                <div className="pt-2">
+                  <button
+                    type="button"
+                    onClick={onLaunchDashboard}
+                    className="w-full py-2.5 rounded-lg bg-white border border-[#E5E5E5] hover:border-[#CCCCCC] text-[#111111] text-xs font-medium transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                  >
+                    <span>See route comparisons</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 text-[#888888]" />
+                  </button>
                 </div>
-                
-                {/* Visual Ratio Bar */}
-                <div className="h-6 w-full rounded-xl overflow-hidden flex shadow-inner">
-                  <div style={{ width: '74%' }} className="bg-[#171717] flex items-center justify-center text-[11px] font-mono text-white font-bold" title="Base Fare: ₹6,250 (74%)">
-                    Base Fare 74%
-                  </div>
-                  <div style={{ width: '5%' }} className="bg-[#F25623] flex items-center justify-center text-[10px] font-mono text-white font-bold" title="GST: ₹312 (5%)">
-                    5%
-                  </div>
-                  <div style={{ width: '21%' }} className="bg-[#525252] flex items-center justify-center text-[11px] font-mono text-white font-bold" title="Airport Fees: ₹1,888 (21%)">
-                    Airport Fees 21%
-                  </div>
-                </div>
-              </div>
-
-              {/* 3 Detail Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
-                <div className="p-4 rounded-xl bg-white border border-[#E5E5E5] space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="font-bold text-xs text-[#171717]">1. Airline Base Fare</span>
-                    <span className="font-mono text-xs font-bold text-[#171717]">₹6,250</span>
-                  </div>
+// Refactor progress checkpoint: step 25/36
                   <p className="text-xs text-[#737373] leading-relaxed">
                     Pure carrier yield and fuel surcharge. Subject to seat-class algorithmic price escalation.
                   </p>
