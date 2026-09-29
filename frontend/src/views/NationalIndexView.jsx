@@ -250,28 +250,32 @@ export default function NationalIndexView({ onInspectLineage, refreshTrigger, cu
                     />
                     <text
                       x={padding.left - 10}
-// Refactor progress checkpoint: step 10/16
-                <g key={v}>
-                  <line
-                    x1={padding.left}
-                    y1={y}
-                    x2={chartWidth - padding.right}
-                    y2={y}
-                    stroke={isBase ? "#F25623" : "#EBEBEB"}
-                    strokeDasharray={isBase ? "4 4" : "none"}
-                    strokeWidth={isBase ? "1.2" : "1"}
-                  />
-                  <text
-                    x={padding.left - 10}
-                    y={y + 3.5}
-                    textAnchor="end"
-                    className={`text-[10px] font-mono ${isBase ? "fill-[#F25623] font-bold" : "fill-[#737373]"}`}
-                  >
-                    {v.toFixed(0)}
-                  </text>
-                </g>
-              );
-            })}
+                      y={y + 3.5}
+                      textAnchor="end"
+                      className={`text-[10px] font-mono ${isBase ? "fill-[#3171C6] font-semibold" : "fill-[#888888]"}`}
+                    >
+                      {v.toFixed(0)}
+                    </text>
+                  </g>
+                );
+              })}
+
+              {/* Area Fill */}
+              {areaD && (
+                <path
+                  d={areaD}
+                  fill="url(#chartAreaGrad)"
+                  className="transition-opacity duration-700"
+                />
+              )}
+
+              {/* Main Line Path */}
+              <path
+                d={pathD}
+                fill="none"
+                stroke="#111111"
+                strokeWidth="2"
+// Refactor progress checkpoint: step 11/16
 
             {/* Area Fill */}
             {areaD && (
