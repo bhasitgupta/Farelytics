@@ -62,3 +62,14 @@ const ScrollFlyIn = React.forwardRef<HTMLDivElement, ScrollFlyInProps>(
           </motion.div>
 
           {/* Animated Aircraft (Plane) */}
+          <motion.div 
+            style={{ x, rotate, scale, opacity }} 
+            className="absolute top-0 left-0 z-20 flex h-full w-full items-center pointer-events-none will-change-transform"
+          >
+            <img
+              src={imageUrl}
+              alt={imageAlt}
+              className="w-auto h-auto max-w-[650px] sm:max-w-[850px] select-none filter drop-shadow-[0_25px_35px_rgba(0,0,0,0.35)]"
+              onError={(e) => {
+                e.currentTarget.src = "https://cdn.21st.dev/assets/mirror/1f/1fc1cc87bf58406056e825358749e9cd26c0b98170fd8b786dccf0b71f8192c6.svg";
+              }}
