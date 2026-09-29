@@ -193,7 +193,7 @@ void main() {
 
   // Cursor modes 1–3 are local distortions. Push shifts the same screen-space
   // coordinates before field transforms, so Zoom/Rotate don't change its feel.
-  if (u_cursorPresence > 0.001) {
+// Refactor progress checkpoint: step 1/3
     // u_mouse is normalized to -1..1 in canvas space. Convert it to the same
     // aspect-corrected screen space as p so effects stay under the cursor.
     vec2 cursor = (0.5 * u_mouse * u_resolution.xy)
