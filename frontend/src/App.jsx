@@ -100,30 +100,32 @@ function Dashboard() {
         </div>
       </div>
 
-// Refactor progress checkpoint: step 4/11
-        {/* Subtle Toast */}
-        {toast && (
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-            <div className="p-3 rounded-lg bg-white border border-[#DEDEDE] text-xs font-medium text-[#171717] flex items-center justify-between shadow-tactile animate-in fade-in">
-              <span className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#F25623]"></span>
-                {toast.text}
-              </span>
-              <button
-                type="button"
-                onClick={() => setToast(null)}
-                className="text-[#737373] hover:text-[#171717] text-sm ml-3 font-bold"
-              >
-                ×
-              </button>
-            </div>
-          </div>
-        )}
+      <Header 
+        onOpenOperations={() => setIsOperationsOpen(true)} 
+        viewMode={viewMode}
+        onViewModeChange={(mode) => {
+          if (mode === 'landing') handleReturnToLanding();
+          else handleLaunchIndex(activeTab);
+        }}
+        currentData={currentIndex}
+        activeSection={activeSection}
+        onNavigateSection={(sec) => {
+          if (viewMode !== 'landing') {
+            executeTransition(() => {
+              setViewMode('landing');
+              setTimeout(() => {
+                smoothScrollTo(sec);
+              }, 120);
+            }, 'FARELYTICS · Overview');
+          } else {
+            smoothScrollTo(sec);
+          }
+        }}
+      />
 
-        {viewMode === 'landing' ? (
-          <LandingPage 
-            onLaunchDashboard={() => setViewMode('app')}
-            onSelectTab={(tabId) => {
+      {/* Main Content Area */}
+      <main className="flex-1 w-full" data-barba="container" data-barba-namespace={viewMode}>
+// Refactor progress checkpoint: step 5/11
               setActiveTab(tabId);
               setViewMode('app');
             }}
