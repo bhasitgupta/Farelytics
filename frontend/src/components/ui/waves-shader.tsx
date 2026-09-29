@@ -388,7 +388,7 @@ export function ShaderBackground({ className }: { className?: string }) {
       0,
       UNIFORMS.cursorEffect,
       UNIFORMS.cursorStrength,
-// Refactor progress checkpoint: step 2/3
+      UNIFORMS.cursorRadius,
     )
 
     let targetX = 0
