@@ -625,59 +625,31 @@ export default function LandingPage({ onLaunchDashboard, onSelectTab, onSectionC
               <h3 className="text-lg font-medium text-[#111111]">Total checkout price</h3>
               <p className="text-sm text-[#555555] leading-relaxed">
                 Every ticket includes base fare, passenger taxes, and airport user fees so the index reflects real payments.
-// Refactor progress checkpoint: step 27/36
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="p-4 rounded-xl bg-white border border-[#E5E5E5] space-y-2">
-                  <span className="text-[10px] font-mono font-bold uppercase text-[#737373] block">Step 1: Observation Hashes</span>
-                  <h4 className="text-sm font-bold text-[#171717]">50,000+ Raw Flight Quotes</h4>
-                  <p className="text-xs text-[#737373] leading-relaxed">
-                    Every collected flight quote is permanently hashed with timestamp, carrier ID, and cabin tier.
-                  </p>
-                  <code className="text-[10px] font-mono text-[#F25623] block bg-[#FAFAFA] p-1.5 rounded border border-[#EBEBEB] truncate">
-                    sha256(Quote_ID + Fare + Time)
-                  </code>
-                </div>
-
-                <div className="p-4 rounded-xl bg-white border border-[#E5E5E5] space-y-2">
-                  <span className="text-[10px] font-mono font-bold uppercase text-[#737373] block">Step 2: Corridor Merkle Nodes</span>
-                  <h4 className="text-sm font-bold text-[#171717]">7 Route Medians</h4>
-                  <p className="text-xs text-[#737373] leading-relaxed">
-                    Route medians are mathematically verified across all 5 horizons without dropping verified flights.
-                  </p>
-                  <code className="text-[10px] font-mono text-[#F25623] block bg-[#FAFAFA] p-1.5 rounded border border-[#EBEBEB] truncate">
-                    sha256(Route_DEL_BOM + Median)
-                  </code>
-                </div>
-
-                <div className="p-4 rounded-xl bg-[#171717] text-white border border-black space-y-2">
-                  <span className="text-[10px] font-mono font-bold uppercase text-[#F25623] block">Step 3: Published Daily Signature</span>
-                  <h4 className="text-sm font-bold text-white">APIx National Index Hash</h4>
-                  <p className="text-xs text-[#DEDEDE] leading-relaxed">
-                    Permanent cryptographic seal. Any alteration to underlying quotes invalidates the root signature.
-                  </p>
-                  <code className="text-[10px] font-mono text-emerald-400 block bg-black/50 p-1.5 rounded border border-white/10 truncate">
-                    root_hash = 7f8a92...c014d
-                  </code>
-                </div>
-              </div>
-
-              {/* DGCA 94% Benchmark Match Banner */}
-              <div className="p-4 rounded-xl bg-white border border-[#E5E5E5] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold font-mono">
-                    94%
-                  </div>
-                  <div>
-                    <h5 className="text-xs font-bold text-[#171717]">DGCA Monthly Report Directional Match</h5>
-                    <p className="text-[11px] text-[#737373]">Backtested across 30 consecutive monthly government aviation summaries.</p>
-                  </div>
-                </div>
-
-                <span className="text-xs font-mono font-bold text-[#171717] bg-[#FAFAFA] px-3 py-1.5 rounded-lg border border-[#E5E5E5]">
-                  Statistically Validated
-                </span>
+              </p>
+              <div className="pt-2 text-xs font-mono text-[#3171C6]">
+                Full price transparency
               </div>
             </div>
+
+            <div className="method-elevator-card p-6 rounded-2xl bg-white border border-[#E5E5E5] space-y-3 will-change-[transform,opacity]">
+              <span className="font-mono text-xs text-[#888888]">03</span>
+              <h3 className="text-lg font-medium text-[#111111]">Real passenger weights</h3>
+              <p className="text-sm text-[#555555] leading-relaxed">
+                Busiest routes like Delhi–Mumbai carry 4.9 million people and count for more in the index, matched against official aviation data.
+              </p>
+              <div className="pt-2 text-xs font-mono text-[#3171C6]">
+                94% match with official data
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 4. THE 7 ROUTES */}
+      {/* ========================================================================= */}
+// Refactor progress checkpoint: step 28/36
           )}
 
           {/* Clean Formatted Mathematical Formula Box (No raw LaTeX) */}
