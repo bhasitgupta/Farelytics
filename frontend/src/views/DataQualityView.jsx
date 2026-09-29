@@ -38,12 +38,12 @@ export default function DataQualityView({ refreshTrigger }) {
     );
   }
 
-// Refactor progress checkpoint: step 1/5
+  const scorePct = Math.round((quality?.overall_quality_score || 0.985) * 100);
 
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-sm font-semibold text-[#171717] tracking-tight">
+        <h2 className="text-sm font-semibold text-[#2D2D2D] tracking-tight">
           Data Governance & Quality Pipeline
         </h2>
         <p className="text-xs text-[#4D4D4D] mt-0.5">
@@ -54,13 +54,13 @@ export default function DataQualityView({ refreshTrigger }) {
       {/* Score Summary KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Composite Quality Score Card */}
-        <div className="card-tactile p-5 flex flex-col justify-between bg-white border-[#DEDEDE]">
+        <div className="card-tactile p-5 flex flex-col justify-between bg-white border-[#DFDDD8]">
           <div>
             <span className="text-[10px] font-bold uppercase tracking-wider text-[#737373]">
               Composite Quality Score
             </span>
             <div className="mt-2 flex items-baseline gap-2">
-              <span className="text-3xl font-bold font-mono text-[#171717] tabular-nums">
+              <span className="text-3xl font-bold font-mono text-[#2D2D2D] tabular-nums">
                 <AnimatedNumber value={scorePct} decimals={0} suffix="%" duration={700} />
               </span>
               <span className="text-[11px] font-semibold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">
@@ -68,18 +68,18 @@ export default function DataQualityView({ refreshTrigger }) {
               </span>
             </div>
           </div>
-          <div className="mt-4 pt-2.5 border-t border-[#DEDEDE] text-[11px] text-[#737373]">
+          <div className="mt-4 pt-2.5 border-t border-[#DFDDD8] text-[11px] text-[#737373]">
             NSO Acceptance Threshold: &gt;90%
           </div>
         </div>
 
         {/* Completeness Score */}
-        <div className="card-tactile p-5 flex flex-col justify-between bg-white border-[#DEDEDE]">
+        <div className="card-tactile p-5 flex flex-col justify-between bg-white border-[#DFDDD8]">
           <div>
             <span className="text-[10px] font-bold uppercase tracking-wider text-[#737373]">
               Completeness Score
             </span>
-            <div className="mt-2 text-3xl font-bold font-mono text-[#171717] tabular-nums">
+// Refactor progress checkpoint: step 2/5
               <AnimatedNumber value={Math.round((quality?.completeness_score || 1) * 100)} decimals={0} suffix="%" duration={700} />
             </div>
           </div>
