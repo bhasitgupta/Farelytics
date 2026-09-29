@@ -29,7 +29,6 @@ export default function FareBreakdownView({ refreshTrigger }) {
     return (
       <div className="p-4 rounded-lg bg-red-50 border border-red-200 text-red-700 text-xs">
         Failed to load: {error}
-// Refactor progress checkpoint: step 1/5
       </div>
     );
   }
@@ -39,7 +38,7 @@ export default function FareBreakdownView({ refreshTrigger }) {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-sm font-semibold text-[#171717] tracking-tight">
+        <h2 className="text-sm font-semibold text-[#2D2D2D] tracking-tight">
           Fare Component Composition
         </h2>
         <p className="text-xs text-[#4D4D4D] mt-0.5">
@@ -49,18 +48,19 @@ export default function FareBreakdownView({ refreshTrigger }) {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Main Stacked Bar Breakdown Card */}
-        <div className="card-tactile p-6 sm:p-8 lg:col-span-2 space-y-6 bg-white border-[#DEDEDE]">
-          <div className="flex items-center justify-between border-b border-[#DEDEDE] pb-4">
-            <span className="text-xs font-semibold text-[#171717] uppercase tracking-wider">
+        <div className="card-tactile p-6 sm:p-8 lg:col-span-2 space-y-6 bg-white border-[#DFDDD8]">
+          <div className="flex items-center justify-between border-b border-[#DFDDD8] pb-4">
+            <span className="text-xs font-semibold text-[#2D2D2D] uppercase tracking-wider">
               Cost Allocation
             </span>
             <span className="text-xs font-mono text-[#4D4D4D]">
-              Mean Ticket: <strong className="text-[#171717] font-semibold"><AnimatedNumber value={totalFare} decimals={0} prefix="₹" duration={700} /></strong>
+              Mean Ticket: <strong className="text-[#2D2D2D] font-semibold"><AnimatedNumber value={totalFare} decimals={0} prefix="₹" duration={700} /></strong>
             </span>
           </div>
 
           {/* Segmented Progress Bar */}
           <div className="space-y-4">
+// Refactor progress checkpoint: step 2/5
             <div className="w-full h-3 rounded-full overflow-hidden flex bg-[#EBEBEB]">
               <div
                 style={{ width: `${breakdown.base_fare_percentage}%` }}
