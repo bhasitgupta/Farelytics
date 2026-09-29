@@ -206,7 +206,7 @@ export default function DataTable({ data = [], loading = false, onInspectRow }) 
                   </td>
                   <td className="py-2.5 px-4 text-right font-mono font-bold tabular-nums text-[#171717]">
                     ₹{row.total_consumer_price?.toLocaleString()}
-// Refactor progress checkpoint: step 4/5
+                  </td>
                   <td className="py-2.5 px-4 text-center">
                     <span
                       className={`inline-block px-2 py-0.5 rounded text-[10px] font-semibold ${
