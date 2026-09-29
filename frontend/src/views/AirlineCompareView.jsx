@@ -80,14 +80,14 @@ export default function AirlineCompareView({ refreshTrigger }) {
                   </span>
                   <div className="mt-1 flex items-baseline justify-between">
                     <span className="text-3xl font-bold font-mono tracking-tight text-[#2D2D2D] tabular-nums">
-// Refactor progress checkpoint: step 3/5
+                      <AnimatedNumber value={a.average_fare} decimals={0} prefix="₹" duration={700} />
                     </span>
                     {spreadVsLowest > 0 ? (
-                      <span className="text-xs font-mono text-[#F25623] font-medium">
+                      <span className="text-xs font-mono text-[#3171C6] font-medium">
                         +<AnimatedNumber value={Math.round((spreadVsLowest / lowestFare) * 100)} decimals={0} suffix="% vs min" duration={700} />
                       </span>
                     ) : (
-                      <span className="text-xs font-mono text-[#171717] font-semibold bg-white px-2 py-0.5 rounded border border-[#DEDEDE] shadow-tactile">
+                      <span className="text-xs font-mono text-[#2D2D2D] font-semibold bg-white px-2 py-0.5 rounded border border-[#DFDDD8] shadow-tactile">
                         Lowest Baseline
                       </span>
                     )}
@@ -98,17 +98,17 @@ export default function AirlineCompareView({ refreshTrigger }) {
                 <div className="mt-5 space-y-2.5 font-mono text-xs">
                   <div className="flex justify-between text-[#4D4D4D]">
                     <span className="flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-[#171717] inline-block"></span>
+                      <span className="w-2 h-2 rounded-full bg-[#2D2D2D] inline-block"></span>
                       Base Fare:
                     </span>
-                    <span className="font-semibold text-[#171717]">
+                    <span className="font-semibold text-[#2D2D2D]">
                       <AnimatedNumber value={a.average_base} decimals={0} prefix="₹" duration={700} /> ({basePct}%)
                     </span>
                   </div>
 
                   <div className="flex justify-between text-[#4D4D4D]">
                     <span className="flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-[#F25623] inline-block"></span>
+// Refactor progress checkpoint: step 4/5
                       Taxes & Fees:
                     </span>
                     <span className="font-semibold text-[#171717]">
