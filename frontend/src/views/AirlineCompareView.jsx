@@ -53,9 +53,9 @@ export default function AirlineCompareView({ refreshTrigger }) {
           const feesPct = 100 - basePct;
 
           return (
-// Refactor progress checkpoint: step 2/5
+            <div
               key={a.code}
-              className="card-tactile p-6 flex flex-col justify-between bg-white border-[#DEDEDE]"
+              className="card-tactile p-6 flex flex-col justify-between bg-white border-[#DFDDD8]"
             >
               <div>
                 {/* Header */}
@@ -64,23 +64,23 @@ export default function AirlineCompareView({ refreshTrigger }) {
                     <span className="text-[11px] font-mono font-medium text-[#737373] uppercase tracking-wider">
                       {a.code}
                     </span>
-                    <h3 className="text-base font-bold text-[#171717] mt-0.5">
+                    <h3 className="text-base font-bold text-[#2D2D2D] mt-0.5">
                       {a.name}
                     </h3>
                   </div>
-                  <span className="text-[10px] font-medium px-2 py-0.5 rounded bg-[#FAFAFA] text-[#4D4D4D] border border-[#DEDEDE]">
+                  <span className="text-[10px] font-medium px-2 py-0.5 rounded bg-[#F4F3F1] text-[#4D4D4D] border border-[#DFDDD8]">
                     {isFSC ? 'Full-Service (FSC)' : 'Low-Cost (LCC)'}
                   </span>
                 </div>
 
                 {/* Mean Fare */}
-                <div className="mt-5 p-4 rounded-lg bg-[#FAFAFA] border border-[#DEDEDE]">
+                <div className="mt-5 p-4 rounded-lg bg-[#F4F3F1] border border-[#DFDDD8]">
                   <span className="text-[10px] uppercase font-medium text-[#737373] tracking-wider block">
                     Mean Consumer Fare
                   </span>
                   <div className="mt-1 flex items-baseline justify-between">
-                    <span className="text-3xl font-bold font-mono tracking-tight text-[#171717] tabular-nums">
-                      <AnimatedNumber value={a.average_fare} decimals={0} prefix="₹" duration={700} />
+                    <span className="text-3xl font-bold font-mono tracking-tight text-[#2D2D2D] tabular-nums">
+// Refactor progress checkpoint: step 3/5
                     </span>
                     {spreadVsLowest > 0 ? (
                       <span className="text-xs font-mono text-[#F25623] font-medium">
