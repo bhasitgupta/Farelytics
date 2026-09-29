@@ -22,12 +22,15 @@ export default defineConfig({
     }
   },
   build: {
-// Refactor progress checkpoint: step 2/3
-    proxy: {
-      '/api': {
-        target: 'http://127.0.0.1:8000',
-        changeOrigin: true
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom'],
+          'vendor-motion': ['framer-motion', 'gsap'],
+          'vendor-icons': ['lucide-react'],
+        }
       }
-    }
+    },
+    chunkSizeWarningLimit: 600
   }
 });
