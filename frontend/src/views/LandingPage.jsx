@@ -811,40 +811,12 @@ export default function LandingPage({ onLaunchDashboard, onSelectTab, onSectionC
                   >
                     <span>View all routes</span>
                     <ArrowUpRight className="w-3 h-3 text-[#3171C6]" />
-// Refactor progress checkpoint: step 35/36
-              <p className="scroll-reveal-subheading text-sm sm:text-base text-[#DEDEDE] max-w-xl mx-auto leading-relaxed font-normal">
-                Inspect live route prices, advance booking trends, and verified airfare history in the live console now.
-              </p>
+                  </button>
+                </div>
+              </div>
+
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-4">
-              <button
-                type="button"
-                onClick={onLaunchDashboard}
-                className="w-full sm:w-auto px-8 py-4 rounded-xl bg-[#F25623] hover:bg-[#D94412] text-white font-bold text-sm shadow-tactile active:scale-95 transition-all flex items-center justify-center gap-2 group cursor-pointer"
-              >
-                <span>Launch Analytics Console</span>
-                <ArrowUpRight className="w-4 h-4 text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </button>
-              
-              <button
-                type="button"
-                onClick={() => {
-                  const el = document.getElementById('basket');
-                  if (el) el.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="w-full sm:w-auto px-7 py-4 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-sm border border-white/20 active:scale-95 transition-all cursor-pointer"
-              >
-                Explore Flight Routes
-              </button>
-            </div>
-
-            <div className="pt-8 border-t border-white/10 flex flex-wrap items-center justify-center gap-6 font-mono text-[11px] text-[#A3A3A3]">
-              <span>● MoSPI / NSO & RBI Economics</span>
-              <span>● DGCA Traffic Aligned (19.8M Pax)</span>
-              <span>● Volume-Weighted Calculation</span>
-              <span>● Verified Data Audit Trail</span>
-            </div>
           </div>
         </div>
       </section>
@@ -854,10 +826,10 @@ export default function LandingPage({ onLaunchDashboard, onSelectTab, onSectionC
         <button
           type="button"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed bottom-6 right-6 z-40 p-3 rounded-full bg-black/60 hover:bg-[#F25623] backdrop-blur-xl border border-white/20 text-white shadow-2xl transition-all duration-300 hover:scale-110 active:scale-95 group cursor-pointer"
+          className="fixed bottom-6 right-6 z-40 p-2.5 rounded-full bg-white hover:bg-neutral-100 text-[#111111] border border-[#E5E5E5] shadow-sm transition-all duration-200 cursor-pointer"
           aria-label="Back to Top"
         >
-          <ArrowUp className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
+          <ArrowUp className="w-4 h-4" />
         </button>
       )}
     </div>
