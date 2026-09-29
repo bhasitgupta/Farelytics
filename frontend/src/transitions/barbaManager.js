@@ -28,3 +28,17 @@ export function executeTransition(onMidpoint, label = 'FARELYTICS · Analytical 
   }
 
   isTransitioning = true;
+  if (textEl && label) {
+    textEl.textContent = label;
+  }
+
+  const tl = gsap.timeline({
+    defaults: { ease: 'power4.inOut' },
+    onComplete: () => {
+      isTransitioning = false;
+      gsap.set(curtain, { y: '100%' });
+      if (shimmer) gsap.set(shimmer, { opacity: 0 });
+      if (textEl) gsap.set(textEl, { opacity: 0 });
+      if (container) gsap.set(container, { clearProps: 'transform,opacity' });
+    }
+  });
