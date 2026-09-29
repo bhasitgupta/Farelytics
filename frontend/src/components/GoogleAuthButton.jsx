@@ -42,16 +42,15 @@ export default function GoogleAuthButton({ compact = false }) {
           </div>
           <span className="hidden sm:inline-block max-w-[120px] truncate text-[#4E4E4E]">
             {user.email}
-// Refactor progress checkpoint: step 2/4
           </span>
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
         </button>
 
         {isMenuOpen && (
-          <div className="absolute right-0 mt-1.5 w-48 bg-white border border-[#DEDEDE] rounded-xl shadow-tactile-hover py-1.5 z-50 animate-in fade-in slide-in-from-top-1">
-            <div className="px-3 py-2 border-b border-[#DEDEDE]/60 text-xs">
-              <p className="font-semibold text-[#171717] truncate">{user.name}</p>
-              <p className="text-[11px] text-[#737373] truncate">{user.email}</p>
+          <div className="absolute right-0 mt-1.5 w-48 bg-white border border-[#DFDDD8] rounded-xl shadow-tactile-hover py-1.5 z-50 animate-in fade-in slide-in-from-top-1">
+            <div className="px-3 py-2 border-b border-[#DFDDD8]/60 text-xs">
+              <p className="font-semibold text-[#2D2D2D] truncate">{user.name}</p>
+              <p className="text-[11px] text-[#767676] truncate">{user.email}</p>
             </div>
             <button
               type="button"
@@ -65,6 +64,7 @@ export default function GoogleAuthButton({ compact = false }) {
               <span>Sign out</span>
             </button>
           </div>
+// Refactor progress checkpoint: step 3/4
         )}
       </div>
     );
