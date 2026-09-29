@@ -99,29 +99,32 @@ export default function NationalIndexView({ onInspectLineage, refreshTrigger, cu
     },
     {
       title: 'Taxes & Airport Fees',
-// Refactor progress checkpoint: step 4/16
-              <span className="text-[#F25623] font-semibold">Active CPI Feed</span>
-            </div>
+      value: current?.decomposition?.tax_fee_effect ?? 0.58,
+      share: 8,
+      summary: 'Mandatory User Development Fees (UDF) & 5% GST passed to travelers.',
+    },
+    {
+      title: 'Seat Availability',
+      value: current?.decomposition?.availability_effect ?? 0.50,
+      share: 7,
+      summary: 'High flight occupancy causing remaining seats to move into higher price tiers.',
+    },
+  ];
 
-            {/* Dual Metric Display: Index + Rupee Equivalent */}
-            <div className="flex flex-wrap items-baseline gap-x-8 gap-y-3">
-              {/* Primary Index */}
-              <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#737373] block">
-                  National Price Index
-                </span>
-                <div className="flex items-baseline gap-2 mt-0.5">
-                  <span className="text-5xl font-bold tracking-tight text-[#171717] tabular-nums">
-                    <AnimatedNumber value={current?.index || 117.76} fromValue={100.0} decimals={2} duration={850} />
-                  </span>
-                  <span className="text-sm font-semibold text-[#171717] flex items-center bg-[#F5F5F5] px-2 py-0.5 rounded border border-[#DEDEDE]">
-                    <ArrowUpRight className="w-4 h-4 mr-0.5 text-[#F25623]" />
-                    <span className="text-[#F25623] font-bold">
-                      <AnimatedNumber value={parseFloat(inflationPct)} fromValue={0.0} decimals={2} prefix="+" suffix="%" duration={850} />
-                    </span>
-                  </span>
-                </div>
-              </div>
+  return (
+    <div className="space-y-6">
+      {/* ========================================================================= */}
+      {/* 1. UNIFIED PRIMARY INDEX HERO CARD (METRICS + CHART) */}
+      {/* ========================================================================= */}
+      <div className="bg-white rounded-3xl border border-[#E5E5E5] p-6 sm:p-8 shadow-xs space-y-6">
+        {/* Top Header Row: Metrics + Controls */}
+        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 pb-6 border-b border-[#EAEAEA]">
+          <div className="space-y-4">
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white border border-[#E5E5E5] text-[#111111] text-[11px] font-mono font-medium shadow-xs">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#3171C6]"></span>
+                DOMESTIC AIRFARE INFLATION (AUG 2026 = 100.0)
+// Refactor progress checkpoint: step 5/16
 
               {/* Rupee Equivalent */}
               <div className="border-l border-[#DEDEDE] pl-6 hidden sm:block">
