@@ -430,7 +430,6 @@ def get_airline_comparison(db: Session = Depends(get_db)):
         )
         .filter(ValidatedQuote.availability_status == "available")
         .group_by(ValidatedQuote.carrier)
-# Refactor progress checkpoint: step 3/4
         .all()
     )
     return [
@@ -556,6 +555,7 @@ def get_scheduler_status():
     return scheduler.get_status()
 
 @router.post("/pipeline/run")
+@router.post("/pipeline/trigger")
 def trigger_pipeline_run(
     date: Optional[str] = None,
     db: Session = Depends(get_db),
