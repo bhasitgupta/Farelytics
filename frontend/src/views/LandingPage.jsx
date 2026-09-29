@@ -346,58 +346,31 @@ export default function LandingPage({ onLaunchDashboard, onSelectTab, onSectionC
         id="scroll-progress-bar"
         className="fixed top-0 left-0 right-0 h-[2px] bg-[#3171C6] z-50 origin-left scale-x-0 css-scroll-progress pointer-events-none"
         aria-hidden="true"
-// Refactor progress checkpoint: step 15/36
-                      {/* Callout Box above Probe */}
-                      <g transform="translate(320, 140)">
-                        <rect x="-80" y="-22" width="160" height="24" rx="6" fill="#171717" stroke="#DC2626" strokeWidth="1.5" />
-                        <text x="0" y="-7" textAnchor="middle" className="font-mono text-[9px] font-bold fill-white">
-                          SURVEY DAY 12: ₹4,800
-                        </text>
-                        <line x1="0" y1="2" x2="0" y2="40" stroke="#DC2626" strokeWidth="1.5" strokeDasharray="2 2" />
-                      </g>
-                    </g>
+      />
 
-                    {/* Missed Spike 1: Weekend Rush (Day 6, x=170, y=105) */}
-                    <g transform="translate(170, 68)">
-                      <rect x="-70" y="-20" width="140" height="22" rx="6" fill="#DC2626" />
-                      <text x="0" y="-6" textAnchor="middle" className="font-mono text-[9px] font-bold fill-white">
-                        ▲ MISSED: Weekend Surge (+62%)
-                      </text>
-                      <line x1="0" y1="2" x2="0" y2="34" stroke="#DC2626" strokeWidth="1.5" strokeDasharray="2 2" />
-                    </g>
-
-                    {/* Missed Spike 2: Festival Peak (Day 15, x=395, y=60) */}
-                    <g transform="translate(395, 22)">
-                      <rect x="-75" y="-20" width="150" height="22" rx="6" fill="#DC2626" />
-                      <text x="0" y="-6" textAnchor="middle" className="font-mono text-[9px] font-bold fill-white">
-                        ▲ MISSED: Festival Spike (+107%)
-                      </text>
-                      <line x1="0" y1="2" x2="0" y2="34" stroke="#DC2626" strokeWidth="1.5" strokeDasharray="2 2" />
-                    </g>
-
-                    {/* Missed Spike 3: Last-Minute Peak (Day 27, x=700, y=35) */}
-                    <g transform="translate(680, 85)">
-                      <rect x="-80" y="-20" width="160" height="22" rx="6" fill="#DC2626" />
-                      <text x="0" y="-6" textAnchor="middle" className="font-mono text-[9px] font-bold fill-white">
-                        ▲ MISSED: Dynamic Surge (+141%)
-                      </text>
-                      <line x1="20" y1="-20" x2="20" y2="-45" stroke="#DC2626" strokeWidth="1.5" strokeDasharray="2 2" />
-                    </g>
-                  </g>
-                )}
-
-                {/* ============================================================= */}
-                {/* FARELYTICS REAL-TIME OVERLAY ELEMENTS */}
-                {/* ============================================================= */}
-                {simulatorMode === 'farelytics' && (
-                  <g className="animate-in fade-in duration-300">
-                    {/* Continuous Daily Multi-Horizon Sampling Nodes */}
-                    {[
-                      [50, 182], [70, 181], [95, 178], [120, 165], [145, 135],
-                      [170, 105], [195, 115], [220, 135], [245, 175], [270, 185],
-                      [295, 185], [320, 185], [345, 180], [370, 120], [395, 60],
-                      [420, 72], [445, 95], [470, 140], [500, 172], [530, 170],
-                      [560, 170], [590, 160], [620, 125], [645, 80], [670, 45],
+      {/* ========================================================================= */}
+      {/* 1. HERO SECTION WITH SCROLL-FLY-IN PARALLAX JET & ENERGETIC ENTRANCE */}
+      {/* ========================================================================= */}
+      <ScrollFlyIn
+        imageUrl="https://cdn.21st.dev/assets/mirror/f8/f807350ced7c5e2b79dd250c7de73eebcd402442c40f562e3003c95752a75b5c.webp"
+        imageAlt="Top view of private airliner flying across the screen on scroll"
+        className="border-b border-[#EAEAEA]"
+      >
+        <div className="space-y-8 sm:space-y-10 py-12">
+          
+          {/* Status Label with Spring Entrance */}
+          <motion.div 
+            initial={{ opacity: 0, y: -24, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+            className="flex justify-center"
+          >
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white border border-[#E5E5E5] text-xs font-mono text-[#555555] shadow-xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#3171C6] animate-pulse" />
+              <span className="font-semibold text-[#111111]">+7.20%</span>
+              <span className="text-[#888888]">·</span>
+              <span>Daily India airfare index vs August 2026</span>
+// Refactor progress checkpoint: step 16/36
                       [700, 35], [725, 65], [745, 110], [760, 140]
                     ].map(([cx, cy], i) => (
                       <circle
