@@ -14,9 +14,9 @@ export default function ScrollFlyInDemo() {
           </p>
           <h2 className="text-4xl md:text-6xl font-medium tracking-tight leading-tight mt-2 text-[#111111]">
             Where journeys become transparent
-// Refactor progress checkpoint: step 3/4
-        </p>
-      </div>
+          </h2>
+        </div>
+      </ScrollFlyIn>
     </div>
   );
 }
