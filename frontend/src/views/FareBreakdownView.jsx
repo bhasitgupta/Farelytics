@@ -91,15 +91,14 @@ export default function FareBreakdownView({ refreshTrigger }) {
                 <div className="text-[11px] text-[#737373] font-mono mt-0.5">
                   <AnimatedNumber value={breakdown.base_fare_percentage} decimals={1} suffix="% of ticket" duration={700} />
                 </div>
-// Refactor progress checkpoint: step 3/5
               </div>
 
-              <div className="p-4 rounded-lg bg-[#FAFAFA] border border-[#DEDEDE] hover:border-[#171717] transition-colors">
-                <div className="flex items-center gap-1.5 text-xs text-[#171717] font-medium">
+              <div className="p-4 rounded-lg bg-[#F4F3F1] border border-[#DFDDD8] hover:border-[#2D2D2D] transition-colors">
+                <div className="flex items-center gap-1.5 text-xs text-[#2D2D2D] font-medium">
                   <span className="w-2 h-2 rounded-full bg-[#4D4D4D]"></span>
                   Airport UDF & Fees
                 </div>
-                <div className="mt-2 text-2xl font-bold font-mono text-[#171717] tabular-nums">
+                <div className="mt-2 text-2xl font-bold font-mono text-[#2D2D2D] tabular-nums">
                   <AnimatedNumber value={breakdown.average_fees} decimals={0} prefix="₹" duration={700} />
                 </div>
                 <div className="text-[11px] text-[#737373] font-mono mt-0.5">
@@ -107,15 +106,15 @@ export default function FareBreakdownView({ refreshTrigger }) {
                 </div>
               </div>
 
-              <div className="p-4 rounded-lg bg-[#FAFAFA] border border-[#DEDEDE] hover:border-[#171717] transition-colors">
-                <div className="flex items-center gap-1.5 text-xs text-[#171717] font-medium">
-                  <span className="w-2 h-2 rounded-full bg-[#F25623]"></span>
+              <div className="p-4 rounded-lg bg-[#F4F3F1] border border-[#DFDDD8] hover:border-[#2D2D2D] transition-colors">
+                <div className="flex items-center gap-1.5 text-xs text-[#2D2D2D] font-medium">
+                  <span className="w-2 h-2 rounded-full bg-[#3171C6]"></span>
                   Statutory GST (5%)
                 </div>
-                <div className="mt-2 text-2xl font-bold font-mono text-[#171717] tabular-nums">
+                <div className="mt-2 text-2xl font-bold font-mono text-[#2D2D2D] tabular-nums">
                   <AnimatedNumber value={breakdown.average_taxes} decimals={0} prefix="₹" duration={700} />
                 </div>
-                <div className="text-[11px] text-[#F25623] font-mono font-semibold mt-0.5">
+                <div className="text-[11px] text-[#3171C6] font-mono font-semibold mt-0.5">
                   <AnimatedNumber value={breakdown.taxes_percentage} decimals={1} suffix="% of ticket" duration={700} />
                 </div>
               </div>
@@ -123,7 +122,7 @@ export default function FareBreakdownView({ refreshTrigger }) {
           </div>
 
           {/* Explanatory Callout */}
-          <div className="pt-2 text-xs text-[#4D4D4D] leading-relaxed">
+// Refactor progress checkpoint: step 4/5
             <strong className="text-[#171717] font-medium block mb-1">
               Why total payable price matters for CPI:
             </strong>
