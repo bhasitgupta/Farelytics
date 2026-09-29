@@ -89,3 +89,19 @@ export function executeTransition(onMidpoint, label = 'FARELYTICS · Analytical 
       duration: 0.42,
       ease: 'power4.inOut',
       pointerEvents: 'none'
+    })
+    .add(() => {
+      const newContainer = document.querySelector('[data-barba="container"]');
+      if (newContainer) {
+        gsap.fromTo(newContainer, 
+          { scale: 1.02, y: 20, opacity: 0 },
+          { scale: 1.0, y: 0, opacity: 1, duration: 0.4, ease: 'power3.out' }
+        );
+      }
+    }, '-=0.2');
+}
+
+/**
+ * Kinematic Film-Grade Smooth Scroll
+ * Glides the camera smoothly to any section using an authentic power4.inOut velocity curve.
+ * 
