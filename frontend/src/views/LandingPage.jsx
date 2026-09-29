@@ -160,58 +160,31 @@ export default function LandingPage({ onLaunchDashboard, onSelectTab, onSectionC
         },
       });
 
-// Refactor progress checkpoint: step 7/36
-      num: '04',
-      icon: Users,
-      title: 'Passenger Weighting',
-      subtitle: '19.8M Travelers Aligned',
-      legacyShort: 'Unweighted simple averages',
-      legacyDetail: 'Low-traffic regional routes are given equal statistical weight to high-volume trunk corridors like Delhi–Mumbai carrying millions.',
-      legacyConsequence: 'Distorts macro inflation indicators',
-      farelyticsShort: 'DGCA volume-weighted basket',
-      farelyticsDetail: 'Calculated using official annual civil aviation passenger counts across 19.8M domestic travelers on India\'s top 7 trunk corridors.',
-      farelyticsBenefit: 'Volume-Weighted across 19.8M Flyers',
-      metric: '19.8M Flyers',
-      badge: 'Official DGCA Weights'
-    },
-    {
-      id: 'lineage',
-      num: '05',
-      icon: ShieldCheck,
-      title: 'Audit Trail & Lineage',
-      subtitle: 'Cryptographic Proof',
-      legacyShort: 'Opaque manual spreadsheets',
-      legacyDetail: 'No public observation-level data provenance. Economists and researchers cannot verify individual quote records or calculation formulas.',
-      legacyConsequence: 'Zero cryptographic verification or audit trail',
-      farelyticsShort: 'Tamper-proof cryptographic provenance',
-      farelyticsDetail: 'Every published daily index figure links directly to raw quote hashes, verified against DGCA benchmarks with 94.0% accuracy.',
-      farelyticsBenefit: 'SHA-256 Audit Trail + 94% Benchmark Match',
-      metric: '94% Benchmark Match',
-      badge: 'Cryptographic Audit'
-    }
-  ];
+      // Problem 3-stage ticket cards scrubbed sequential scale & highlight
+      gsap.fromTo('.ticket-step-card',
+        { opacity: 0.3, y: 30, scale: MOTION_TUNING.scaleStart },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          stagger: 0.15,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '.ticket-inspector-card',
+            start: 'top 80%',
+            end: 'top 35%',
+            scrub: MOTION_TUNING.scrubSpeed,
+          },
+        }
+      );
 
-  const selectedRoute = routes.find(r => r.code === selectedRouteCode) || routes[0];
-
-  return (
-    <div ref={pageContainerRef} className="w-full font-sans selection:bg-[#F25623]/20">
-      {/* ========================================================================= */}
-      {/* 1. HERO SECTION (EXPANDED FULL-VIEWPORT WITH TACTILE GRAIN BACKGROUND) */}
-      {/* ========================================================================= */}
-      <section 
-        ref={heroContainerRef}
-        style={{
-          backgroundColor: '#020203',
-        }}
-        className="w-full relative overflow-hidden h-screen min-h-[640px] flex flex-col justify-between pt-24 pb-4 sm:pt-28 sm:pb-6 px-4 sm:px-8 lg:px-12"
-      >
-        {/* WebGL Waves Shader Canvas with Parallax */}
-        <div className="hero-shader-canvas absolute inset-0 w-full h-full pointer-events-none z-0 will-change-transform">
-          <ShaderBackground className="absolute inset-0 w-full h-full pointer-events-none" />
-        </div>
-
-        <div className="hero-content-inner relative z-10 max-w-7xl mx-auto w-full flex-1 flex flex-col justify-between py-2 sm:py-4 gap-8 lg:gap-10 will-change-transform">
-          {/* Ticket Stub Badge */}
+      // 2. METHODOLOGY SECTION SCROLL SCRUB
+      gsap.fromTo('.method-heading-word',
+        { yPercent: 110, rotateZ: -MOTION_TUNING.headingRotation, opacity: 0 },
+        {
+          yPercent: 0,
+          rotateZ: 0,
+// Refactor progress checkpoint: step 8/36
           <div>
             <div 
               ref={badgeRef}
