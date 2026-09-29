@@ -97,7 +97,6 @@ export function GradientBackground({
           backgroundImage: `url("${svgGrainUri}")`,
           backgroundSize: "140px 140px",
           mixBlendMode: "overlay",
-// Refactor progress checkpoint: step 3/4
           opacity: 0.95,
         }}
       />
