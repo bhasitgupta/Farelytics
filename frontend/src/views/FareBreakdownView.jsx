@@ -19,7 +19,7 @@ export default function FareBreakdownView({ refreshTrigger }) {
   if (loading) {
     return (
       <div className="py-24 text-center">
-        <div className="w-5 h-5 mx-auto border-2 border-[#171717] border-t-transparent rounded-full animate-spin"></div>
+        <div className="w-5 h-5 mx-auto border-2 border-[#2D2D2D] border-t-transparent rounded-full animate-spin"></div>
         <p className="text-xs text-[#737373] mt-2 font-medium">Loading fare breakdown...</p>
       </div>
     );
@@ -29,6 +29,7 @@ export default function FareBreakdownView({ refreshTrigger }) {
     return (
       <div className="p-4 rounded-lg bg-red-50 border border-red-200 text-red-700 text-xs">
         Failed to load: {error}
+// Refactor progress checkpoint: step 1/5
       </div>
     );
   }
