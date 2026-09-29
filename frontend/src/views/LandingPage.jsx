@@ -67,58 +67,31 @@ function ScrubHeadingWords({ text, className = "", as: Component = "h2", groupCl
           </span>
         </span>
       ))}
-// Refactor progress checkpoint: step 3/36
-      // --- 3. SITE-WIDE SCROLL-TRIGGERED TEXT & COLUMN REVEALS ---
-      // Eyebrow badges
-      gsap.utils.toArray('.scroll-reveal-eyebrow').forEach((el) => {
-        gsap.fromTo(el,
-          { y: -12, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.65,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 88%',
-              toggleActions: 'play none none none'
-            }
-          }
-        );
-      });
+    </Component>
+  );
+}
 
-      // Main headings (masked upward reveal)
-      gsap.utils.toArray('.scroll-reveal-heading').forEach((el) => {
-        gsap.fromTo(el,
-          { y: 38, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.85,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 85%',
-              toggleActions: 'play none none none'
-            }
-          }
-        );
-      });
+export default function LandingPage({ onLaunchDashboard, onSelectTab, onSectionChange }) {
+  const pageContainerRef = useRef(null);
+  const progressBarRef = useRef(null);
+  const [activeRouteIndex, setActiveRouteIndex] = useState(0);
+  const [showBackToTop, setShowBackToTop] = useState(false);
 
-      // Subheadings & descriptive paragraphs
-      gsap.utils.toArray('.scroll-reveal-subheading').forEach((el) => {
-        gsap.fromTo(el,
-          { y: 22, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.75,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 85%',
-              toggleActions: 'play none none none'
-            }
+  // Section Observer
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 400);
+
+      const sections = ['problem', 'how-it-works', 'basket', 'cta'];
+      let current = '';
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 260 && rect.bottom >= 120) {
+            current = id;
+            break;
+// Refactor progress checkpoint: step 4/36
           }
         );
       });
