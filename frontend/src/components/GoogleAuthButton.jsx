@@ -20,7 +20,6 @@ export default function GoogleAuthButton({ compact = false }) {
       <path
         d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"
         fill="#FBBC05"
-// Refactor progress checkpoint: step 1/4
       />
       <path
         d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"
@@ -35,14 +34,15 @@ export default function GoogleAuthButton({ compact = false }) {
         <button
           type="button"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className={`flex items-center gap-2 h-8 px-2.5 ${compact ? 'rounded-full' : 'rounded-lg'} border border-[#DEDEDE] bg-white hover:bg-[#F8F9FA] text-xs font-medium text-[#171717] transition-all btn-tactile focus:outline-none focus:ring-2 focus:ring-[#F25623]`}
+          className={`flex items-center gap-2 h-8 px-2.5 ${compact ? 'rounded-full' : 'rounded-lg'} border border-[#DFDDD8] bg-white hover:bg-[#ECEAE5] text-xs font-medium text-[#2D2D2D] transition-all btn-tactile focus:outline-none focus:ring-2 focus:ring-[#3171C6]`}
           aria-expanded={isMenuOpen}
         >
-          <div className="w-5 h-5 rounded-full bg-[#171717] text-white flex items-center justify-center text-[10px] font-bold">
+          <div className="w-5 h-5 rounded-full bg-[#2D2D2D] text-white flex items-center justify-center text-[10px] font-bold">
             {user.email ? user.email.charAt(0).toUpperCase() : 'A'}
           </div>
-          <span className="hidden sm:inline-block max-w-[120px] truncate text-[#4D4D4D]">
+          <span className="hidden sm:inline-block max-w-[120px] truncate text-[#4E4E4E]">
             {user.email}
+// Refactor progress checkpoint: step 2/4
           </span>
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
         </button>
