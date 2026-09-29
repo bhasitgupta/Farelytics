@@ -114,59 +114,30 @@ export default function LandingPage({ onLaunchDashboard, onSelectTab, onSectionC
       ScrollTrigger.refresh();
     }, 150);
 
-// Refactor progress checkpoint: step 5/36
-      id: 'collection',
-      number: '01',
-      title: 'Daily Ticket Collection',
-      category: 'Data Collection',
-      badge: 'Compliant Ingestion',
-      description: 'Daily automated collectors monitor IndiGo, Air India, Akasa Air, SpiceJet, and major travel platforms across 5 booking horizons (from tomorrow up to 45 days out). Operates fully within official civil aviation data guidelines.',
-      techSpec: 'Multi-Carrier · 5 Advance Horizons · Verified Daily',
-      metric: '50,000+ Daily Quotes',
-      formula: 'Quotes_{t} = ⋃_{carrier} ⋃_{route} ⋃_{h \\in {1,7,15,30,45}} Fares'
-    },
-    {
-      id: 'cleaning',
-      number: '02',
-      title: 'True Cost Breakdown',
-      category: 'Fair Price Transparency',
-      badge: 'Component Breakdown',
-      description: 'Airline ticket displays frequently conceal fees. Farelytics breaks down every price into base fare, 5% GST, and airport user development fees (which make up ~26% of passenger costs). Unusual data spikes are filtered out fairly without omitting real flights.',
-      techSpec: 'Base + Tax + Airport Fees · Outlier Protection',
-      metric: '100% Full-Fare Transparency',
-      formula: 'Fare_{total} = Base + GST_{5\\%} + (UDF + PSF)_{airport}'
-    },
-    {
-      id: 'index',
-      number: '03',
-      title: 'Accurate National Index',
-      category: 'National Price Calculation',
-      badge: 'Passenger Volume Weights',
-      description: 'For each route and travel window, median consumer fares are tracked against our August 2026 baseline. Weighted nationally by official government passenger counts across 19.8M travelers to reflect what everyday flyers truly pay.',
-      techSpec: 'Official DGCA Traffic Weights · 5 Key Factors',
-      metric: '100% Traffic Aligned',
-      formula: 'APIx_{t} = \\sum_{r=1}^{7} w_r \\times \\left( \\frac{P_{r,t}}{P_{r,0}} \\right) \\times 100'
-    },
-    {
-      id: 'governance',
-      number: '04',
-      title: 'Verified & Tamper-Proof Audit',
-      category: 'Independent Benchmark Check',
-      badge: 'Audit Trail',
-      description: 'Every published price index is permanently recorded with a tamper-proof verification signature. Benchmarked against official monthly aviation reports with 94.0% directional alignment.',
-      techSpec: 'Cryptographic Audit Trail · 94% Benchmark Match',
-      metric: '94% Benchmark Match',
-      formula: 'Hash_{index} = \\text{SHA-256}(Date \\mathbin{\\Vert} APIx \\mathbin{\\Vert} \\text{RootQuoteHash})'
-    }
-  ];
+    const ctx = gsap.context(() => {
+      // 0. Top Scroll Progress Bar
+      if (progressBarRef.current) {
+        gsap.to(progressBarRef.current, {
+          scaleX: 1,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: pageContainerRef.current,
+            start: 'top top',
+            end: 'bottom bottom',
+            scrub: 0.1,
+          },
+        });
+      }
 
-  const routes = [
-    { code: 'DEL-BOM', name: 'Delhi — Mumbai', pax: '4,850k', weight: '0.24495', pct: '24.50%', fare: '₹8,450', base: '₹7,200', taxes: '₹1,250', surge: '+8.2%' },
-    { code: 'DEL-BLR', name: 'Delhi — Bengaluru', pax: '3,950k', weight: '0.19950', pct: '19.95%', fare: '₹8,120', base: '₹6,900', taxes: '₹1,220', surge: '+7.1%' },
-    { code: 'BOM-BLR', name: 'Mumbai — Bengaluru', pax: '2,750k', weight: '0.13889', pct: '13.89%', fare: '₹5,980', base: '₹5,050', taxes: '₹930', surge: '+5.4%' },
-    { code: 'DEL-CCU', name: 'Delhi — Kolkata', pax: '2,350k', weight: '0.11869', pct: '11.87%', fare: '₹7,620', base: '₹6,480', taxes: '₹1,140', surge: '+9.3%' },
-    { code: 'BLR-HYD', name: 'Bengaluru — Hyderabad', pax: '2,100k', weight: '0.10606', pct: '10.61%', fare: '₹4,350', base: '₹3,700', taxes: '₹650', surge: '+4.2%' },
-    { code: 'MAA-DEL', name: 'Chennai — Delhi', pax: '1,950k', weight: '0.09848', pct: '9.85%', fare: '₹7,910', base: '₹6,750', taxes: '₹1,160', surge: '+6.8%' },
+      // 1. THE PROBLEM SECTION SCROLL-DRIVEN REVEALS
+      gsap.fromTo('.problem-heading-word', 
+        { yPercent: 110, rotateZ: MOTION_TUNING.headingRotation, opacity: 0 },
+        {
+          yPercent: 0,
+          rotateZ: 0,
+          opacity: 1,
+          stagger: MOTION_TUNING.headingStagger,
+// Refactor progress checkpoint: step 6/36
     { code: 'DEL-HYD', name: 'Delhi — Hyderabad', pax: '1,850k', weight: '0.09343', pct: '9.34%', fare: '₹6,420', base: '₹5,460', taxes: '₹960', surge: '+5.9%' }
   ];
 
