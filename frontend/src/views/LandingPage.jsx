@@ -486,58 +486,30 @@ export default function LandingPage({ onLaunchDashboard, onSelectTab, onSectionC
               The price gap
             </span>
             <ScrubHeadingWords 
-// Refactor progress checkpoint: step 21/36
-                key={step.id}
-                onClick={() => setActiveStep(idx)}
-                className={`scroll-reveal-card p-5 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between group ${
-                  isSelected
-                    ? 'bg-[#171717] text-white border-[#171717] shadow-xl ring-2 ring-[#F25623]/20 -translate-y-0.5'
-                    : 'bg-white text-[#171717] border-[#E5E5E5] hover:border-[#171717]/60 hover:bg-[#FAFAFA]'
-                }`}
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <span className={`font-mono text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-md ${
-                      isSelected ? 'bg-white/15 text-[#F25623]' : 'bg-[#F4F4F5] text-[#737373]'
-                    }`}>
-                      Stage {step.number}
-                    </span>
-                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${
-                      isSelected ? 'bg-[#F25623] text-white' : 'bg-[#F0F0F0] text-[#737373] group-hover:bg-[#171717] group-hover:text-white'
-                    }`}>
-                      <StepIcon className="w-4 h-4" />
-                    </div>
-                  </div>
+              text="Flight search prices leave out 31% in airport fees."
+              className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-[-0.03em] leading-[1.12] text-[#111111]"
+              groupClass="problem-heading-word"
+            />
+            <ScrubWordFill 
+              text="Booking sites show base fares first to look cheaper. Airport user development fees and taxes are added right before payment. We track the final price passengers pay."
+              className="text-base sm:text-lg text-[#555555] leading-relaxed"
+              groupClass="problem-body-word"
+            />
+          </div>
 
-                  <h3 className="text-sm font-bold leading-snug">
-                    {step.title}
-                  </h3>
-                  <p className={`text-[11px] mt-1 font-mono ${isSelected ? 'text-[#DEDEDE]' : 'text-[#737373]'}`}>
-                    {step.category}
-                  </p>
-                </div>
-
-                <div className={`mt-4 pt-3 border-t text-[11px] font-mono flex items-center justify-between ${
-                  isSelected ? 'border-white/10 text-[#F25623]' : 'border-[#E5E5E5] text-[#171717] font-semibold'
-                }`}>
-                  <span>{step.metric}</span>
-                  <ChevronRight className={`w-3.5 h-3.5 transition-transform ${isSelected ? 'text-[#F25623] translate-x-0.5' : 'text-[#A3A3A3] group-hover:translate-x-0.5'}`} />
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Active Stage Production Showcase Studio */}
-        <div className="scroll-reveal-panel rounded-3xl border border-[#E5E5E5] bg-white p-6 sm:p-10 shadow-tactile space-y-8 animate-in fade-in duration-300">
-          {/* Stage Top Bar */}
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-[#E5E5E5]">
-            <div className="space-y-1">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#F25623] animate-pulse"></span>
-                <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#F25623]">
-                  Pipeline Phase {pipelineSteps[activeStep].number} · {pipelineSteps[activeStep].category}
-                </span>
+          {/* Interactive Ticket Inspector Card with Scroll Progression */}
+          <div className="ticket-inspector-card rounded-2xl bg-white border border-[#E5E5E5] p-6 sm:p-10 space-y-8">
+            
+            {/* Route Selector */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#EAEAEA]">
+              <span className="text-xs font-mono uppercase text-[#888888]">
+                Choose a route:
+              </span>
+              <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none py-0.5">
+                {TOP_ROUTES.slice(0, 5).map((r, idx) => (
+                  <button
+                    key={r.code}
+// Refactor progress checkpoint: step 22/36
               </div>
               <h3 className="text-2xl sm:text-3xl font-black text-[#171717] tracking-tight">
                 {pipelineSteps[activeStep].title}
