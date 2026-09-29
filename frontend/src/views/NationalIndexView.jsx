@@ -200,29 +200,32 @@ export default function NationalIndexView({ onInspectLineage, refreshTrigger, cu
             </div>
 
             <button
-// Refactor progress checkpoint: step 8/16
-          <div>
-            <span className="text-[#737373] block text-[11px]">Domestic Route Coverage</span>
-            <span className="font-semibold text-[#171717] mt-0.5 block font-mono">{((current?.coverage || 1) * 100).toFixed(0)}% Representative</span>
-          </div>
-          <div>
-            <span className="text-[#737373] block text-[11px]">Passenger Weight Source</span>
-            <span className="font-semibold text-[#171717] mt-0.5 block font-mono uppercase">{current?.weight_source}</span>
+              type="button"
+              onClick={() => onInspectLineage(1)}
+              className="inline-flex items-center gap-1.5 text-xs text-[#111111] hover:text-black font-medium py-1.5 px-3.5 rounded-full bg-white hover:bg-neutral-50 border border-[#E5E5E5] shadow-xs transition-colors cursor-pointer"
+            >
+              <Search className="w-3.5 h-3.5 text-[#3171C6]" />
+              <span>Trace Data Lineage</span>
+            </button>
           </div>
         </div>
-      </div>
 
-      {/* Interactive Time-Series SVG Chart */}
-      <div className="mini-card p-6 sm:p-8 bg-white border-[#DEDEDE] shadow-tactile">
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <h3 className="text-xs font-semibold text-[#171717] uppercase tracking-wider">
-              National Index Time Series
-            </h3>
-            <p className="text-xs text-[#4D4D4D] mt-0.5">
-              Historical airfare inflation trajectory relative to August 2026 base
-            </p>
+        {/* Time-Series Chart Section */}
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-medium text-[#111111] font-sans">
+              Index Trajectory Over Time
+            </span>
+
+            {hoveredPoint && (
+              <div className="text-xs font-mono text-[#111111] bg-neutral-100 px-2.5 py-1 rounded-full border border-neutral-200 animate-in fade-in">
+                {hoveredPoint.period}: <span className="font-semibold text-[#3171C6]">{hoveredPoint.index.toFixed(2)}</span>
+              </div>
+            )}
           </div>
+
+          <div className="w-full overflow-x-auto">
+// Refactor progress checkpoint: step 9/16
 
           {hoveredPoint && (
             <div className="text-xs font-mono font-bold text-[#171717] bg-[#FAFAFA] px-2.5 py-1 rounded border border-[#DEDEDE]">
