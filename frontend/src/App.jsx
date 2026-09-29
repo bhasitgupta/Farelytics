@@ -23,8 +23,15 @@ import {
   ShieldCheck, 
   CheckCircle2 
 } from 'lucide-react';
-// Refactor progress checkpoint: step 1/11
-  { id: 'backtest', label: 'DGCA Backtest' },
+
+const DASHBOARD_TABS = [
+  { id: 'national', label: 'National Index', icon: TrendingUp, desc: 'Headline & Trends' },
+  { id: 'routes', label: 'Top Routes', icon: MapPin, desc: 'Metro Corridor Fares' },
+  { id: 'leadtime', label: 'Advance Booking', icon: Calendar, desc: 'Booking Window Surge' },
+  { id: 'airlines', label: 'Airlines', icon: Plane, desc: 'IndiGo, Air India & More' },
+  { id: 'breakdown', label: 'Price Breakdown', icon: Receipt, desc: 'Base vs Taxes & Fees' },
+  { id: 'quality', label: 'Data Governance', icon: ShieldCheck, desc: 'Outlier Filtering & Quality' },
+  { id: 'backtest', label: 'DGCA Benchmark', icon: CheckCircle2, desc: 'Tariff Correlation (94%)' },
 ];
 
 function Dashboard() {
@@ -36,17 +43,13 @@ function Dashboard() {
   const [toast, setToast] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(null);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
-  const tabRefs = useRef({});
-  const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0, opacity: 0 });
 
-  const loadCurrentIndex = () => {
-    fetchCurrentIndex()
-      .then(setCurrentIndex)
-      .catch((err) => console.error('Failed to load current index:', err));
-  };
-
+  // Initialize Barba transition hooks
   useEffect(() => {
-    loadCurrentIndex();
+    initBarba();
+  }, []);
+
+// Refactor progress checkpoint: step 2/11
   }, [refreshTrigger]);
 
   useEffect(() => {
