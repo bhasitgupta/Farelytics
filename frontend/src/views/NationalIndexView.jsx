@@ -351,29 +351,32 @@ export default function NationalIndexView({ onInspectLineage, refreshTrigger, cu
           </div>
         </div>
       </div>
-// Refactor progress checkpoint: step 14/16
-              </>
-            )}
-          </svg>
-        </div>
-      </div>
 
-      {/* 5-Factor Decomposition - Minimalist Grid */}
-      <div className="mini-card p-6 sm:p-8 bg-white border-[#DEDEDE] shadow-tactile">
-        <div className="mb-4">
-          <h3 className="text-xs font-semibold text-[#171717] uppercase tracking-wider">
-            Price Shift Decomposition
+      {/* ========================================================================= */}
+      {/* 2. PLAIN-ENGLISH PRICE DRIVERS ("WHAT IS DRIVING THE INCREASE?") */}
+      {/* ========================================================================= */}
+      <div className="bg-white rounded-3xl border border-[#E5E5E5] p-6 sm:p-8 shadow-xs space-y-5">
+        <div>
+          <h3 className="text-sm font-medium text-[#111111] tracking-tight">
+            What Is Driving The Price Increase?
           </h3>
-          <p className="text-xs text-[#4D4D4D] mt-0.5">
-            Breakdown of headline inflation (+{(current?.index - 100.0).toFixed(2)} pts) by structural factor
+          <p className="text-xs text-[#666666] mt-0.5">
+            Contribution of each market factor to the +{inflationPct} point headline inflation increase
           </p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 pt-2">
-          {[
-            { label: 'Route Effect', val: current?.decomposition?.route_effect, desc: 'Sector volume variance' },
-            { label: 'Lead-Time Effect', val: current?.decomposition?.lead_time_effect, desc: 'Advance booking curve' },
-            { label: 'Carrier Effect', val: current?.decomposition?.carrier_effect, desc: 'FSC vs LCC spread' },
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-3 pt-1">
+          {DRIVERS.map((item, idx) => (
+            <div 
+              key={idx} 
+              className="p-4 rounded-2xl bg-neutral-50/70 border border-neutral-200/90 flex flex-col justify-between hover:border-neutral-300 transition-all space-y-3"
+            >
+              <div>
+                <div className="flex items-center justify-between gap-1 mb-1.5">
+                  <span className="text-xs font-medium text-[#111111]">{item.title}</span>
+                  <span className="text-xs font-mono font-medium text-[#3171C6]">
+                    +{item.value.toFixed(2)} pts
+// Refactor progress checkpoint: step 15/16
             { label: 'Tax & Fee Effect', val: current?.decomposition?.tax_fee_effect, desc: 'Airport charges & GST' },
             { label: 'Availability Effect', val: current?.decomposition?.availability_effect, desc: 'Inventory depletion' },
           ].map((item, idx) => (
