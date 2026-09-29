@@ -207,58 +207,30 @@ export default function LandingPage({ onLaunchDashboard, onSelectTab, onSectionC
             scale: 1,
             ease: 'power2.out',
             scrollTrigger: {
-// Refactor progress checkpoint: step 9/36
-                  </span>
-                </span>
-                <span className="inline-block overflow-hidden py-1 align-top mr-[0.25em]">
-                  <span className="inline-block hero-title-word will-change-transform">
-                    is
-                  </span>
-                </span>
-                <span className="inline-block overflow-hidden py-1 align-top">
-                  <span className="inline-block hero-title-word will-change-transform">
-                    Farelytics
-                  </span>
-                </span>
-              </h1>
-            </div>
+              trigger: '#how-it-works',
+              start: `top ${85 - idx * 5}%`,
+              end: `top ${40 - idx * 5}%`,
+              scrub: MOTION_TUNING.scrubSpeed,
+            },
+          }
+        );
+      });
 
-            {/* Right: Subheading & CTA */}
-            <div className="lg:col-span-5 space-y-6">
-              <div className="overflow-hidden">
-                <p className="hero-subheading text-base sm:text-lg text-neutral-300 font-normal leading-relaxed will-change-transform">
-                  Daily domestic airfare tracking and inflation indices for economists, researchers, and policy analysts.
-                </p>
-              </div>
-
-              <div className="overflow-hidden">
-                <div className="hero-cta will-change-transform">
-                  <button
-                    type="button"
-                    onClick={onLaunchDashboard}
-                    className="px-8 py-4 rounded-full bg-white hover:bg-neutral-100 text-[#171717] font-bold text-sm shadow-[0_4px_30px_rgba(242,86,35,0.4)] hover:shadow-[0_6px_36px_rgba(242,86,35,0.6)] hover:scale-105 active:scale-95 transition-all flex items-center gap-2.5 group cursor-pointer border border-white/90"
-                  >
-                    <span>Launch Analytics Console</span>
-                    <ArrowUpRight className="w-4 h-4 text-[#F25623] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom Strip: Our Loop - Continuous Horizontal Route Ticker */}
-          <div 
-            ref={bottomBarRef}
-            className="hero-bottom-bar pt-6 sm:pt-8 border-t border-white/10 flex items-center justify-between gap-4 w-full will-change-transform"
-          >
-            {/* Live Indicator Pill */}
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[11px] font-mono font-bold text-white shrink-0 uppercase tracking-wider shadow-2xs">
-              <span className="w-2 h-2 rounded-full bg-[#F25623] animate-pulse"></span>
-              <span>Live Routes</span>
-            </div>
-
-            {/* Continuous Infinite Horizontal Marquee */}
-            <div className="relative overflow-hidden flex-1 [mask-image:linear-gradient(to_right,transparent,black_3%,black_97%,transparent)]">
+      // 3. THE 7 ROUTES CORRIDORS GRID
+      gsap.fromTo('.routes-heading-word',
+        { yPercent: 110, rotateZ: MOTION_TUNING.headingRotation, opacity: 0 },
+        {
+          yPercent: 0,
+          rotateZ: 0,
+          opacity: 1,
+          stagger: MOTION_TUNING.headingStagger,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '#basket',
+            start: 'top 85%',
+            end: 'top 45%',
+            scrub: MOTION_TUNING.scrubSpeed,
+// Refactor progress checkpoint: step 10/36
               <div className="animate-marquee flex items-center gap-2.5">
                 {/* First instance */}
                 {routes.map((r) => (
