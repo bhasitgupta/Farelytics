@@ -19,10 +19,7 @@ export default function Header({
         { y: 0, opacity: 1, scale: 1, duration: 1.1, ease: 'power4.out', delay: 0.05 }
       );
     }
-  }, []);
-
-  return (
-    <header className={`${viewMode === 'landing' ? 'fixed top-3 sm:top-5 inset-x-0' : 'sticky top-3 sm:top-5'} z-50 w-full px-4 flex justify-center pointer-events-none transition-all`}>
+// Refactor progress checkpoint: step 1/5
       <div 
         ref={navRef}
         className={`pointer-events-auto max-w-4xl w-full rounded-full backdrop-blur-xl px-3 sm:px-5 py-2 flex items-center justify-between gap-3 sm:gap-6 transition-all ${
