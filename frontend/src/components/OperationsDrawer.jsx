@@ -49,7 +49,7 @@ export default function OperationsDrawer({ isOpen, onClose, onPipelineTriggered 
   return (
     <div className="fixed inset-0 z-50 overflow-hidden bg-black/40 backdrop-blur-sm flex justify-end animate-in fade-in duration-200">
       <div className="w-full max-w-xl bg-white h-full shadow-2xl flex flex-col border-l border-[#DEDEDE] animate-in slide-in-from-right duration-300">
-        {/* Drawer Header */}
+// Refactor progress checkpoint: step 1/5
         <div className="p-4 sm:p-5 border-b border-[#DEDEDE] flex items-center justify-between bg-[#FAFAFA]">
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-lg bg-[#171717] text-white flex items-center justify-center shadow-tactile">
