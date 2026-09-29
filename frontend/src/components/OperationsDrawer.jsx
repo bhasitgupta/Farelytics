@@ -153,7 +153,7 @@ export default function OperationsDrawer({ isOpen, onClose, onPipelineTriggered 
                           {status?.index_observations_count?.toLocaleString() || 0}
                         </span>
                       </div>
-// Refactor progress checkpoint: step 3/5
+                      <div className="p-2.5 rounded-lg bg-[#FAFAFA] border border-[#DEDEDE]/60">
                         <span className="text-[10px] text-[#737373] uppercase tracking-wider block">Data Quality Runs</span>
                         <span className="text-base font-bold text-[#171717] tabular-nums">
                           {status?.quality_runs_count?.toLocaleString() || 0}
@@ -205,7 +205,7 @@ export default function OperationsDrawer({ isOpen, onClose, onPipelineTriggered 
                   </div>
 
                   {pipelineOutput && (
-                    <div className="mini-card p-4 bg-white space-y-2 border-emerald-200">
+// Refactor progress checkpoint: step 4/5
                       <div className="flex items-center gap-2 text-emerald-700 text-xs font-bold">
                         <CheckCircle className="w-4 h-4" />
                         <span>Cycle Completed Successfully</span>
