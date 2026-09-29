@@ -277,58 +277,30 @@ export default function LandingPage({ onLaunchDashboard, onSelectTab, onSectionC
         ease: 'none',
         scrollTrigger: {
           trigger: '#cta',
-// Refactor progress checkpoint: step 12/36
-        <div className="scroll-reveal-panel rounded-2xl bg-[#171717] text-white p-6 sm:p-8 border border-[#2D2D2D] shadow-2xl overflow-hidden relative">
-          {/* Atmospheric background glow */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-[#F25623]/10 rounded-full blur-3xl pointer-events-none" />
+          start: 'top 75%',
+          end: 'top 40%',
+          scrub: MOTION_TUNING.scrubSpeed,
+        },
+      });
 
-          {/* Simulator Controls & Header */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10 relative z-10">
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#F25623] animate-pulse"></span>
-                <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#F25623]">
-                  Interactive Methodology Simulator
-                </span>
-              </div>
-              <h3 className="text-lg sm:text-xl font-bold text-white mt-1">
-                30-Day Airfare Volatility · Delhi — Mumbai (DEL–BOM)
-              </h3>
-              <p className="text-xs text-[#A3A3A3] mt-0.5">
-                Toggle between single-probe monthly survey recording vs continuous multi-horizon daily capture.
-              </p>
-            </div>
-
-            {/* Interactive State Toggle */}
-            <div className="flex items-center p-1 rounded-xl bg-white/10 border border-white/10 shrink-0 self-start sm:self-auto">
-              <button
-                type="button"
-                onClick={() => setSimulatorMode('legacy')}
-                className={`px-3.5 py-2 rounded-lg text-xs font-bold transition-all flex items-center gap-2 cursor-pointer ${
-                  simulatorMode === 'legacy'
-                    ? 'bg-[#DC2626] text-white shadow-md'
-                    : 'text-[#DEDEDE] hover:text-white'
-                }`}
-              >
-                <EyeOff className="w-3.5 h-3.5" />
-                <span>Monthly Survey (The Blindspot)</span>
-              </button>
-              
-              <button
-                type="button"
-                onClick={() => setSimulatorMode('farelytics')}
-                className={`px-3.5 py-2 rounded-lg text-xs font-bold transition-all flex items-center gap-2 cursor-pointer ${
-                  simulatorMode === 'farelytics'
-                    ? 'bg-[#F25623] text-white shadow-md'
-                    : 'text-[#DEDEDE] hover:text-white'
-                }`}
-              >
-                <Eye className="w-3.5 h-3.5" />
-                <span>Farelytics Real-Time (The Truth)</span>
-              </button>
-            </div>
-          </div>
-
+      // CTA Telemetry Glass Card: blur-to-sharp & scale scrub
+      gsap.fromTo('.cta-hud-card',
+        { 
+          opacity: 0.25, 
+          scale: MOTION_TUNING.scaleStart, 
+          filter: `blur(${MOTION_TUNING.blurIntensity}px)`,
+          y: 35
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          filter: 'blur(0px)',
+          y: 0,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '#cta',
+            start: 'top 75%',
+// Refactor progress checkpoint: step 13/36
           {/* Waveform Canvas */}
           <div className="py-6 relative z-10">
             <div className="relative w-full aspect-[21/9] min-h-[260px] sm:min-h-[300px]">
