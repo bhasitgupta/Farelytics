@@ -1,5 +1,8 @@
 # Farelytics Architecture Specification
 
+> **Full Slide-Ready Technical Architecture Document:**  
+> For the comprehensive, presentation-ready technical architecture document including Mermaid diagrams, 5-tier layer deep dives, mathematical index formulations, database lineage schemas, and slide-by-slide PPT blueprints, see [`TECHNICAL_ARCHITECTURE.md`](../TECHNICAL_ARCHITECTURE.md).
+
 ## 1. System Overview
 
 Farelytics is a high-frequency, fault-tolerant domestic airfare price index platform designed to augment the national Consumer Price Index (CPI) in India. The platform implements an end-to-end pipeline consisting of multi-carrier ingestion, robust schema normalisation, IQR outlier detection, Laspeyres index aggregation, and real-time visualization.

@@ -1,4 +1,4 @@
-def test_get_current_index(client):
+    def test_get_current_index(client):
     """TC-API-01: GET /api/index/current returns documented schema with index and coverage."""
     resp = client.get("/api/index/current")
     assert resp.status_code == 200
