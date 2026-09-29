@@ -323,58 +323,30 @@ export default function LandingPage({ onLaunchDashboard, onSelectTab, onSectionC
         }
       );
 
-// Refactor progress checkpoint: step 14/36
-                {/* Actual Real-World Airfare Bezier Path */}
-                {/* 1. Underlying Area Fill */}
-                <path
-                  d="M 50,182 C 90,180 140,140 170,105 C 185,85 205,95 220,135 C 240,190 280,185 320,185 C 350,185 375,110 395,60 C 415,20 440,50 460,110 C 480,170 530,175 560,170 C 600,165 640,110 660,75 C 680,40 690,30 700,35 C 715,40 735,70 760,140 L 760,220 L 50,220 Z"
-                  fill={simulatorMode === 'farelytics' ? 'url(#farelytics-area)' : 'url(#legacy-area)'}
-                  className="transition-all duration-500"
-                />
+    }, pageContainerRef);
 
-                {/* 2. The True Airfare Trajectory Line */}
-                <path
-                  d="M 50,182 C 90,180 140,140 170,105 C 185,85 205,95 220,135 C 240,190 280,185 320,185 C 350,185 375,110 395,60 C 415,20 440,50 460,110 C 480,170 530,175 560,170 C 600,165 640,110 660,75 C 680,40 690,30 700,35 C 715,40 735,70 760,140"
-                  fill="none"
-                  stroke={simulatorMode === 'farelytics' ? '#F25623' : '#6B7280'}
-                  strokeWidth={simulatorMode === 'farelytics' ? 3.5 : 2}
-                  strokeDasharray={simulatorMode === 'legacy' ? '4 4' : 'none'}
-                  strokeLinecap="round"
-                  className="transition-all duration-500"
-                />
+    return () => {
+      clearTimeout(timer);
+      ctx.revert();
+    };
+  }, []);
 
-                {/* ============================================================= */}
-                {/* LEGACY SURVEY OVERLAY ELEMENTS */}
-                {/* ============================================================= */}
-                {simulatorMode === 'legacy' && (
-                  <g className="animate-in fade-in duration-300">
-                    {/* Flat Monthly Benchmark Assumption Line */}
-                    <line 
-                      x1="40" 
-                      y1="185" 
-                      x2="760" 
-                      y2="185" 
-                      stroke="#DC2626" 
-                      strokeWidth="2.5" 
-                      strokeDasharray="6 6" 
-                    />
-                    <text 
-                      x="755" 
-                      y="178" 
-                      textAnchor="end" 
-                      className="font-mono text-[9px] fill-[#DC2626] font-bold"
-                    >
-                      Assumed Static Benchmark: ₹4,800 for 30 full days
-                    </text>
+  const activeRoute = TOP_ROUTES[activeRouteIndex];
 
-                    {/* Single Survey Probe Point (Day 12, x=320, y=185) */}
-                    <g>
-                      <circle cx="320" cy="185" r="16" fill="none" stroke="#DC2626" strokeWidth="1.5">
-                        <animate attributeName="r" values="8;18;8" dur="2s" repeatCount="indefinite" />
-                        <animate attributeName="opacity" values="0.8;0.15;0.8" dur="2s" repeatCount="indefinite" />
-                      </circle>
-                      <circle cx="320" cy="185" r="7" fill="#DC2626" stroke="#FFFFFF" strokeWidth="2" />
-                      
+  return (
+    <div 
+      ref={pageContainerRef} 
+      className="w-full bg-[#FAFAFA] text-[#111111] selection:bg-[#3171C6]/15 font-sans antialiased min-h-screen relative"
+    >
+      {/* ========================================================================= */}
+      {/* 0. GLOBAL SCROLL PROGRESS BAR (CSS DRIVEN WITH GSAP SCRUB FALLBACK) */}
+      {/* ========================================================================= */}
+      <div 
+        ref={progressBarRef}
+        id="scroll-progress-bar"
+        className="fixed top-0 left-0 right-0 h-[2px] bg-[#3171C6] z-50 origin-left scale-x-0 css-scroll-progress pointer-events-none"
+        aria-hidden="true"
+// Refactor progress checkpoint: step 15/36
                       {/* Callout Box above Probe */}
                       <g transform="translate(320, 140)">
                         <rect x="-80" y="-22" width="160" height="24" rx="6" fill="#171717" stroke="#DC2626" strokeWidth="1.5" />
