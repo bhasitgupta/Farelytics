@@ -672,58 +672,30 @@ export default function LandingPage({ onLaunchDashboard, onSelectTab, onSectionC
                 key={r.code}
                 onClick={() => {
                   if (onSelectTab) onSelectTab('routes');
-// Refactor progress checkpoint: step 29/36
-                <ArrowUpRight className="w-3.5 h-3.5 text-white" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+                  onLaunchDashboard();
+                }}
+                className="route-grid-item p-5 rounded-xl bg-white border border-[#E5E5E5] hover:border-[#CCCCCC] transition-colors cursor-pointer space-y-4 will-change-[transform,opacity]"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="font-mono font-medium text-sm text-[#111111]">
+                    {r.code}
+                  </span>
+                  <span className="text-xs font-mono text-[#3171C6]">
+                    {r.surge} 30D
+                  </span>
+                </div>
 
-      {/* ========================================================================= */}
-      {/* 4. POPULAR FLIGHT ROUTES (§ 03 / MONITORED ROUTES) */}
-      {/* ========================================================================= */}
-      <section id="basket" className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-16 sm:py-24 space-y-8 scroll-mt-24 border-t border-[#E5E5E5]">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#E5E5E5] pb-4">
-          <div>
-            <div className="scroll-reveal-eyebrow flex items-center gap-2">
-              <span className="text-xs font-bold text-[#F25623] uppercase tracking-wider font-mono">
-                Popular Flight Routes
-              </span>
-              <span className="text-[#A3A3A3]">·</span>
-              <span className="text-xs text-[#737373] font-medium">Top City Pairs by Passenger Count</span>
-            </div>
-            <div className="overflow-hidden py-1">
-              <h2 className="scroll-reveal-heading text-3xl sm:text-4xl font-black text-[#171717] tracking-tight mt-1">
-                India’s Top 7 Domestic Flight Routes
-              </h2>
-            </div>
-          </div>
-          <p className="scroll-reveal-subheading text-xs sm:text-sm text-[#737373] max-w-md leading-relaxed">
-            Airlines operate hundreds of routes across India. To ensure rock-solid statistical accuracy, Farelytics tracks the 7 major city connections carrying 19.8 million travelers every year.
-          </p>
-        </div>
+                <div>
+                  <span className="text-[11px] text-[#888888] block">Route</span>
+                  <span className="text-sm font-medium text-[#111111] block">{r.name}</span>
+                </div>
 
-        {/* Route Ledger Table + Interactive Flight Ticket Stub */}
-        <div className="scroll-reveal-panel grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-          {/* Left: Continuous Route Ledger (8 cols) */}
-          <div className="lg:col-span-8 border border-[#E5E5E5] rounded-xl bg-white overflow-hidden shadow-sm">
-            <div className="grid grid-cols-12 px-4 py-3 bg-[#FAFAFA] border-b border-[#E5E5E5] font-mono text-[10px] font-bold uppercase tracking-wider text-[#737373]">
-              <div className="col-span-3">Route Pair</div>
-              <div className="col-span-4">City Pair</div>
-              <div className="col-span-2 text-right">Traffic</div>
-              <div className="col-span-3 text-right">Weight / Surge</div>
-            </div>
-
-            <div className="divide-y divide-[#E5E5E5]">
-              {routes.map((r) => {
-                const isSelected = selectedRouteCode === r.code;
-                return (
-                  <div
-                    key={r.code}
-                    onClick={() => setSelectedRouteCode(r.code)}
-                    className={`grid grid-cols-12 px-4 py-3.5 items-center cursor-pointer transition-colors text-xs ${
-                      isSelected ? 'bg-[#FAFAFA] font-bold' : 'hover:bg-[#F9F9F8]'
+                <div className="pt-3 border-t border-[#EAEAEA] flex items-center justify-between text-xs font-mono">
+                  <div>
+                    <span className="text-[10px] text-[#888888] block">Average total</span>
+                    <span className="font-semibold text-[#111111]">{r.total}</span>
+                  </div>
+// Refactor progress checkpoint: step 30/36
                     }`}
                   >
                     <div className="col-span-3 flex items-center gap-2">
