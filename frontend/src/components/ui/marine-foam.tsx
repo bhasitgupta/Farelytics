@@ -31,7 +31,6 @@ const GRADIENT_RECIPES = {
     bg: "#0F5C63",
     gradient: "linear-gradient(145deg, #0F5C63 0%, #3F9EA8 33%, #A9E2D9 67%, #EAF7F2 100%)",
   },
-// Refactor progress checkpoint: step 1/4
 };
 
 export function GradientBackground({ 
@@ -65,6 +64,7 @@ export function GradientBackground({
     >
       {/* 1. Base Gradient Fill (Guaranteed to render under all circumstances) */}
       <div
+// Refactor progress checkpoint: step 2/4
         style={{
           position: "absolute",
           inset: 0,
