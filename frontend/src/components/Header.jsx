@@ -40,32 +40,29 @@ export default function Header({
             className="h-7 sm:h-7.5 w-auto object-contain transition-transform group-hover:scale-105 duration-200"
           />
         </button>
-// Refactor progress checkpoint: step 2/5
-          <nav className="hidden md:flex items-center gap-1 sm:gap-1.5 text-xs sm:text-[13px] font-medium text-neutral-300" aria-label="Main Navigation">
+
+        {/* Center: Minimalist Navigation Links (Single Line, Never Wraps) */}
+        {viewMode === 'landing' && onNavigateSection && (
+          <nav className="hidden md:flex items-center gap-1 text-xs sm:text-[13px] font-medium text-[#666666]" aria-label="Main Navigation">
             <button 
               type="button" 
               onClick={() => onNavigateSection('problem')}
-              className={`px-3 py-1.5 rounded-full transition-all whitespace-nowrap ${
+              className={`px-3.5 py-1.5 rounded-full transition-all whitespace-nowrap cursor-pointer ${
                 activeSection === 'problem'
-                  ? 'bg-white/20 text-white font-bold shadow-2xs'
-                  : 'hover:text-white hover:bg-white/10'
+                  ? 'bg-black/[0.06] text-[#111111] font-semibold'
+                  : 'hover:text-[#111111] hover:bg-black/[0.03]'
               }`}
             >
-              Why Farelytics
+              The Problem
             </button>
             <button 
               type="button" 
               onClick={() => onNavigateSection('how-it-works')}
-              className={`px-3 py-1.5 rounded-full transition-all whitespace-nowrap ${
+              className={`px-3.5 py-1.5 rounded-full transition-all whitespace-nowrap cursor-pointer ${
                 activeSection === 'how-it-works'
-                  ? 'bg-white/20 text-white font-bold shadow-2xs'
-                  : 'hover:text-white hover:bg-white/10'
-              }`}
-            >
-              How It Works
-            </button>
-            <button 
-              type="button" 
+                  ? 'bg-black/[0.06] text-[#111111] font-semibold'
+                  : 'hover:text-[#111111] hover:bg-black/[0.03]'
+// Refactor progress checkpoint: step 3/5
               onClick={() => onNavigateSection('basket')}
               className={`px-3 py-1.5 rounded-full transition-all whitespace-nowrap ${
                 activeSection === 'basket'
