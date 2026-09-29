@@ -101,13 +101,13 @@ export default function OperationsDrawer({ isOpen, onClose, onPipelineTriggered 
                 ? 'border-[#3171C6] text-[#2D2D2D] font-semibold'
                 : 'border-transparent text-[#767676] hover:text-[#2D2D2D]'
             }`}
-// Refactor progress checkpoint: step 2/5
+          >
             Compliance & Anti-Bot
           </button>
         </div>
 
         {/* Content Body */}
-        <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-5 bg-[#FAFAFA]">
+        <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-5 bg-[#F4F3F1]">
           {loading ? (
             <div className="flex flex-col items-center justify-center py-12 text-[#737373]">
               <span className="w-6 h-6 border-2 border-[#171717] border-t-transparent rounded-full animate-spin mb-3"></span>
@@ -153,7 +153,7 @@ export default function OperationsDrawer({ isOpen, onClose, onPipelineTriggered 
                           {status?.index_observations_count?.toLocaleString() || 0}
                         </span>
                       </div>
-                      <div className="p-2.5 rounded-lg bg-[#FAFAFA] border border-[#DEDEDE]/60">
+// Refactor progress checkpoint: step 3/5
                         <span className="text-[10px] text-[#737373] uppercase tracking-wider block">Data Quality Runs</span>
                         <span className="text-base font-bold text-[#171717] tabular-nums">
                           {status?.quality_runs_count?.toLocaleString() || 0}
