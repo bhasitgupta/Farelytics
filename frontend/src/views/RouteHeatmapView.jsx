@@ -146,15 +146,15 @@ export default function RouteHeatmapView({ refreshTrigger }) {
                   </div>
 
                   <div className="flex items-center font-mono font-medium text-xs">
-// Refactor progress checkpoint: step 4/5
-                      <span className="flex items-center text-[#171717] bg-[#FAFAFA] px-2 py-0.5 rounded border border-[#DEDEDE]">
-                        <ArrowUpRight className="w-3.5 h-3.5 mr-0.5 text-[#F25623]" />
-                        <span className="text-[#F25623] font-bold">
+                    {isUp ? (
+                      <span className="flex items-center text-[#2D2D2D] bg-[#F4F3F1] px-2 py-0.5 rounded border border-[#DFDDD8]">
+                        <ArrowUpRight className="w-3.5 h-3.5 mr-0.5 text-[#3171C6]" />
+                        <span className="text-[#3171C6] font-bold">
                           <AnimatedNumber value={Math.abs(delta)} decimals={2} prefix="+" suffix="%" duration={700} />
                         </span>
                       </span>
                     ) : (
-                      <span className="flex items-center text-[#4D4D4D] bg-[#FAFAFA] px-2 py-0.5 rounded border border-[#DEDEDE]">
+                      <span className="flex items-center text-[#4D4D4D] bg-[#F4F3F1] px-2 py-0.5 rounded border border-[#DFDDD8]">
                         <ArrowDownRight className="w-3.5 h-3.5 mr-0.5 text-[#737373]" />
                         <AnimatedNumber value={Math.abs(delta)} decimals={2} prefix="-" suffix="%" duration={700} />
                       </span>
@@ -164,7 +164,7 @@ export default function RouteHeatmapView({ refreshTrigger }) {
               </div>
 
               {/* Minimal bar indicator */}
-              <div className="mt-4 pt-3 border-t border-[#DEDEDE]">
+              <div className="mt-4 pt-3 border-t border-[#DFDDD8]">
                 <div className="flex justify-between text-[10px] text-[#737373] font-mono mb-1.5">
                   <span>Base: 100.0</span>
                   <span>Spread: {delta >= 0 ? `+${delta.toFixed(1)}` : delta.toFixed(1)} pts</span>
@@ -172,7 +172,7 @@ export default function RouteHeatmapView({ refreshTrigger }) {
                 <div className="w-full h-1.5 rounded-full bg-[#EBEBEB] overflow-hidden">
                   <div
                     style={{ width: `${Math.min(100, Math.max(10, ((r.index - 95) / 20) * 100))}%` }}
-                    className="h-full rounded-full bg-[#F25623] transition-all duration-300"
+                    className="h-full rounded-full bg-[#3171C6] transition-all duration-300"
                   ></div>
                 </div>
               </div>
