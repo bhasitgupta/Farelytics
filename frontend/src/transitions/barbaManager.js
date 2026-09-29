@@ -105,3 +105,18 @@ export function executeTransition(onMidpoint, label = 'FARELYTICS · Analytical 
  * Kinematic Film-Grade Smooth Scroll
  * Glides the camera smoothly to any section using an authentic power4.inOut velocity curve.
  * 
+ * @param {string} targetId - Element ID to scroll to (e.g. 'problem', 'how-it-works')
+ * @param {number} offset - Y offset in pixels (default: 76 for header clearance)
+ */
+export function smoothScrollTo(targetId, offset = 76) {
+  if (typeof window === 'undefined') return;
+
+  const el = document.getElementById(targetId);
+  if (!el) return;
+
+  const targetY = el.getBoundingClientRect().top + window.pageYOffset - offset;
+
+  // Kinematic tween to window scroll
+  const scrollObj = { y: window.pageYOffset };
+  gsap.to(scrollObj, {
+    y: targetY,
