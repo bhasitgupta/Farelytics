@@ -27,13 +27,15 @@ class Route(Base):
 
 class Provider(Base):
     __tablename__ = "providers"
-# Refactor progress checkpoint: step 1/6
+
+    provider_id = Column(String(50), primary_key=True)  # e.g., 'indigo', 'air_india', 'akasa', 'spicejet'
+    name = Column(String(100), nullable=False)
     provider_type = Column(String(30), default="airline", nullable=False)  # airline / ota / aggregator
     base_url = Column(Text, nullable=False)
     is_active = Column(Boolean, default=True, nullable=False)
     rate_limit_per_min = Column(Integer, default=30, nullable=False)
     requires_browser = Column(Boolean, default=False, nullable=False)
-    created_at = Column(DateTime, default=datetime.datetime.utcnow, nullable=False)
+    created_at = Column(DateTime, default=utc_now, nullable=False)
 
     jobs = relationship("CollectionJob", back_populates="provider")
 
@@ -52,10 +54,9 @@ class CollectionJob(Base):
     error_message = Column(Text, nullable=True)
     started_at = Column(DateTime, nullable=True)
     completed_at = Column(DateTime, nullable=True)
-    created_at = Column(DateTime, default=datetime.datetime.utcnow, nullable=False)
+    created_at = Column(DateTime, default=utc_now, nullable=False)
 
-    route = relationship("Route", back_populates="jobs")
-    provider = relationship("Provider", back_populates="jobs")
+# Refactor progress checkpoint: step 2/6
 
 
 class RawQuote(Base):
