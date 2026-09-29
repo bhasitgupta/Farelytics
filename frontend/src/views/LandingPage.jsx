@@ -742,58 +742,30 @@ export default function LandingPage({ onLaunchDashboard, onSelectTab, onSectionC
                     <ArrowRight className="w-4 h-4 text-[#888888]" />
                   </button>
 
-// Refactor progress checkpoint: step 32/36
-                7 Interactive Analytics Views
-              </h2>
-            </div>
-          </div>
-          <p className="scroll-reveal-subheading text-xs sm:text-sm text-[#737373] max-w-md leading-relaxed">
-            Select any view below to inspect real-time data in the live console.
-          </p>
-        </div>
+                  <button
+                    type="button"
+                    onClick={() => smoothScrollTo('problem')}
+                    className="px-5 py-3 rounded-full bg-transparent hover:bg-neutral-800 text-neutral-300 hover:text-white font-medium text-sm transition-all duration-200 cursor-pointer"
+                  >
+                    <span>Read the background</span>
+                  </button>
+                </div>
 
-        <div className="scroll-reveal-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <div 
-            onClick={() => { onSelectTab && onSelectTab('national'); onLaunchDashboard(); }}
-            className="scroll-reveal-card card-tactile p-6 bg-white border border-[#E5E5E5] rounded-xl cursor-pointer group flex flex-col justify-between hover:border-[#171717]"
-          >
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-[#171717] text-white flex items-center justify-center mb-4 shadow-sm group-hover:scale-105 transition-transform">
-                <TrendingUp className="w-5 h-5 text-[#F25623]" />
-              </div>
-              <h4 className="text-sm font-bold text-[#171717] group-hover:text-[#F25623] transition-colors flex items-center justify-between">
-                <span>National Airfare Index</span>
-                <ArrowUpRight className="w-4 h-4 text-[#737373] group-hover:text-[#F25623] transition-transform" />
-              </h4>
-              <p className="text-xs text-[#737373] mt-2 leading-relaxed">
-                National price index tracking with daily, weekly, and monthly trends, plus a detailed 5-factor price breakdown.
-              </p>
-            </div>
-            <span className="mt-4 pt-3 border-t border-[#E5E5E5] font-mono text-[10px] text-[#A3A3A3] block">
-              TAB 01 · NATIONAL INDEX
-            </span>
-          </div>
-
-          <div 
-            onClick={() => { onSelectTab && onSelectTab('routes'); onLaunchDashboard(); }}
-            className="scroll-reveal-card card-tactile p-6 bg-white border border-[#E5E5E5] rounded-xl cursor-pointer group flex flex-col justify-between hover:border-[#171717]"
-          >
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-[#171717] text-white flex items-center justify-center mb-4 shadow-sm group-hover:scale-105 transition-transform">
-                <Plane className="w-5 h-5 text-[#F25623]" />
-              </div>
-              <h4 className="text-sm font-bold text-[#171717] group-hover:text-[#F25623] transition-colors flex items-center justify-between">
-                <span>Route Price Heatmap</span>
-                <ArrowUpRight className="w-4 h-4 text-[#737373] group-hover:text-[#F25623] transition-transform" />
-              </h4>
-              <p className="text-xs text-[#737373] mt-2 leading-relaxed">
-                Visual price matrix across all major routes. Spot which flight paths are driving airfare inflation at a glance.
-              </p>
-            </div>
-            <span className="mt-4 pt-3 border-t border-[#E5E5E5] font-mono text-[10px] text-[#A3A3A3] block">
-              TAB 02 · ROUTE MATRIX
-            </span>
-          </div>
+                {/* Counters scrubbed to scroll progress */}
+                <div className="pt-6 border-t border-neutral-800 grid grid-cols-3 gap-4 text-left">
+                  <div className="stat-counter-number will-change-[transform,opacity]">
+                    <span className="block font-mono text-xl font-medium text-white">
+                      107.20
+                    </span>
+                    <span className="text-xs text-neutral-400">Index (+7.2%)</span>
+                  </div>
+                  <div className="stat-counter-number will-change-[transform,opacity]">
+                    <span className="block font-mono text-xl font-medium text-white">
+                      7
+                    </span>
+                    <span className="text-xs text-neutral-400">Routes</span>
+                  </div>
+// Refactor progress checkpoint: step 33/36
 
           <div 
             onClick={() => { onSelectTab && onSelectTab('leadtime'); onLaunchDashboard(); }}
