@@ -30,11 +30,12 @@ export default function RouteHeatmapView({ refreshTrigger }) {
   if (loading) {
     return (
       <div className="py-24 text-center">
-        <div className="w-5 h-5 mx-auto border-2 border-[#171717] border-t-transparent rounded-full animate-spin"></div>
+        <div className="w-5 h-5 mx-auto border-2 border-[#2D2D2D] border-t-transparent rounded-full animate-spin"></div>
         <p className="text-xs text-[#737373] mt-2 font-medium">Loading sector relatives...</p>
       </div>
     );
   }
+// Refactor progress checkpoint: step 1/5
 
   if (error) {
     return (
