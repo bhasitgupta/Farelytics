@@ -300,59 +300,30 @@ export default function LandingPage({ onLaunchDashboard, onSelectTab, onSectionC
           scrollTrigger: {
             trigger: '#cta',
             start: 'top 75%',
-// Refactor progress checkpoint: step 13/36
-          {/* Waveform Canvas */}
-          <div className="py-6 relative z-10">
-            <div className="relative w-full aspect-[21/9] min-h-[260px] sm:min-h-[300px]">
-              <svg 
-                viewBox="0 0 800 240" 
-                className="w-full h-full overflow-visible select-none"
-                preserveAspectRatio="none"
-              >
-                <defs>
-                  {/* Glowing Orange Area Fill for Farelytics Mode */}
-                  <linearGradient id="farelytics-area" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#F25623" stopOpacity="0.45" />
-                    <stop offset="60%" stopColor="#F25623" stopOpacity="0.1" />
-                    <stop offset="100%" stopColor="#F25623" stopOpacity="0" />
-                  </linearGradient>
-                  
-                  {/* Legacy Area Fill (Dim) */}
-                  <linearGradient id="legacy-area" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#DC2626" stopOpacity="0.15" />
-                    <stop offset="100%" stopColor="#DC2626" stopOpacity="0" />
-                  </linearGradient>
-                </defs>
+            end: 'top 35%',
+            scrub: MOTION_TUNING.scrubSpeed,
+          },
+        }
+      );
 
-                {/* Horizontal Price Grid Lines */}
-                <g stroke="rgba(255,255,255,0.08)" strokeDasharray="3 3">
-                  <line x1="40" y1="35" x2="760" y2="35" />
-                  <line x1="40" y1="80" x2="760" y2="80" />
-                  <line x1="40" y1="135" x2="760" y2="135" />
-                  <line x1="40" y1="185" x2="760" y2="185" />
-                  <line x1="40" y1="220" x2="760" y2="220" />
-                </g>
+      // Numbers Counter scrub on CTA stats
+      gsap.fromTo('.stat-counter-number',
+        { opacity: 0.3, y: 15 },
+        {
+          opacity: 1,
+          y: 0,
+          stagger: 0.1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '#cta',
+            start: 'top 70%',
+            end: 'top 40%',
+            scrub: MOTION_TUNING.scrubSpeed,
+          },
+        }
+      );
 
-                {/* Price Axis Labels (Y-Axis) */}
-                <g className="font-mono text-[9px] fill-white/40 select-none">
-                  <text x="35" y="38" textAnchor="end">₹12,000</text>
-                  <text x="35" y="83" textAnchor="end">₹9,000</text>
-                  <text x="35" y="138" textAnchor="end">₹6,500</text>
-                  <text x="35" y="188" textAnchor="end">₹4,800</text>
-                  <text x="35" y="223" textAnchor="end">₹4,000</text>
-                </g>
-
-                {/* Day Axis Markers (X-Axis) */}
-                <g className="font-mono text-[9px] fill-white/40 select-none">
-                  <text x="50" y="235" textAnchor="middle">Day 01</text>
-                  <text x="180" y="235" textAnchor="middle">Day 07 (Weekend)</text>
-                  <text x="320" y="235" textAnchor="middle">Day 12 (Survey)</text>
-                  <text x="430" y="235" textAnchor="middle">Day 16 (Festival)</text>
-                  <text x="580" y="235" textAnchor="middle">Day 22</text>
-                  <text x="700" y="235" textAnchor="middle">Day 27 (Surge)</text>
-                  <text x="760" y="235" textAnchor="middle">Day 30</text>
-                </g>
-
+// Refactor progress checkpoint: step 14/36
                 {/* Actual Real-World Airfare Bezier Path */}
                 {/* 1. Underlying Area Fill */}
                 <path
