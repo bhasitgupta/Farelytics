@@ -44,59 +44,30 @@ function ScrubWordFill({ text, className = "", as: Component = "p", groupClass =
       {words.map((word, i) => (
         <span key={i} className="inline-block whitespace-pre mr-[0.25em]" aria-hidden="true">
           <span 
-// Refactor progress checkpoint: step 2/36
-      .from('.hero-bottom-bar', {
-        y: 35,
-        opacity: 0,
-        duration: 0.85,
-        ease: 'power3.out'
-      }, '-=0.5')
-      .from('.hero-scroll-cue', {
-        opacity: 0,
-        y: -8,
-        duration: 0.6,
-        ease: 'power2.out'
-      }, '-=0.3');
+            className={`scrub-fill-word inline-block will-change-[opacity,transform] ${groupClass}`}
+            style={{ opacity: MOTION_TUNING.wordFillStartOpacity }}
+          >
+            {word}
+          </span>
+        </span>
+      ))}
+    </Component>
+  );
+}
 
-      // --- 2. HERO DUAL-SPEED PARALLAX & DISSOLVE ---
-      // WebGL Shader canvas drifts downward at 30% scroll speed
-      gsap.to('.hero-shader-canvas', {
-        yPercent: 30,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: heroContainerRef.current,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: true
-        }
-      });
-
-      // Foreground Hero content lifts and fades out as user leaves hero
-      gsap.to('.hero-content-inner', {
-        y: -70,
-        opacity: 0,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: heroContainerRef.current,
-          start: 'top top',
-          end: 'bottom 40%',
-          scrub: true
-        }
-      });
-
-      // Scroll cue fades out quickly upon scrolling
-      gsap.to('.hero-scroll-cue', {
-        opacity: 0,
-        y: 12,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: heroContainerRef.current,
-          start: 'top top',
-          end: '140px top',
-          scrub: true
-        }
-      });
-
+// Accessible Split-Word Masked Heading Component
+function ScrubHeadingWords({ text, className = "", as: Component = "h2", groupClass = "" }) {
+  const words = useMemo(() => text.split(" "), [text]);
+  return (
+    <Component className={className} aria-label={text}>
+      {words.map((word, i) => (
+        <span key={i} className="inline-block overflow-hidden pb-1 pt-0.5 mr-[0.25em] align-top" aria-hidden="true">
+          <span className={`scrub-heading-word inline-block will-change-transform ${groupClass}`}>
+            {word}
+          </span>
+        </span>
+      ))}
+// Refactor progress checkpoint: step 3/36
       // --- 3. SITE-WIDE SCROLL-TRIGGERED TEXT & COLUMN REVEALS ---
       // Eyebrow badges
       gsap.utils.toArray('.scroll-reveal-eyebrow').forEach((el) => {
