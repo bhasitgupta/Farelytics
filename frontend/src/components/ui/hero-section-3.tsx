@@ -51,3 +51,14 @@ const ScrollFlyIn = React.forwardRef<HTMLDivElement, ScrollFlyInProps>(
 
     return (
       <div ref={targetRef} className={cn("relative h-[160vh]", className)} {...props}>
+        {/* Sticky container stays pinned to viewport for the scroll duration without horizontal bleed */}
+        <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden">
+          {/* Main Hero Content */}
+          <motion.div 
+            style={{ opacity: contentOpacity, scale: contentScale, y: contentY }} 
+            className="z-10 text-center w-full max-w-[1120px] mx-auto px-6 sm:px-8 will-change-transform"
+          >
+            {children}
+          </motion.div>
+
+          {/* Animated Aircraft (Plane) */}
