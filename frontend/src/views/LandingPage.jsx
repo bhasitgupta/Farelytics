@@ -230,58 +230,30 @@ export default function LandingPage({ onLaunchDashboard, onSelectTab, onSectionC
             start: 'top 85%',
             end: 'top 45%',
             scrub: MOTION_TUNING.scrubSpeed,
-// Refactor progress checkpoint: step 10/36
-              <div className="animate-marquee flex items-center gap-2.5">
-                {/* First instance */}
-                {routes.map((r) => (
-                  <span
-                    key={r.code}
-                    onClick={() => {
-                      setSelectedRouteCode(r.code);
-                      const el = document.getElementById('basket');
-                      if (el) el.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                    className="px-3.5 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/15 hover:border-white/35 text-xs font-mono font-medium text-white cursor-pointer transition-all hover:-translate-y-0.5 shadow-2xs flex items-center gap-2 shrink-0 group"
-                  >
-                    <span className="font-bold text-white group-hover:text-[#FFA882] transition-colors">{r.code}</span>
-                    <span className="text-white/90 font-semibold">{r.fare}</span>
-                    <span className="text-[#FFA882] text-[10px] font-bold bg-[#F25623]/25 px-1.5 py-0.5 rounded border border-[#F25623]/40">{r.surge}</span>
-                  </span>
-                ))}
-                {/* Duplicated instance for seamless infinite loop */}
-                {routes.map((r) => (
-                  <span
-                    key={`${r.code}-loop`}
-                    onClick={() => {
-                      setSelectedRouteCode(r.code);
-                      const el = document.getElementById('basket');
-                      if (el) el.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                    className="px-3.5 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/15 hover:border-white/35 text-xs font-mono font-medium text-white cursor-pointer transition-all hover:-translate-y-0.5 shadow-2xs flex items-center gap-2 shrink-0 group"
-                  >
-                    <span className="font-bold text-white group-hover:text-[#FFA882] transition-colors">{r.code}</span>
-                    <span className="text-white/90 font-semibold">{r.fare}</span>
-                    <span className="text-[#FFA882] text-[10px] font-bold bg-[#F25623]/25 px-1.5 py-0.5 rounded border border-[#F25623]/40">{r.surge}</span>
-                  </span>
-                ))}
-              </div>
-            </div>
+          },
+        }
+      );
 
-            {/* Quick Action: View All 7 Routes */}
-            <button
-              type="button"
-              onClick={() => {
-                const el = document.getElementById('basket');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="hidden md:flex items-center gap-1.5 text-xs font-semibold text-neutral-300 hover:text-white shrink-0 transition-colors cursor-pointer group px-2 py-1"
-            >
-              <span>All 7 Routes</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-[#F25623] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </button>
-          </div>
-        </div>
+      // Route Cards wave scrub
+      gsap.fromTo('.route-grid-item',
+        { opacity: 0.15, y: 40, scale: 0.98 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          stagger: 0.08,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '#basket',
+            start: 'top 75%',
+            end: 'top 30%',
+            scrub: MOTION_TUNING.scrubSpeed,
+          },
+        }
+      );
 
+      // 4. GRAND CALL TO ACTION SECTION
+// Refactor progress checkpoint: step 11/36
         {/* Floating Scroll Cue */}
         <div className="hero-scroll-cue absolute bottom-2 sm:bottom-3 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-0.5 pointer-events-none opacity-80 will-change-transform">
           <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-400">Scroll</span>
