@@ -225,29 +225,32 @@ export default function NationalIndexView({ onInspectLineage, refreshTrigger, cu
           </div>
 
           <div className="w-full overflow-x-auto">
-// Refactor progress checkpoint: step 9/16
+            <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} className="w-full h-auto min-w-[580px]">
+              <defs>
+                <linearGradient id="chartAreaGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#3171C6" stopOpacity="0.08" />
+                  <stop offset="100%" stopColor="#3171C6" stopOpacity="0.0" />
+                </linearGradient>
+              </defs>
 
-          {hoveredPoint && (
-            <div className="text-xs font-mono font-bold text-[#171717] bg-[#FAFAFA] px-2.5 py-1 rounded border border-[#DEDEDE]">
-              {hoveredPoint.period}: <span className="text-[#F25623]">{hoveredPoint.index.toFixed(2)}</span>
-            </div>
-          )}
-        </div>
-
-        <div className="w-full overflow-x-auto">
-          <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} className="w-full h-auto min-w-[580px]">
-            <defs>
-              <linearGradient id="chartAreaGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#F25623" stopOpacity="0.12" />
-                <stop offset="100%" stopColor="#F25623" stopOpacity="0.0" />
-              </linearGradient>
-            </defs>
-
-            {/* Subtle Grid Lines */}
-            {[minVal, 100.0, maxVal].map((v) => {
-              const y = padding.top + innerH - ((v - minVal) / range) * innerH;
-              const isBase = v === 100.0;
-              return (
+              {/* Subtle Grid Lines & 100 Baseline */}
+              {[minVal, 100.0, maxVal].map((v) => {
+                const y = padding.top + innerH - ((v - minVal) / range) * innerH;
+                const isBase = v === 100.0;
+                return (
+                  <g key={v}>
+                    <line
+                      x1={padding.left}
+                      y1={y}
+                      x2={chartWidth - padding.right}
+                      y2={y}
+                      stroke={isBase ? "#3171C6" : "#EAEAEA"}
+                      strokeDasharray={isBase ? "4 4" : "none"}
+                      strokeWidth={isBase ? "1.2" : "1"}
+                    />
+                    <text
+                      x={padding.left - 10}
+// Refactor progress checkpoint: step 10/16
                 <g key={v}>
                   <line
                     x1={padding.left}
