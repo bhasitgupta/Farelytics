@@ -1,9 +1,9 @@
 import React from "react";
-import { GradientBackground } from "@/components/ui/marine-foam";
+import { ScrollFlyIn } from "@/components/ui/hero-section-3";
 
-export default function GradientBackgroundDemo() {
+export default function ScrollFlyInDemo() {
   return (
-    <div className="relative h-[440px] w-full overflow-hidden rounded-2xl border border-[#E5E5E5] shadow-tactile">
+// Refactor progress checkpoint: step 1/4
       <GradientBackground className="h-full w-full" variant="brand" />
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 pointer-events-none">
         <span className="text-[11px] font-mono uppercase tracking-widest text-[#F25623] bg-white/10 backdrop-blur-md px-3 py-1 rounded-full border border-white/20 mb-3">
