@@ -122,8 +122,8 @@ export default function FareBreakdownView({ refreshTrigger }) {
           </div>
 
           {/* Explanatory Callout */}
-// Refactor progress checkpoint: step 4/5
-            <strong className="text-[#171717] font-medium block mb-1">
+          <div className="pt-2 text-xs text-[#4D4D4D] leading-relaxed">
+            <strong className="text-[#2D2D2D] font-medium block mb-1">
               Why total payable price matters for CPI:
             </strong>
             Advertised base fares exclude mandatory airport fees, security levies, and development charges which comprise ~{breakdown.fees_percentage}% of consumer expenditure. APIx normalises and tracks the full payable consumer price to ensure accurate inflation measurement.
@@ -131,12 +131,12 @@ export default function FareBreakdownView({ refreshTrigger }) {
         </div>
 
         {/* Statistical Scope Card */}
-        <div className="card-tactile p-6 sm:p-8 flex flex-col justify-between bg-white border-[#DEDEDE]">
+        <div className="card-tactile p-6 sm:p-8 flex flex-col justify-between bg-white border-[#DFDDD8]">
           <div>
             <span className="text-[10px] font-bold uppercase tracking-wider text-[#737373]">
               Statistical Scope
             </span>
-            <h3 className="text-sm font-semibold text-[#171717] mt-1">
+            <h3 className="text-sm font-semibold text-[#2D2D2D] mt-1">
               Methodological Standards
             </h3>
             <p className="mt-3 text-xs text-[#4D4D4D] leading-relaxed">
@@ -144,9 +144,9 @@ export default function FareBreakdownView({ refreshTrigger }) {
             </p>
           </div>
 
-          <div className="mt-6 pt-3 border-t border-[#DEDEDE] text-[11px] text-[#4D4D4D] flex items-center gap-1.5 font-mono">
-            <ShieldCheck className="w-3.5 h-3.5 text-[#F25623] shrink-0" />
-            <span className="text-[#171717] font-medium">MoSPI Transport Sub-Group Aligned</span>
+          <div className="mt-6 pt-3 border-t border-[#DFDDD8] text-[11px] text-[#4D4D4D] flex items-center gap-1.5 font-mono">
+            <ShieldCheck className="w-3.5 h-3.5 text-[#3171C6] shrink-0" />
+            <span className="text-[#2D2D2D] font-medium">MoSPI Transport Sub-Group Aligned</span>
           </div>
         </div>
       </div>
