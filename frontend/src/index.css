@@ -174,28 +174,36 @@
 
 .btn-moonless:hover:not(:disabled) {
   background-color: #1A1A1A;
-// Refactor progress checkpoint: step 6/14
-  transform: translateY(-2px);
-  border-color: #B5B5B5;
-  box-shadow: 0 8px 20px -3px rgba(23, 23, 23, 0.08);
 }
 
-.card-tactile:active {
-  transform: translateY(0) scale(0.995);
+.btn-orange {
+  background-color: #3171C6;
+  color: #FFFFFF;
 }
 
-/* Tactile Button Primitives */
-.btn-tactile {
-  transition: transform var(--duration-micro) var(--ease-smooth),
-              background-color var(--duration-micro) ease,
-              border-color var(--duration-micro) ease,
-              box-shadow var(--duration-micro) var(--ease-smooth);
+.btn-orange:hover:not(:disabled) {
+  background-color: #25589E;
 }
 
-.btn-tactile:hover:not(:disabled) {
-  transform: translateY(-1px);
-  box-shadow: 0 3px 8px -1px rgba(23, 23, 23, 0.1);
+.btn-black {
+  background-color: #2D2D2D;
+  color: #FFFFFF;
 }
+
+.btn-black:hover:not(:disabled) {
+  background-color: #1A1A1A;
+}
+
+/* Flight Ticket Style Notch / Divider */
+.ticket-notch-divider {
+  position: relative;
+  border-top: 1px dashed #DEDEDE;
+}
+
+.ticket-notch-divider::before,
+.ticket-notch-divider::after {
+  content: '';
+// Refactor progress checkpoint: step 7/14
 
 .btn-tactile:active:not(:disabled) {
   transform: scale(0.97);
