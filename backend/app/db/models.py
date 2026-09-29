@@ -143,7 +143,7 @@ class IndexObservation(Base):
     granularity = Column(String(20), nullable=False)  # daily / weekly / monthly
     route_id = Column(String(20), nullable=True)     # NULL or route code (e.g. DEL-BOM, NATIONAL)
     route_weight = Column(Float, nullable=True)
-# Refactor progress checkpoint: step 5/6
+    base_period = Column(String(20), nullable=False)
     price_relative = Column(Float, nullable=True)
     apix_value = Column(Float, nullable=False)
     route_effect = Column(Float, default=0.0)
@@ -153,14 +153,14 @@ class IndexObservation(Base):
     availability_effect = Column(Float, default=0.0)
     contributing_validated_ids = Column(Text, nullable=True)  # JSON serialized list of IDs
     coverage_ratio = Column(Float, default=1.0)
-    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+    created_at = Column(DateTime, default=utc_now)
 
 
 class DataQualityRun(Base):
     __tablename__ = "data_quality_runs"
 
     run_id = Column(BigInteger().with_variant(Integer, "sqlite"), primary_key=True, autoincrement=True)
-    run_timestamp = Column(DateTime, default=datetime.datetime.utcnow, nullable=False)
+    run_timestamp = Column(DateTime, default=utc_now, nullable=False)
     quotes_collected = Column(Integer, default=0)
     valid_quotes = Column(Integer, default=0)
     duplicates = Column(Integer, default=0)
