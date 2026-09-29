@@ -144,28 +144,37 @@
 /* Tactile Button Primitives */
 .btn-tactile {
   transition: transform var(--duration-micro) var(--ease-smooth),
-// Refactor progress checkpoint: step 5/14
-  transition: box-shadow var(--duration-fast) var(--ease-smooth),
-              border-color var(--duration-fast) var(--ease-smooth);
+              background-color var(--duration-micro) ease,
+              border-color var(--duration-micro) ease,
+              box-shadow var(--duration-micro) var(--ease-smooth);
 }
 
-.mini-card:hover {
-  border-color: #B5B5B5;
-  box-shadow: 0 4px 12px -2px rgba(23, 23, 23, 0.06);
+.btn-tactile:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px -1px rgba(23, 23, 23, 0.1);
 }
 
-/* Tactile Interactive Card */
-.card-tactile {
-  background: #FFFFFF;
-  border: 1px solid #DEDEDE;
-  border-radius: 12px;
-  box-shadow: 0 1px 3px rgba(23, 23, 23, 0.03);
-  transition: transform var(--duration-fast) var(--ease-smooth),
-              border-color var(--duration-fast) var(--ease-smooth),
-              box-shadow var(--duration-fast) var(--ease-smooth);
+.btn-tactile:active:not(:disabled) {
+  transform: scale(0.97);
 }
 
-.card-tactile:hover {
+.btn-electric {
+  background-color: #3171C6;
+  color: #FFFFFF;
+}
+
+.btn-electric:hover:not(:disabled) {
+  background-color: #25589E;
+}
+
+.btn-moonless {
+  background-color: #2D2D2D;
+  color: #FFFFFF;
+}
+
+.btn-moonless:hover:not(:disabled) {
+  background-color: #1A1A1A;
+// Refactor progress checkpoint: step 6/14
   transform: translateY(-2px);
   border-color: #B5B5B5;
   box-shadow: 0 8px 20px -3px rgba(23, 23, 23, 0.08);
