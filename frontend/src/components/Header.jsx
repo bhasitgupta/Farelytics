@@ -62,31 +62,28 @@ export default function Header({
                 activeSection === 'how-it-works'
                   ? 'bg-black/[0.06] text-[#111111] font-semibold'
                   : 'hover:text-[#111111] hover:bg-black/[0.03]'
-// Refactor progress checkpoint: step 3/5
-              onClick={() => onNavigateSection('basket')}
-              className={`px-3 py-1.5 rounded-full transition-all whitespace-nowrap ${
-                activeSection === 'basket'
-                  ? 'bg-white/20 text-white font-bold shadow-2xs'
-                  : 'hover:text-white hover:bg-white/10'
               }`}
             >
-              Popular Routes
+              How It Works
             </button>
             <button 
               type="button" 
-              onClick={() => onNavigateSection('capabilities')}
-              className={`px-3 py-1.5 rounded-full transition-all whitespace-nowrap ${
-                activeSection === 'capabilities'
-                  ? 'bg-white/20 text-white font-bold shadow-2xs'
-                  : 'hover:text-white hover:bg-white/10'
+              onClick={() => onNavigateSection('basket')}
+              className={`px-3.5 py-1.5 rounded-full transition-all whitespace-nowrap cursor-pointer ${
+                activeSection === 'basket' || activeSection === 'corridors'
+                  ? 'bg-black/[0.06] text-[#111111] font-semibold'
+                  : 'hover:text-[#111111] hover:bg-black/[0.03]'
               }`}
             >
-              Features
+              Top Routes
             </button>
           </nav>
         )}
 
         {/* Right: Actions */}
+        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          <div className="hidden sm:block">
+// Refactor progress checkpoint: step 4/5
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           <div className="hidden sm:block">
             <GoogleAuthButton compact={true} />
