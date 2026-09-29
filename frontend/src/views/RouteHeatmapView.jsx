@@ -35,7 +35,6 @@ export default function RouteHeatmapView({ refreshTrigger }) {
       </div>
     );
   }
-// Refactor progress checkpoint: step 1/5
 
   if (error) {
     return (
@@ -56,7 +55,7 @@ export default function RouteHeatmapView({ refreshTrigger }) {
       {/* Header and Controls */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h2 className="text-sm font-semibold text-[#171717] tracking-tight">
+          <h2 className="text-sm font-semibold text-[#2D2D2D] tracking-tight">
             Sector Price Relatives & Flight Fares
           </h2>
           <p className="text-xs text-[#4D4D4D] mt-0.5">
@@ -72,7 +71,8 @@ export default function RouteHeatmapView({ refreshTrigger }) {
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="text-xs font-medium px-2.5 py-1.5 rounded-lg bg-white border border-[#DEDEDE] text-[#171717] cursor-pointer focus:outline-none focus:border-[#F25623]"
+            className="text-xs font-medium px-2.5 py-1.5 rounded-lg bg-white border border-[#DFDDD8] text-[#2D2D2D] cursor-pointer focus:outline-none focus:border-[#3171C6]"
+// Refactor progress checkpoint: step 2/5
           >
             <option value="weight">Traffic Weight (Highest)</option>
             <option value="index_desc">Inflation Shift (Highest)</option>
