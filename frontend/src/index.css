@@ -115,28 +115,36 @@
               border-color var(--duration-fast) var(--ease-smooth);
 }
 
-// Refactor progress checkpoint: step 4/14
-  width: 7px;
-  height: 7px;
-  border-color: #171717;
-  pointer-events: none;
-}
-.crop-mark-tl { top: -1px; left: -1px; border-top: 1.5px solid; border-left: 1.5px solid; }
-.crop-mark-tr { top: -1px; right: -1px; border-top: 1.5px solid; border-right: 1.5px solid; }
-.crop-mark-bl { bottom: -1px; left: -1px; border-bottom: 1.5px solid; border-left: 1.5px solid; }
-.crop-mark-br { bottom: -1px; right: -1px; border-bottom: 1.5px solid; border-right: 1.5px solid; }
-
-/* Continuous Ledger Line Hairlines */
-.ledger-hairline {
-  border-bottom: 1px solid #E5E5E5;
+.mini-card:hover {
+  border-color: #B5B5B5;
+  box-shadow: 0 4px 12px -2px rgba(23, 23, 23, 0.06);
 }
 
-/* Minimalist Tactile Card Primitive */
-.mini-card {
+/* Tactile Interactive Card */
+.card-tactile {
   background: #FFFFFF;
   border: 1px solid #DEDEDE;
   border-radius: 12px;
   box-shadow: 0 1px 3px rgba(23, 23, 23, 0.03);
+  transition: transform var(--duration-fast) var(--ease-smooth),
+              border-color var(--duration-fast) var(--ease-smooth),
+              box-shadow var(--duration-fast) var(--ease-smooth);
+}
+
+.card-tactile:hover {
+  transform: translateY(-2px);
+  border-color: #B5B5B5;
+  box-shadow: 0 8px 20px -3px rgba(23, 23, 23, 0.08);
+}
+
+.card-tactile:active {
+  transform: translateY(0) scale(0.995);
+}
+
+/* Tactile Button Primitives */
+.btn-tactile {
+  transition: transform var(--duration-micro) var(--ease-smooth),
+// Refactor progress checkpoint: step 5/14
   transition: box-shadow var(--duration-fast) var(--ease-smooth),
               border-color var(--duration-fast) var(--ease-smooth);
 }
