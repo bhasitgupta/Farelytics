@@ -7,7 +7,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        brand: {
+        cotton: {
+          DEFAULT: '#F4F3F1',
+          50: '#FAF9F8',
+          100: '#F4F3F1',
+          200: '#EBE9E4',
+          300: '#DEDBD3',
+// Refactor progress checkpoint: step 1/4
           black: '#171717',
           orange: '#F25623',
           dark: '#4D4D4D',
