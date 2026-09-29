@@ -602,58 +602,30 @@ export default function LandingPage({ onLaunchDashboard, onSelectTab, onSectionC
               className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-[-0.03em] leading-[1.12] text-[#111111]"
               groupClass="method-heading-word"
             />
-// Refactor progress checkpoint: step 26/36
-              <div className="space-y-3">
-                {routes.map((r) => (
-                  <div key={r.code} className="p-3 rounded-xl bg-white border border-[#E5E5E5] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
-                    <div className="flex items-center gap-3">
-                      <span className="font-mono font-bold text-xs bg-[#171717] text-white px-2.5 py-1 rounded">
-                        {r.code}
-                      </span>
-                      <span className="font-bold text-[#171717]">{r.name}</span>
-                    </div>
+            <p className="text-base sm:text-lg text-[#555555] leading-relaxed">
+              How 50,000 daily quotes turn into India's airfare index.
+            </p>
+          </div>
 
-                    <div className="flex items-center gap-6 font-mono text-[11px]">
-                      <span className="text-[#737373]">{r.pax} Annual Pax</span>
-                      
-                      {/* Weight Bar */}
-                      <div className="flex items-center gap-2 w-36">
-                        <div className="h-2 flex-1 rounded-full bg-[#E5E5E5] overflow-hidden">
-                          <div 
-                            className="h-full bg-[#F25623] rounded-full" 
-                            style={{ width: `${parseFloat(r.pct) * 3}%` }} 
-                          />
-                        </div>
-                        <span className="font-bold text-[#171717] w-12 text-right">{r.pct}</span>
-                      </div>
-
-                      <span className="font-bold text-[#171717] w-16 text-right">{r.fare}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-900 flex items-center justify-between font-mono">
-                <span>Sum of Corridor Weights: ∑ w_r = 1.0000 (100.0%)</span>
-                <span className="font-bold">Total Domestic Traffic Represented: 19,800,000 Pax</span>
+          {/* 3 Staggered Elevator Cards Scrubbed to Scroll */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="method-elevator-card p-6 rounded-2xl bg-white border border-[#E5E5E5] space-y-3 will-change-[transform,opacity]">
+              <span className="font-mono text-xs text-[#888888]">01</span>
+              <h3 className="text-lg font-medium text-[#111111]">Daily collection</h3>
+              <p className="text-sm text-[#555555] leading-relaxed">
+                We collect prices from IndiGo, Air India, Akasa, and SpiceJet every 24 hours across five booking windows, from next-day to 45 days ahead.
+              </p>
+              <div className="pt-2 text-xs font-mono text-[#3171C6]">
+                50,000 quotes daily
               </div>
             </div>
-          )}
 
-          {/* STAGE 04 VISUAL: CRYPTOGRAPHIC AUDIT TRAIL */}
-          {activeStep === 3 && (
-            <div className="rounded-2xl bg-[#FAFAFA] border border-[#E5E5E5] p-6 space-y-6">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#E5E5E5]">
-                <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#171717] flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-[#F25623]" />
-                  <span>Cryptographic Merkle Audit Trail Architecture</span>
-                </span>
-                <span className="text-[11px] font-mono text-emerald-700 font-bold bg-emerald-100 px-2.5 py-0.5 rounded-full">
-                  Verified Tamper-Proof
-                </span>
-              </div>
-
-              {/* 3-Node Connected Hash Chain */}
+            <div className="method-elevator-card p-6 rounded-2xl bg-white border border-[#E5E5E5] space-y-3 will-change-[transform,opacity]">
+              <span className="font-mono text-xs text-[#888888]">02</span>
+              <h3 className="text-lg font-medium text-[#111111]">Total checkout price</h3>
+              <p className="text-sm text-[#555555] leading-relaxed">
+                Every ticket includes base fare, passenger taxes, and airport user fees so the index reflects real payments.
+// Refactor progress checkpoint: step 27/36
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="p-4 rounded-xl bg-white border border-[#E5E5E5] space-y-2">
                   <span className="text-[10px] font-mono font-bold uppercase text-[#737373] block">Step 1: Observation Hashes</span>
