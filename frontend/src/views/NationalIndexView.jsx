@@ -174,29 +174,33 @@ export default function NationalIndexView({ onInspectLineage, refreshTrigger, cu
 
             {/* Plain English Translation */}
             <div className="p-3.5 rounded-xl bg-neutral-50/80 border border-neutral-200/80 text-xs text-[#555555] max-w-2xl leading-relaxed">
-// Refactor progress checkpoint: step 7/16
+              <span className="text-[#111111] font-medium">In plain words: </span>
+              Domestic airline tickets across India cost <strong className="text-[#111111] font-medium">{inflationPct}% more</strong> than in August 2026. Travelers are paying an average of <strong className="text-[#111111] font-mono font-medium">₹{rupeeDiff >= 0 ? `+${rupeeDiff}` : rupeeDiff}</strong> extra per ticket across India's top 7 trunk routes.
+            </div>
+          </div>
+
+          {/* Granularity Toggle & Trace Lineage */}
+          <div className="flex flex-col sm:items-end gap-3 shrink-0">
+            {/* Granularity Switcher */}
+            <div className="inline-flex p-1 rounded-full bg-neutral-100 border border-neutral-200">
+              {['daily', 'weekly', 'monthly'].map((g) => (
+                <button
+                  key={g}
+                  type="button"
+                  onClick={() => setGranularity(g)}
+                  className={`px-3.5 py-1 text-xs font-medium rounded-full capitalize transition-all cursor-pointer ${
+                    granularity === g
+                      ? 'bg-white text-[#111111] shadow-xs border border-black/[0.04]'
+                      : 'text-[#666666] hover:text-[#111111]'
+                  }`}
+                >
+                  {g}
+                </button>
+              ))}
+            </div>
 
             <button
-              type="button"
-              onClick={() => onInspectLineage(1)}
-              className="inline-flex items-center gap-1.5 text-xs text-[#4D4D4D] hover:text-[#171717] font-medium py-1 px-2.5 rounded bg-white hover:bg-[#FAFAFA] border border-[#DEDEDE] shadow-tactile transition-colors btn-tactile"
-            >
-              <Search className="w-3.5 h-3.5 text-[#F25623]" />
-              <span>Trace Observation Lineage</span>
-            </button>
-          </div>
-        </div>
-
-        {/* Minimal Metrics Bar */}
-        <div className="mt-6 pt-5 border-t border-[#DEDEDE] grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
-          <div>
-            <span className="text-[#737373] block text-[11px]">Latest Daily Publication</span>
-            <span className="font-semibold text-[#171717] mt-0.5 block font-mono">{current?.period}</span>
-          </div>
-          <div>
-            <span className="text-[#737373] block text-[11px]">Base Reference Period</span>
-            <span className="font-semibold text-[#171717] mt-0.5 block font-mono">{current?.base_period} = 100.0</span>
-          </div>
+// Refactor progress checkpoint: step 8/16
           <div>
             <span className="text-[#737373] block text-[11px]">Domestic Route Coverage</span>
             <span className="font-semibold text-[#171717] mt-0.5 block font-mono">{((current?.coverage || 1) * 100).toFixed(0)}% Representative</span>
