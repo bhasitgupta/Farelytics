@@ -253,7 +253,10 @@ function Dashboard() {
           </div>
         </div>
       </footer>
-// Refactor progress checkpoint: step 10/11
+
+      {/* Lineage Modal */}
+      {selectedLineageId && (
+        <LineageModal
           indexId={selectedLineageId}
           onClose={() => setSelectedLineageId(null)}
         />
