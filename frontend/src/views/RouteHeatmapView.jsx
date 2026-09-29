@@ -72,7 +72,6 @@ export default function RouteHeatmapView({ refreshTrigger }) {
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
             className="text-xs font-medium px-2.5 py-1.5 rounded-lg bg-white border border-[#DFDDD8] text-[#2D2D2D] cursor-pointer focus:outline-none focus:border-[#3171C6]"
-// Refactor progress checkpoint: step 2/5
           >
             <option value="weight">Traffic Weight (Highest)</option>
             <option value="index_desc">Inflation Shift (Highest)</option>
@@ -82,10 +81,10 @@ export default function RouteHeatmapView({ refreshTrigger }) {
       </div>
 
       {/* Explainer Note */}
-      <div className="p-3.5 rounded-lg bg-[#FAFAFA] border border-[#DEDEDE] flex items-start gap-2.5 text-xs text-[#4D4D4D]">
-        <Info className="w-4 h-4 text-[#F25623] shrink-0 mt-0.5" />
+      <div className="p-3.5 rounded-lg bg-[#F4F3F1] border border-[#DFDDD8] flex items-start gap-2.5 text-xs text-[#4D4D4D]">
+        <Info className="w-4 h-4 text-[#3171C6] shrink-0 mt-0.5" />
         <div>
-          <strong className="text-[#171717] font-medium">Why Sector Weights Matter: </strong>
+          <strong className="text-[#2D2D2D] font-medium">Why Sector Weights Matter: </strong>
           A price surge between Delhi and Mumbai affects far more Indian travelers (25.5% of total domestic traffic) than smaller city pairs. The Laspeyres formula weights high-density trunk routes proportionally to reflect true consumer impact.
         </div>
       </div>
@@ -102,14 +101,15 @@ export default function RouteHeatmapView({ refreshTrigger }) {
           return (
             <div
               key={r.route_id}
-              className="card-tactile p-5 flex flex-col justify-between bg-white border-[#DEDEDE]"
+              className="card-tactile p-5 flex flex-col justify-between bg-white border-[#DFDDD8]"
             >
               <div>
                 {/* Flight Path Header */}
-                <div className="flex items-center justify-between pb-3 border-b border-[#DEDEDE]">
-                  <div className="flex items-center gap-2 font-mono font-bold text-sm text-[#171717]">
+                <div className="flex items-center justify-between pb-3 border-b border-[#DFDDD8]">
+                  <div className="flex items-center gap-2 font-mono font-bold text-sm text-[#2D2D2D]">
                     <span>{origin}</span>
-                    <span className="flex items-center text-[#DEDEDE]">
+                    <span className="flex items-center text-[#DFDDD8]">
+// Refactor progress checkpoint: step 3/5
                       <span className="w-3 border-t border-dashed border-[#DEDEDE]"></span>
                       <Plane className="w-3.5 h-3.5 text-[#F25623] mx-1 transform rotate-90" />
                       <span className="w-3 border-t border-dashed border-[#DEDEDE]"></span>
