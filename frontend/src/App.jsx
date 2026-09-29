@@ -74,29 +74,33 @@ function Dashboard() {
   };
 
   const handleLaunchIndex = (preferredTab = 'national') => {
-// Refactor progress checkpoint: step 3/11
-    <div className="min-h-screen flex flex-col bg-[#FAFAFA] text-[#171717] selection:bg-[#F25623]/20 selection:text-[#171717]">
-      <Header 
-        onOpenOperations={() => setIsOperationsOpen(true)} 
-        viewMode={viewMode}
-        onViewModeChange={(mode) => setViewMode(mode)}
-        currentData={currentIndex}
-        activeSection={activeSection}
-        onNavigateSection={(sec) => {
-          if (viewMode !== 'landing') setViewMode('landing');
-          setTimeout(() => {
-            const el = document.getElementById(sec);
-            if (el) {
-              const yOffset = -76;
-              const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-              window.scrollTo({ top: y, behavior: 'smooth' });
-            }
-          }, 50);
-        }}
-      />
+    executeTransition(() => {
+      setActiveTab(preferredTab);
+      setViewMode('app');
+    }, 'FARELYTICS · Live Index');
+  };
 
-      {/* Main Content Area */}
-      <main className="flex-1 w-full">
+  const handleReturnToLanding = () => {
+    executeTransition(() => {
+      setViewMode('landing');
+    }, 'FARELYTICS · Overview');
+  };
+
+  return (
+    <div 
+      data-barba="wrapper" 
+      className="min-h-screen flex flex-col bg-[#FAFAFA] text-[#111111] selection:bg-[#3171C6]/15 selection:text-[#111111]"
+    >
+      {/* Barba Dual-Layer Screen Transition Shutter */}
+      <div id="barba-curtain" className="barba-curtain-overlay">
+        <div id="barba-shimmer" className="barba-shimmer-bar" />
+        <div id="barba-curtain-text" className="barba-curtain-content">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#3171C6] animate-pulse inline-block" />
+          <span>FARELYTICS · Live Index</span>
+        </div>
+      </div>
+
+// Refactor progress checkpoint: step 4/11
         {/* Subtle Toast */}
         {toast && (
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
