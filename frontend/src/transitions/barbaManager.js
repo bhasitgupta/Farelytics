@@ -42,3 +42,20 @@ export function executeTransition(onMidpoint, label = 'FARELYTICS · Analytical 
       if (container) gsap.set(container, { clearProps: 'transform,opacity' });
     }
   });
+
+  // Outgoing camera pull-out (subtle scale back and fade)
+  if (container) {
+    tl.to(container, {
+      scale: 0.98,
+      y: -15,
+      opacity: 0.4,
+      duration: 0.3,
+      ease: 'power3.in'
+    }, 0);
+  }
+
+  // Dual-layer shutter slide in from bottom
+  tl.set(curtain, { y: '100%', pointerEvents: 'auto' }, 0)
+    .to(curtain, {
+      y: '0%',
+      duration: 0.42,
