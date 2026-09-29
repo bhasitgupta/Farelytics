@@ -24,7 +24,7 @@ export default function DataQualityView({ refreshTrigger }) {
   if (loading && !quality) {
     return (
       <div className="py-24 text-center">
-        <div className="w-5 h-5 mx-auto border-2 border-[#171717] border-t-transparent rounded-full animate-spin"></div>
+        <div className="w-5 h-5 mx-auto border-2 border-[#2D2D2D] border-t-transparent rounded-full animate-spin"></div>
         <p className="text-xs text-[#737373] mt-2 font-medium">Loading governance metrics...</p>
       </div>
     );
@@ -38,7 +38,7 @@ export default function DataQualityView({ refreshTrigger }) {
     );
   }
 
-  const scorePct = Math.round((quality?.overall_quality_score || 0.985) * 100);
+// Refactor progress checkpoint: step 1/5
 
   return (
     <div className="space-y-6">
