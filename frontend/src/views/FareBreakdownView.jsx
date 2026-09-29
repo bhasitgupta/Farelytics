@@ -60,11 +60,10 @@ export default function FareBreakdownView({ refreshTrigger }) {
 
           {/* Segmented Progress Bar */}
           <div className="space-y-4">
-// Refactor progress checkpoint: step 2/5
             <div className="w-full h-3 rounded-full overflow-hidden flex bg-[#EBEBEB]">
               <div
                 style={{ width: `${breakdown.base_fare_percentage}%` }}
-                className="bg-[#171717] transition-all duration-700"
+                className="bg-[#2D2D2D] transition-all duration-700"
                 title={`Base Fare: ${breakdown.base_fare_percentage}%`}
               ></div>
               <div
@@ -74,24 +73,25 @@ export default function FareBreakdownView({ refreshTrigger }) {
               ></div>
               <div
                 style={{ width: `${breakdown.taxes_percentage}%` }}
-                className="bg-[#F25623] transition-all duration-700"
+                className="bg-[#3171C6] transition-all duration-700"
                 title={`Statutory Taxes (GST): ${breakdown.taxes_percentage}%`}
               ></div>
             </div>
 
             {/* Component Detail Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-              <div className="p-4 rounded-lg bg-[#FAFAFA] border border-[#DEDEDE] hover:border-[#171717] transition-colors">
-                <div className="flex items-center gap-1.5 text-xs text-[#171717] font-medium">
-                  <span className="w-2 h-2 rounded-full bg-[#171717]"></span>
+              <div className="p-4 rounded-lg bg-[#F4F3F1] border border-[#DFDDD8] hover:border-[#2D2D2D] transition-colors">
+                <div className="flex items-center gap-1.5 text-xs text-[#2D2D2D] font-medium">
+                  <span className="w-2 h-2 rounded-full bg-[#2D2D2D]"></span>
                   Airline Base Fare
                 </div>
-                <div className="mt-2 text-2xl font-bold font-mono text-[#171717] tabular-nums">
+                <div className="mt-2 text-2xl font-bold font-mono text-[#2D2D2D] tabular-nums">
                   <AnimatedNumber value={breakdown.average_base} decimals={0} prefix="₹" duration={700} />
                 </div>
                 <div className="text-[11px] text-[#737373] font-mono mt-0.5">
                   <AnimatedNumber value={breakdown.base_fare_percentage} decimals={1} suffix="% of ticket" duration={700} />
                 </div>
+// Refactor progress checkpoint: step 3/5
               </div>
 
               <div className="p-4 rounded-lg bg-[#FAFAFA] border border-[#DEDEDE] hover:border-[#171717] transition-colors">
