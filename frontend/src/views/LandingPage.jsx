@@ -137,58 +137,30 @@ export default function LandingPage({ onLaunchDashboard, onSelectTab, onSectionC
           rotateZ: 0,
           opacity: 1,
           stagger: MOTION_TUNING.headingStagger,
-// Refactor progress checkpoint: step 6/36
-    { code: 'DEL-HYD', name: 'Delhi — Hyderabad', pax: '1,850k', weight: '0.09343', pct: '9.34%', fare: '₹6,420', base: '₹5,460', taxes: '₹960', surge: '+5.9%' }
-  ];
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '#problem',
+            start: 'top 85%',
+            end: 'top 45%',
+            scrub: MOTION_TUNING.scrubSpeed,
+          },
+        }
+      );
 
-  const blindspotDimensions = [
-    {
-      id: 'cadence',
-      num: '01',
-      icon: Calendar,
-      title: 'Sampling Frequency',
-      subtitle: '30x Data Density',
-      legacyShort: 'Once a month on arbitrary dates',
-      legacyDetail: 'Surveys capture prices on a single arbitrary day. The remaining 29 days of dynamic fare surges and price drops are completely unobserved.',
-      legacyConsequence: 'Misses 96.7% of monthly fare movements',
-      farelyticsShort: 'Continuous daily automated ingestion',
-      farelyticsDetail: 'High-frequency automated collectors query IndiGo, Air India, Akasa Air, and SpiceJet every 24 hours across 5 advance booking windows.',
-      farelyticsBenefit: '50,000+ daily quotes tracked continuously',
-      metric: '30x Frequency',
-      badge: 'Zero Publication Lag'
-    },
-    {
-      id: 'dynamic',
-      num: '02',
-      icon: Activity,
-      title: 'Dynamic Yield Capture',
-      subtitle: 'Algorithmic Pricing',
-      legacyShort: 'Assumes static ticket prices',
-      legacyDetail: 'Completely misses airline revenue management algorithms. Weekend rushes, festival peaks, and last-minute emergency fare spikes go unrecorded.',
-      legacyConsequence: 'Blinded to surges reaching +40% to +140%',
-      farelyticsShort: '5 advance booking horizons (1d to 45d)',
-      farelyticsDetail: 'Tracks urgent next-day flights separately from 7d, 15d, 30d, and 45d booking windows to capture true passenger purchase behavior.',
-      farelyticsBenefit: '100% Volatility Captured across all windows',
-      metric: '5 Horizons',
-      badge: 'Real-Time Spikes'
-    },
-    {
-      id: 'split',
-      num: '03',
-      icon: PieChart,
-      title: 'Fare Component Split',
-      subtitle: 'True Cost Accounting',
-      legacyShort: 'Reports advertised base fare only',
-      legacyDetail: 'Official surveys typically record headline base fares only, completely ignoring fuel surcharges, GST, and airport user development fees.',
-      legacyConsequence: 'Conceals ~26% of what passengers actually pay',
-      farelyticsShort: 'Full 3-part transparent price breakdown',
-      farelyticsDetail: 'Dissects every single ticket into Base Fare, 5% Civil Aviation GST, and User Development Fees (UDF/PSF) for true cost accounting.',
-      farelyticsBenefit: '100% Full-Fare Transparency',
-      metric: '+26% Fee Audit',
-      badge: 'Full-Cost Audit'
-    },
-    {
-      id: 'weighting',
+      // Problem paragraph word-by-word opacity fill
+      gsap.to('.problem-body-word', {
+        opacity: 1,
+        stagger: 0.015,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#problem',
+          start: 'top 75%',
+          end: 'top 40%',
+          scrub: MOTION_TUNING.scrubSpeed,
+        },
+      });
+
+// Refactor progress checkpoint: step 7/36
       num: '04',
       icon: Users,
       title: 'Passenger Weighting',
