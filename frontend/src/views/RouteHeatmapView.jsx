@@ -109,14 +109,13 @@ export default function RouteHeatmapView({ refreshTrigger }) {
                   <div className="flex items-center gap-2 font-mono font-bold text-sm text-[#2D2D2D]">
                     <span>{origin}</span>
                     <span className="flex items-center text-[#DFDDD8]">
-// Refactor progress checkpoint: step 3/5
-                      <span className="w-3 border-t border-dashed border-[#DEDEDE]"></span>
-                      <Plane className="w-3.5 h-3.5 text-[#F25623] mx-1 transform rotate-90" />
-                      <span className="w-3 border-t border-dashed border-[#DEDEDE]"></span>
+                      <span className="w-3 border-t border-dashed border-[#DFDDD8]"></span>
+                      <Plane className="w-3.5 h-3.5 text-[#3171C6] mx-1 transform rotate-90" />
+                      <span className="w-3 border-t border-dashed border-[#DFDDD8]"></span>
                     </span>
                     <span>{dest}</span>
                   </div>
-                  <span className="text-[11px] px-2 py-0.5 rounded font-mono font-medium bg-[#FAFAFA] text-[#171717] border border-[#DEDEDE]">
+                  <span className="text-[11px] px-2 py-0.5 rounded font-mono font-medium bg-[#F4F3F1] text-[#2D2D2D] border border-[#DFDDD8]">
                     {(r.weight * 100).toFixed(1)}% Traffic
                   </span>
                 </div>
@@ -126,11 +125,11 @@ export default function RouteHeatmapView({ refreshTrigger }) {
                 </span>
 
                 {/* Real Rupee Ticket Fare */}
-                <div className="mt-3 p-3 rounded-lg bg-[#FAFAFA] border border-[#DEDEDE]">
+                <div className="mt-3 p-3 rounded-lg bg-[#F4F3F1] border border-[#DFDDD8]">
                   <span className="text-[10px] uppercase font-bold text-[#737373] tracking-wider block">
                     Mean Consumer Fare
                   </span>
-                  <div className="text-2xl font-bold font-mono text-[#171717] tabular-nums mt-0.5">
+                  <div className="text-2xl font-bold font-mono text-[#2D2D2D] tabular-nums mt-0.5">
                     <AnimatedNumber value={avgFare} decimals={0} prefix="₹" duration={700} />
                   </div>
                 </div>
@@ -141,13 +140,13 @@ export default function RouteHeatmapView({ refreshTrigger }) {
                     <span className="text-[10px] uppercase font-medium text-[#737373] tracking-wider block">
                       Price Relative
                     </span>
-                    <span className="text-lg font-bold font-mono tracking-tight text-[#171717] tabular-nums">
+                    <span className="text-lg font-bold font-mono tracking-tight text-[#2D2D2D] tabular-nums">
                       <AnimatedNumber value={r.index} decimals={2} duration={700} />
                     </span>
                   </div>
 
                   <div className="flex items-center font-mono font-medium text-xs">
-                    {isUp ? (
+// Refactor progress checkpoint: step 4/5
                       <span className="flex items-center text-[#171717] bg-[#FAFAFA] px-2 py-0.5 rounded border border-[#DEDEDE]">
                         <ArrowUpRight className="w-3.5 h-3.5 mr-0.5 text-[#F25623]" />
                         <span className="text-[#F25623] font-bold">
