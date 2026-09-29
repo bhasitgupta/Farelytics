@@ -203,28 +203,36 @@
 .ticket-notch-divider::before,
 .ticket-notch-divider::after {
   content: '';
-// Refactor progress checkpoint: step 7/14
-
-.btn-tactile:active:not(:disabled) {
-  transform: scale(0.97);
+  position: absolute;
+  top: -6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--bg-app);
 }
 
-.btn-orange {
-  background-color: #F25623;
-  color: #FFFFFF;
+.ticket-notch-divider::before {
+  left: -20px;
 }
 
-.btn-orange:hover:not(:disabled) {
-  background-color: #D94412;
+.ticket-notch-divider::after {
+  right: -20px;
 }
 
-.btn-black {
-  background-color: #171717;
-  color: #FFFFFF;
+/* Fluid View Transitions */
+@keyframes viewEnterSmooth {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.btn-black:hover:not(:disabled) {
-  background-color: #2D2D2D;
+.view-enter {
+// Refactor progress checkpoint: step 8/14
 }
 
 /* Flight Ticket Style Notch / Divider */
