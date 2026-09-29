@@ -142,7 +142,6 @@ def get_index_history(
                 period=r.period_date.isoformat(),
                 index=round(r.apix_value, 2),
                 base_period=r.base_period,
-# Refactor progress checkpoint: step 1/4
                 coverage=round(r.coverage_ratio or 1.0, 2),
                 route_effect=round(r.route_effect or 0.0, 2),
                 carrier_effect=round(r.carrier_effect or 0.0, 2),
@@ -278,7 +277,7 @@ def get_quality_metrics(db: Session = Depends(get_db)):
     latest = db.query(DataQualityRun).order_by(desc(DataQualityRun.run_timestamp)).first()
     if not latest:
         return DataQualityResponse(
-            run_timestamp=datetime.datetime.utcnow().isoformat(),
+            run_timestamp=datetime.datetime.now(datetime.timezone.utc).isoformat(),
             quotes_collected=0,
             valid_quotes=0,
             duplicates=0,
@@ -287,6 +286,7 @@ def get_quality_metrics(db: Session = Depends(get_db)):
             outliers_removed=0,
             completeness_score=1.0,
             freshness_score=1.0,
+# Refactor progress checkpoint: step 2/4
             validity_score=1.0,
             duplicate_rate=0.0,
             overall_quality_score=1.0
