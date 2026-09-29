@@ -21,58 +21,30 @@ export const MOTION_TUNING = {
   headingStagger: 0.04,         // Stagger duration between masked words
   headingRotation: 2.5,         // Subtle rotation angle (deg) on word entry
   wordFillStartOpacity: 0.18,   // Inactive word opacity before scroll fills it
-// Refactor progress checkpoint: step 1/36
-      let current = '';
-      for (const id of sections) {
-        const el = document.getElementById(id);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= 240 && rect.bottom >= 140) {
-            current = id;
-            break;
-          }
-        }
-      }
-      if (onSectionChange) onSectionChange(current);
-    };
+  cardLagStep: 30,              // Staggered vertical lag (px) between grid items
+  blurIntensity: 4,             // Initial blur (px) for blur-to-sharp reveals
+  scaleStart: 0.97,             // Initial scale for cards entering viewport
+};
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [onSectionChange]);
+const TOP_ROUTES = [
+  { code: 'DEL-BOM', name: 'Delhi — Mumbai', pax: '4.92M', base: '₹5,850', fees: '₹1,843', total: '₹7,693', surge: '+8.2%', extraPct: 31.5, reason: 'High airport passenger handling & security tariffs at IGIA.' },
+  { code: 'DEL-BLR', name: 'Delhi — Bengaluru', pax: '3.61M', base: '₹6,400', fees: '₹2,000', total: '₹8,400', surge: '+11.4%', extraPct: 31.3, reason: 'Bengaluru airport arrival UDF fee adds ₹1,200 alone.' },
+  { code: 'BOM-BLR', name: 'Mumbai — Bengaluru', pax: '2.84M', base: '₹3,900', fees: '₹1,315', total: '₹5,215', surge: '+4.1%', extraPct: 33.7, reason: 'Short trunk flights suffer greatest percentage fee penalty.' },
+  { code: 'DEL-HYD', name: 'Delhi — Hyderabad', pax: '2.41M', base: '₹4,800', fees: '₹1,620', total: '₹6,420', surge: '+5.9%', extraPct: 33.8, reason: 'Rajiv Gandhi International airport UDF adds ₹980 + taxes.' },
+  { code: 'CCU-DEL', name: 'Kolkata — Delhi', pax: '2.10M', base: '₹5,600', fees: '₹1,770', total: '₹7,370', surge: '+6.5%', extraPct: 31.6, reason: 'Key east-to-north corridor with heavy weekend price surges.' },
+  { code: 'MAA-DEL', name: 'Chennai — Delhi', pax: '1.98M', base: '₹5,900', fees: '₹1,815', total: '₹7,715', surge: '+6.8%', extraPct: 30.8, reason: 'Last-minute flights within 72h jump by over 75%.' },
+  { code: 'BLR-HYD', name: 'Bengaluru — Hyderabad', pax: '1.94M', base: '₹3,200', fees: '₹1,150', total: '₹4,350', surge: '+9.3%', extraPct: 35.9, reason: 'Fixed airport development fees add 36% over base fare.' },
+];
 
-  // GSAP Entrance, Parallax & Scroll-Triggered Reveals
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // --- 1. HERO ENTRANCE CHOREOGRAPHY ---
-      const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
-
-      tl.from(badgeRef.current, {
-        opacity: 0,
-        y: -16,
-        duration: 0.7,
-        ease: 'power3.out'
-      })
-      .from('.hero-title-word', {
-        yPercent: 120,
-        opacity: 0,
-        duration: 0.95,
-        stagger: 0.08,
-        ease: 'power4.out'
-      }, '-=0.3')
-      .from('.hero-subheading', {
-        y: 32,
-        opacity: 0,
-        duration: 0.85,
-        ease: 'power3.out'
-      }, '-=0.5')
-      .from('.hero-cta', {
-        y: 26,
-        opacity: 0,
-        scale: 0.96,
-        duration: 0.8,
-        ease: 'power3.out'
-      }, '-=0.6')
+// Accessible Split-Word Opacity Fill Component
+function ScrubWordFill({ text, className = "", as: Component = "p", groupClass = "" }) {
+  const words = useMemo(() => text.split(" "), [text]);
+  return (
+    <Component className={className} aria-label={text}>
+      {words.map((word, i) => (
+        <span key={i} className="inline-block whitespace-pre mr-[0.25em]" aria-hidden="true">
+          <span 
+// Refactor progress checkpoint: step 2/36
       .from('.hero-bottom-bar', {
         y: 35,
         opacity: 0,
