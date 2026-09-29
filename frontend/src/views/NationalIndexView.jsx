@@ -124,28 +124,32 @@ export default function NationalIndexView({ onInspectLineage, refreshTrigger, cu
               <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white border border-[#E5E5E5] text-[#111111] text-[11px] font-mono font-medium shadow-xs">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#3171C6]"></span>
                 DOMESTIC AIRFARE INFLATION (AUG 2026 = 100.0)
-// Refactor progress checkpoint: step 5/16
+              </span>
+              <span className="text-xs text-[#888888]">·</span>
+              <span className="text-xs font-medium text-[#555555]">DGCA Volume-Weighted</span>
+            </div>
 
-              {/* Rupee Equivalent */}
-              <div className="border-l border-[#DEDEDE] pl-6 hidden sm:block">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#737373] block">
-                  Mean Total Ticket Price
+            {/* Dual Metric Display */}
+            <div className="flex flex-wrap items-baseline gap-x-8 gap-y-4">
+              {/* Primary Index Number */}
+              <div>
+                <span className="text-[11px] font-medium uppercase tracking-wider text-[#888888] block">
+                  National Airfare Index
                 </span>
-                <div className="flex items-baseline gap-2 mt-0.5">
-                  <span className="text-3xl font-bold font-mono tracking-tight text-[#171717] tabular-nums">
-                    <AnimatedNumber value={avgTicket} fromValue={baseTicket} decimals={0} prefix="₹" duration={850} />
+                <div className="flex items-baseline gap-3 mt-1.5">
+                  <span className="text-4xl sm:text-5xl font-medium tracking-tight text-[#111111] tabular-nums">
+                    <AnimatedNumber value={current?.index || 107.20} fromValue={100.0} decimals={2} duration={850} />
                   </span>
-                  <span className="text-xs font-mono font-medium text-[#4D4D4D]">
-                    <AnimatedNumber value={Math.abs(rupeeDiff)} fromValue={0} decimals={0} prefix={rupeeDiff >= 0 ? "+₹" : "-₹"} suffix={` vs Aug base (₹${baseTicket.toLocaleString()})`} duration={850} />
+                  <span className="text-xs sm:text-sm font-medium text-[#111111] flex items-center bg-neutral-100 px-2.5 py-1 rounded-full border border-neutral-200">
+                    <ArrowUpRight className="w-3.5 h-3.5 mr-0.5 text-[#3171C6]" />
+                    <span>
+                      <AnimatedNumber value={parseFloat(inflationPct)} fromValue={0.0} decimals={2} prefix="+" suffix="%" duration={850} />
+                    </span>
                   </span>
                 </div>
               </div>
-            </div>
 
-            {/* Plain English Narrative */}
-            <div className="p-3.5 rounded-lg bg-[#FAFAFA] border border-[#DEDEDE] text-xs text-[#4D4D4D] max-w-2xl leading-relaxed">
-              <strong className="text-[#171717] font-medium">In plain terms: </strong>
-              Domestic airline tickets across India are currently <strong className="text-[#171717]">{inflationPct}% more expensive</strong> than the August 2026 base period. Calculated across India's top 7 domestic routes weighted by official DGCA passenger volume.
+// Refactor progress checkpoint: step 6/16
             </div>
           </div>
 
