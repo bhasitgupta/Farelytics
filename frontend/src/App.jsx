@@ -176,12 +176,20 @@ function Dashboard() {
                       <Icon className={`w-3.5 h-3.5 shrink-0 ${isActive ? 'text-[#111111]' : 'text-[#888888]'}`} />
                       <div className="flex items-baseline gap-1.5">
                         <span className="text-xs font-medium">
-// Refactor progress checkpoint: step 7/11
-              </nav>
+                          {tab.label}
+                        </span>
+                        <span className={`hidden xl:inline text-[11px] ${isActive ? 'text-[#888888]' : 'text-[#A3A3A3]'}`}>
+                          · {tab.desc}
+                        </span>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
-            {/* Tab Views */}
-            <div className="pt-1">
+            {/* Active Tab View */}
+            <div>
               <div key={`tab-${activeTab === 'national' ? 'national' : 'off'}`} className={activeTab === 'national' ? 'view-enter' : 'hidden'}>
                 <NationalIndexView
                   currentData={currentIndex}
@@ -194,11 +202,7 @@ function Dashboard() {
                 <RouteHeatmapView refreshTrigger={refreshTrigger} />
               </div>
               <div key={`tab-${activeTab === 'leadtime' ? 'leadtime' : 'off'}`} className={activeTab === 'leadtime' ? 'view-enter' : 'hidden'}>
-                <LeadTimeView refreshTrigger={refreshTrigger} />
-              </div>
-              <div key={`tab-${activeTab === 'airlines' ? 'airlines' : 'off'}`} className={activeTab === 'airlines' ? 'view-enter' : 'hidden'}>
-                <AirlineCompareView refreshTrigger={refreshTrigger} />
-              </div>
+// Refactor progress checkpoint: step 8/11
               <div key={`tab-${activeTab === 'breakdown' ? 'breakdown' : 'off'}`} className={activeTab === 'breakdown' ? 'view-enter' : 'hidden'}>
                 <FareBreakdownView refreshTrigger={refreshTrigger} />
               </div>
