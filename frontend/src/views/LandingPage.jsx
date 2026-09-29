@@ -416,58 +416,30 @@ export default function LandingPage({ onLaunchDashboard, onSelectTab, onSectionC
               Airlines add airport fees and change ticket prices every hour. We track 50,000 real domestic fares every day so you see true prices.
             </motion.p>
           </div>
-// Refactor progress checkpoint: step 18/36
-                    <div className="flex items-center justify-between mb-3">
-                      <span className={`font-mono text-[11px] font-bold ${isSelected ? 'text-[#F25623]' : 'text-[#A3A3A3]'}`}>
-                        {item.num}
-                      </span>
-                      <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${
-                        isSelected ? 'bg-[#171717] text-[#F25623]' : 'bg-[#EAEAEA] text-[#525252] group-hover:bg-[#171717] group-hover:text-white'
-                      }`}>
-                        <IconComp className="w-4 h-4" />
-                      </div>
-                    </div>
 
-                    <h4 className="text-xs font-bold text-[#171717] leading-snug">
-                      {item.title}
-                    </h4>
-                    <p className="text-[11px] text-[#737373] mt-1 font-mono">
-                      {item.subtitle}
-                    </p>
-                  </div>
-
-                  <div className="mt-4 pt-2.5 border-t border-[#E5E5E5] flex items-center justify-between">
-                    <span className="text-[10px] font-mono font-bold text-[#F25623]">
-                      {item.metric}
-                    </span>
-                    <ChevronRight className={`w-3.5 h-3.5 text-[#A3A3A3] group-hover:translate-x-0.5 transition-transform ${isSelected ? 'text-[#171717]' : ''}`} />
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Active Dimension Deep-Dive Comparison Ledger */}
-          {(() => {
-            const activeItem = blindspotDimensions[selectedDimension];
-            const ActiveIcon = activeItem.icon;
-
-            return (
-              <div className="scroll-reveal-panel rounded-2xl border border-[#E5E5E5] bg-white p-6 sm:p-8 shadow-sm space-y-6 animate-in fade-in duration-200">
-                {/* Deep-Dive Title */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#E5E5E5]">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-[#171717] text-[#F25623] flex items-center justify-center shrink-0">
-                      <ActiveIcon className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <span className="font-mono text-[10px] uppercase font-bold text-[#F25623] tracking-wider block">
-                        Dimension {activeItem.num} · In-Depth Methodology Audit
-                      </span>
-                      <h3 className="text-lg sm:text-xl font-bold text-[#171717]">
-                        {activeItem.title}
-                      </h3>
-                    </div>
+          {/* CTAs with Spring Pop */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1], delay: 0.46 }}
+            className="flex flex-wrap items-center justify-center gap-4 pt-1"
+          >
+            <button
+              type="button"
+              onClick={onLaunchDashboard}
+              className="px-7 py-3.5 rounded-full bg-[#111111] hover:bg-[#2A2A2A] text-white font-medium text-sm transition-all duration-200 cursor-pointer flex items-center gap-2 active:scale-95 shadow-md hover:shadow-lg"
+            >
+              <span>View live index</span>
+              <ArrowRight className="w-4 h-4 text-[#888888]" />
+            </button>
+            <button
+              type="button"
+              onClick={() => smoothScrollTo('problem')}
+              className="px-5 py-3.5 rounded-full bg-white hover:bg-neutral-100 text-[#555555] hover:text-[#111111] font-medium text-sm border border-[#E5E5E5] transition-all duration-200 cursor-pointer flex items-center gap-1.5 active:scale-95"
+            >
+              <span>How pricing works</span>
+              <ChevronDown className="w-3.5 h-3.5 text-[#888888]" />
+// Refactor progress checkpoint: step 19/36
                   </div>
 
                   <div className="flex items-center gap-2">
