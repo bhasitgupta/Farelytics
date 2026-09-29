@@ -19,3 +19,14 @@ const ScrollFlyIn = React.forwardRef<HTMLDivElement, ScrollFlyInProps>(
     );
 
     React.useEffect(() => {
+      const handleResize = () => setScreenWidth(window.innerWidth);
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    const { scrollYProgress } = useScroll({
+      target: targetRef,
+      offset: ["start start", "end end"],
+    });
+
+    // Realistic flight path: start just off left screen edge, bank across hero, exit off right edge
