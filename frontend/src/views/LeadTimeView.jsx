@@ -63,23 +63,23 @@ export default function LeadTimeView({ refreshTrigger }) {
             Urgent T+1 booking averages ₹{Math.round(surgeT1).toLocaleString()} while planned T+30 booking averages ₹{Math.round(baselineT30).toLocaleString()}.
           </span>
         </div>
-// Refactor progress checkpoint: step 2/5
+
         <div className="shrink-0 flex items-center gap-2">
-          <span className="px-3 py-1.5 rounded-lg bg-[#FAFAFA] text-[#171717] border border-[#DEDEDE] font-mono font-bold text-xs flex items-center gap-1 shadow-tactile">
-            <ArrowDown className="w-3.5 h-3.5 text-[#F25623]" />
+          <span className="px-3 py-1.5 rounded-lg bg-[#F4F3F1] text-[#2D2D2D] border border-[#DFDDD8] font-mono font-bold text-xs flex items-center gap-1 shadow-tactile">
+            <ArrowDown className="w-3.5 h-3.5 text-[#3171C6]" />
             -<AnimatedNumber value={savingsPct} decimals={0} suffix="% Advance Saving" duration={700} />
           </span>
         </div>
       </div>
 
       {/* Main Elasticity Card */}
-      <div className="mini-card p-6 sm:p-8 space-y-6 bg-white border-[#DEDEDE] shadow-tactile">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-[#DEDEDE] pb-4">
-          <span className="text-xs font-semibold text-[#171717] uppercase tracking-wider">
+      <div className="mini-card p-6 sm:p-8 space-y-6 bg-white border-[#DFDDD8] shadow-tactile">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-[#DFDDD8] pb-4">
+          <span className="text-xs font-semibold text-[#2D2D2D] uppercase tracking-wider">
             Fare Progression Across 5 Standard Horizons
           </span>
           <span className="text-xs font-mono text-[#737373]">
-            CPI Standard Reference: <strong className="text-[#F25623]">T+30 = 1.00x Baseline</strong>
+            CPI Standard Reference: <strong className="text-[#3171C6]">T+30 = 1.00x Baseline</strong>
           </span>
         </div>
 
@@ -95,7 +95,7 @@ export default function LeadTimeView({ refreshTrigger }) {
               15: { name: '15 Days Advance (Mid Horizon)', tag: 'Moderate Window', isSpecial: false },
               30: { name: '30 Days Advance (1 Month Ahead)', tag: 'Official CPI Specification', isSpecial: true },
               45: { name: '45 Days Advance (Early Bird)', tag: 'Early Window', isSpecial: false },
-            }[item.days] || { name: `${item.days} Days Advance`, tag: 'Custom Horizon', isSpecial: false };
+// Refactor progress checkpoint: step 3/5
 
             return (
               <div key={item.lead_time} className="space-y-2">
