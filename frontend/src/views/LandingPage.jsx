@@ -463,58 +463,30 @@ export default function LandingPage({ onLaunchDashboard, onSelectTab, onSectionC
                   }}
                   className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white border border-[#E5E5E5] hover:border-[#CCCCCC] text-[#111111] transition-colors cursor-pointer shrink-0 shadow-xs"
                 >
-// Refactor progress checkpoint: step 20/36
+                  <span className="font-mono font-medium text-[#555555]">{r.code}</span>
+                  <span className="font-mono font-semibold">{r.total}</span>
+                  <span className="font-mono text-[10px] text-[#3171C6] font-medium">{r.surge}</span>
+                </button>
+              ))}
+            </div>
+          </motion.div>
 
-                    <p className="text-xs text-[#DEDEDE] leading-relaxed">
-                      {activeItem.farelyticsDetail}
-                    </p>
-
-                    <div className="pt-2 border-t border-neutral-800 font-mono text-[11px] text-[#F25623] font-semibold flex items-center gap-1.5">
-                      <Zap className="w-3.5 h-3.5 text-[#F25623] shrink-0" />
-                      <span>Advantage: {activeItem.farelyticsBenefit}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })()}
         </div>
-      </section>
-    </div>
+      </ScrollFlyIn>
 
       {/* ========================================================================= */}
-      {/* 3. HOW IT WORKS (§ 02 / REPRODUCIBLE PIPELINE STUDIO) */}
+      {/* 2. THE PROBLEM */}
       {/* ========================================================================= */}
-      <section id="how-it-works" className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pt-20 pb-16 sm:pt-28 sm:pb-24 space-y-10 scroll-mt-32 border-t border-[#E5E5E5]">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#E5E5E5] pb-6">
-          <div className="space-y-2 max-w-2xl">
-            <div className="scroll-reveal-eyebrow flex items-center gap-2">
-              <span className="text-xs font-bold text-[#F25623] uppercase tracking-wider font-mono">
-                Section 02 · Reproducible Pipeline
-              </span>
-              <span className="text-[#A3A3A3]">·</span>
-              <span className="text-xs text-[#737373] font-medium">How Farelytics Works</span>
-            </div>
-            <div className="overflow-hidden py-1">
-              <h2 className="scroll-reveal-heading text-3xl sm:text-4xl lg:text-5xl font-black text-[#171717] tracking-tight leading-tight">
-                From Daily Quotes to an Audited National Index
-              </h2>
-            </div>
-          </div>
-          <p className="scroll-reveal-subheading text-xs sm:text-sm text-[#737373] max-w-md leading-relaxed">
-            Four automated, mathematically transparent stages transform volatile airline dynamic fares into India’s volume-weighted civil aviation inflation benchmark.
-          </p>
-        </div>
-
-        {/* Stepper Tabs */}
-        <div className="scroll-reveal-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
-          {pipelineSteps.map((step, idx) => {
-            const isSelected = activeStep === idx;
-            const StepIcon = [Layers, PieChart, TrendingUp, ShieldCheck][idx] || Layers;
-
-            return (
-              <div
+      <section id="problem" className="py-24 sm:py-36 border-b border-[#EAEAEA] scroll-mt-12">
+        <div className="max-w-[1120px] mx-auto px-6 sm:px-8 space-y-16">
+          
+          {/* Section Header with Word-by-Word Scrub Reveal */}
+          <div className="max-w-2xl space-y-4">
+            <span className="text-xs font-mono uppercase tracking-widest text-[#888888] font-medium block">
+              The price gap
+            </span>
+            <ScrubHeadingWords 
+// Refactor progress checkpoint: step 21/36
                 key={step.id}
                 onClick={() => setActiveStep(idx)}
                 className={`scroll-reveal-card p-5 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between group ${
