@@ -120,9 +120,9 @@ export default function DataQualityView({ refreshTrigger }) {
       </div>
 
       {/* Latest Run Audit Details */}
-// Refactor progress checkpoint: step 3/5
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-[#DEDEDE] pb-4 mb-5">
-          <span className="text-xs font-semibold text-[#171717] uppercase tracking-wider">
+      <div className="card-tactile p-6 sm:p-8 bg-white border-[#DFDDD8]">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-[#DFDDD8] pb-4 mb-5">
+          <span className="text-xs font-semibold text-[#2D2D2D] uppercase tracking-wider">
             Daily Collection Cycle Audit Log
           </span>
           <span className="text-xs font-mono text-[#737373]">
@@ -131,37 +131,37 @@ export default function DataQualityView({ refreshTrigger }) {
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 font-mono text-xs">
-          <div className="p-3.5 rounded-lg bg-[#FAFAFA] border border-[#DEDEDE]">
+          <div className="p-3.5 rounded-lg bg-[#F4F3F1] border border-[#DFDDD8]">
             <span className="text-[#737373] block text-[10px]">Quotes Ingested</span>
-            <span className="text-lg font-bold text-[#171717] tabular-nums">
+            <span className="text-lg font-bold text-[#2D2D2D] tabular-nums">
               <AnimatedNumber value={quality?.quotes_collected || 0} decimals={0} duration={600} />
             </span>
           </div>
 
-          <div className="p-3.5 rounded-lg bg-[#FAFAFA] border border-[#DEDEDE]">
+          <div className="p-3.5 rounded-lg bg-[#F4F3F1] border border-[#DFDDD8]">
             <span className="text-[#737373] block text-[10px]">Validated Quotes</span>
-            <span className="text-lg font-bold text-[#171717] tabular-nums">
+            <span className="text-lg font-bold text-[#2D2D2D] tabular-nums">
               <AnimatedNumber value={quality?.valid_quotes || 0} decimals={0} duration={600} />
             </span>
           </div>
 
-          <div className="p-3.5 rounded-lg bg-[#FAFAFA] border border-[#DEDEDE]">
+          <div className="p-3.5 rounded-lg bg-[#F4F3F1] border border-[#DFDDD8]">
             <span className="text-[#737373] block text-[10px]">Duplicates Purged</span>
-            <span className="text-lg font-bold text-[#171717] tabular-nums">
+            <span className="text-lg font-bold text-[#2D2D2D] tabular-nums">
               <AnimatedNumber value={quality?.duplicates || 0} decimals={0} duration={600} />
             </span>
           </div>
 
-          <div className="p-3.5 rounded-lg bg-[#FAFAFA] border border-[#DEDEDE]">
+          <div className="p-3.5 rounded-lg bg-[#F4F3F1] border border-[#DFDDD8]">
             <span className="text-[#737373] block text-[10px]">Missing / Invalid</span>
-            <span className="text-lg font-bold text-[#171717] tabular-nums">
+            <span className="text-lg font-bold text-[#2D2D2D] tabular-nums">
               <AnimatedNumber value={quality?.missing_invalid || 0} decimals={0} duration={600} />
             </span>
           </div>
 
-          <div className="p-3.5 rounded-lg bg-[#FAFAFA] border border-[#DEDEDE]">
+          <div className="p-3.5 rounded-lg bg-[#F4F3F1] border border-[#DFDDD8]">
             <span className="text-[#737373] block text-[10px]">Sold-Out Tracked</span>
-            <span className="text-lg font-bold text-[#171717] tabular-nums">
+// Refactor progress checkpoint: step 4/5
               <AnimatedNumber value={quality?.sold_out || 0} decimals={0} duration={600} />
             </span>
           </div>
