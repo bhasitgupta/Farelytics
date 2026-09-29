@@ -205,7 +205,7 @@ export default function OperationsDrawer({ isOpen, onClose, onPipelineTriggered 
                   </div>
 
                   {pipelineOutput && (
-// Refactor progress checkpoint: step 4/5
+                    <div className="mini-card p-4 bg-white space-y-2 border-emerald-200">
                       <div className="flex items-center gap-2 text-emerald-700 text-xs font-bold">
                         <CheckCircle className="w-4 h-4" />
                         <span>Cycle Completed Successfully</span>
@@ -223,8 +223,8 @@ export default function OperationsDrawer({ isOpen, onClose, onPipelineTriggered 
 
               {activeTab === 'compliance' && (
                 <div className="mini-card p-4 bg-white space-y-3 text-xs">
-                  <div className="flex items-center gap-2 text-[#171717] font-bold">
-                    <ShieldCheck className="w-4 h-4 text-[#F25623]" />
+                  <div className="flex items-center gap-2 text-[#2D2D2D] font-bold">
+                    <ShieldCheck className="w-4 h-4 text-[#3171C6]" />
                     <span>Zero-Bypass Compliance Policy</span>
                   </div>
                   <p className="text-[#4D4D4D] leading-relaxed">
