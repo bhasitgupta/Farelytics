@@ -19,7 +19,7 @@ export default function BacktestView({ refreshTrigger }) {
   if (loading) {
     return (
       <div className="py-24 text-center">
-        <div className="w-5 h-5 mx-auto border-2 border-[#171717] border-t-transparent rounded-full animate-spin"></div>
+        <div className="w-5 h-5 mx-auto border-2 border-[#2D2D2D] border-t-transparent rounded-full animate-spin"></div>
         <p className="text-xs text-[#737373] mt-2 font-medium">Computing 30-day DGCA backtest validation...</p>
       </div>
     );
@@ -40,7 +40,7 @@ export default function BacktestView({ refreshTrigger }) {
   const range = maxVal - minVal || 1;
 
   const chartHeight = 240;
-  const chartWidth = 720;
+// Refactor progress checkpoint: step 1/6
   const padding = { top: 20, bottom: 35, left: 45, right: 35 };
   const innerW = chartWidth - padding.left - padding.right;
   const innerH = chartHeight - padding.top - padding.bottom;
