@@ -64,7 +64,6 @@ export default function GoogleAuthButton({ compact = false }) {
               <span>Sign out</span>
             </button>
           </div>
-// Refactor progress checkpoint: step 3/4
         )}
       </div>
     );
@@ -75,11 +74,11 @@ export default function GoogleAuthButton({ compact = false }) {
       type="button"
       onClick={loginWithGoogle}
       disabled={loading}
-      className={`inline-flex items-center justify-center h-8 ${compact ? 'px-3 rounded-full' : 'px-3.5 rounded-lg'} border border-[#DEDEDE] hover:border-[#171717] bg-white hover:bg-[#F8F9FA] active:bg-[#EEEEEE] text-xs font-semibold text-[#171717] shadow-2xs transition-all whitespace-nowrap disabled:opacity-60 focus:outline-none focus:ring-2 focus:ring-[#F25623] cursor-pointer`}
+      className={`inline-flex items-center justify-center h-8 ${compact ? 'px-3 rounded-full' : 'px-3.5 rounded-lg'} border border-[#DFDDD8] hover:border-[#2D2D2D] bg-white hover:bg-[#ECEAE5] text-xs font-semibold text-[#2D2D2D] shadow-2xs transition-all whitespace-nowrap disabled:opacity-60 focus:outline-none focus:ring-2 focus:ring-[#3171C6] cursor-pointer`}
       aria-label="Sign in with Google"
     >
       {loading ? (
-        <span className="w-4 h-4 border-2 border-[#171717] border-t-transparent rounded-full animate-spin mr-2"></span>
+        <span className="w-4 h-4 border-2 border-[#2D2D2D] border-t-transparent rounded-full animate-spin mr-2"></span>
       ) : (
         <GoogleGIcon />
       )}
