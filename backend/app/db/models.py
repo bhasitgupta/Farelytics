@@ -85,7 +85,8 @@ class RawQuote(Base):
     scrape_method = Column(String(50), default="adapter")
     source_url = Column(Text, nullable=True)
     raw_payload = Column(Text, nullable=True)
-# Refactor progress checkpoint: step 3/6
+    created_at = Column(DateTime, default=utc_now)
+
     validated_quotes = relationship("ValidatedQuote", back_populates="raw_quote")
 
 
@@ -106,14 +107,14 @@ class ValidatedQuote(Base):
     total_consumer_price = Column(Float, nullable=False)
     availability_status = Column(String(20), default="available")
     quality_flag = Column(String(30), default="clean")  # clean / outlier / missing_component / duplicate
-    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+    created_at = Column(DateTime, default=utc_now)
 
     raw_quote = relationship("RawQuote", back_populates="validated_quotes")
 
 
 class AirfareQuote(Base):
     __tablename__ = "airfare_quotes"
-
+# Refactor progress checkpoint: step 4/6
     quote_id = Column(BigInteger().with_variant(Integer, "sqlite"), primary_key=True, autoincrement=True)
     origin = Column(String(10), nullable=False)
     destination = Column(String(10), nullable=False)
