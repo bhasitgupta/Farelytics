@@ -79,48 +79,48 @@ export default function DataQualityView({ refreshTrigger }) {
             <span className="text-[10px] font-bold uppercase tracking-wider text-[#737373]">
               Completeness Score
             </span>
-// Refactor progress checkpoint: step 2/5
+            <div className="mt-2 text-3xl font-bold font-mono text-[#2D2D2D] tabular-nums">
               <AnimatedNumber value={Math.round((quality?.completeness_score || 1) * 100)} decimals={0} suffix="%" duration={700} />
             </div>
           </div>
-          <div className="mt-4 pt-2.5 border-t border-[#DEDEDE] text-[11px] text-[#737373]">
+          <div className="mt-4 pt-2.5 border-t border-[#DFDDD8] text-[11px] text-[#737373]">
             All 7 routes × 5 lead times captured
           </div>
         </div>
 
         {/* Schema Validity */}
-        <div className="card-tactile p-5 flex flex-col justify-between bg-white border-[#DEDEDE]">
+        <div className="card-tactile p-5 flex flex-col justify-between bg-white border-[#DFDDD8]">
           <div>
             <span className="text-[10px] font-bold uppercase tracking-wider text-[#737373]">
               Schema Validity
             </span>
-            <div className="mt-2 text-3xl font-bold font-mono text-[#171717] tabular-nums">
+            <div className="mt-2 text-3xl font-bold font-mono text-[#2D2D2D] tabular-nums">
               <AnimatedNumber value={Math.round((quality?.validity_score || 1) * 100)} decimals={0} suffix="%" duration={700} />
             </div>
           </div>
-          <div className="mt-4 pt-2.5 border-t border-[#DEDEDE] text-[11px] text-[#737373]">
+          <div className="mt-4 pt-2.5 border-t border-[#DFDDD8] text-[11px] text-[#737373]">
             Strict FareObservation validation
           </div>
         </div>
 
         {/* Duplicate Rate */}
-        <div className="card-tactile p-5 flex flex-col justify-between bg-white border-[#DEDEDE]">
+        <div className="card-tactile p-5 flex flex-col justify-between bg-white border-[#DFDDD8]">
           <div>
             <span className="text-[10px] font-bold uppercase tracking-wider text-[#737373]">
               Duplicate Rate
             </span>
-            <div className="mt-2 text-3xl font-bold font-mono text-[#171717] tabular-nums">
+            <div className="mt-2 text-3xl font-bold font-mono text-[#2D2D2D] tabular-nums">
               <AnimatedNumber value={((quality?.duplicate_rate || 0) * 100)} decimals={1} suffix="%" duration={700} />
             </div>
           </div>
-          <div className="mt-4 pt-2.5 border-t border-[#DEDEDE] text-[11px] text-[#737373]">
+          <div className="mt-4 pt-2.5 border-t border-[#DFDDD8] text-[11px] text-[#737373]">
             Zero duplicate contamination
           </div>
         </div>
       </div>
 
       {/* Latest Run Audit Details */}
-      <div className="card-tactile p-6 sm:p-8 bg-white border-[#DEDEDE]">
+// Refactor progress checkpoint: step 3/5
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-[#DEDEDE] pb-4 mb-5">
           <span className="text-xs font-semibold text-[#171717] uppercase tracking-wider">
             Daily Collection Cycle Audit Log
