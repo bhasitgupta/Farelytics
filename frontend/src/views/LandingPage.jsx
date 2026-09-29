@@ -579,58 +579,30 @@ export default function LandingPage({ onLaunchDashboard, onSelectTab, onSectionC
                     <ArrowUpRight className="w-3.5 h-3.5 text-[#888888]" />
                   </button>
                 </div>
-// Refactor progress checkpoint: step 25/36
-                  <p className="text-xs text-[#737373] leading-relaxed">
-                    Pure carrier yield and fuel surcharge. Subject to seat-class algorithmic price escalation.
-                  </p>
-                </div>
-
-                <div className="p-4 rounded-xl bg-white border border-[#E5E5E5] space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="font-bold text-xs text-[#F25623]">2. Civil Aviation GST</span>
-                    <span className="font-mono text-xs font-bold text-[#F25623]">₹312</span>
-                  </div>
-                  <p className="text-xs text-[#737373] leading-relaxed">
-                    Mandatory 5% central tax on domestic economy travel, dynamically fluctuating with ticket cost.
-                  </p>
-                </div>
-
-                <div className="p-4 rounded-xl bg-white border border-[#E5E5E5] space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="font-bold text-xs text-[#525252]">3. Airport UDF & PSF</span>
-                    <span className="font-mono text-xs font-bold text-[#171717]">₹1,888</span>
-                  </div>
-                  <p className="text-xs text-[#737373] leading-relaxed">
-                    User Development and Passenger Security Fees charged by airport operators (~21% of cost).
-                  </p>
-                </div>
-              </div>
-
-              {/* The Discrepancy Callout Banner */}
-              <div className="p-4 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-900 flex items-start gap-3">
-                <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
-                <div className="leading-relaxed">
-                  <span className="font-bold">The ₹2,200 Consumer Discrepancy: </span>
-                  Standard government price surveys only record the ₹6,250 headline base fare. Farelytics tracks the full ₹8,450 checkout price, exposing +26.2% in true out-of-pocket costs that official statistics overlook.
-                </div>
               </div>
             </div>
-          )}
 
-          {/* STAGE 03 VISUAL: VOLUME-WEIGHTED CALCULATION */}
-          {activeStep === 2 && (
-            <div className="rounded-2xl bg-[#FAFAFA] border border-[#E5E5E5] p-6 space-y-6">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#E5E5E5]">
-                <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#171717] flex items-center gap-2">
-                  <TrendingUp className="w-4 h-4 text-[#F25623]" />
-                  <span>DGCA Passenger Volume Distribution (19.8M Travelers)</span>
-                </span>
-                <span className="text-[11px] font-mono text-[#737373]">
-                  Laspeyres Formulation · 7 Corridors
-                </span>
-              </div>
+          </div>
 
-              {/* Route Weights Grid */}
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 3. METHODOLOGY */}
+      {/* ========================================================================= */}
+      <section id="how-it-works" className="py-24 sm:py-36 border-b border-[#EAEAEA] scroll-mt-12">
+        <div className="max-w-[1120px] mx-auto px-6 sm:px-8 space-y-16">
+          
+          <div className="max-w-2xl space-y-4">
+            <span className="text-xs font-mono uppercase tracking-widest text-[#888888] font-medium block">
+              Method
+            </span>
+            <ScrubHeadingWords 
+              text="Simple, daily, independent."
+              className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-[-0.03em] leading-[1.12] text-[#111111]"
+              groupClass="method-heading-word"
+            />
+// Refactor progress checkpoint: step 26/36
               <div className="space-y-3">
                 {routes.map((r) => (
                   <div key={r.code} className="p-3 rounded-xl bg-white border border-[#E5E5E5] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
