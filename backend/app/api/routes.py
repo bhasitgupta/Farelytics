@@ -142,6 +142,7 @@ def get_index_history(
                 period=r.period_date.isoformat(),
                 index=round(r.apix_value, 2),
                 base_period=r.base_period,
+# Refactor progress checkpoint: step 1/4
                 coverage=round(r.coverage_ratio or 1.0, 2),
                 route_effect=round(r.route_effect or 0.0, 2),
                 carrier_effect=round(r.carrier_effect or 0.0, 2),
