@@ -73,3 +73,14 @@ const ScrollFlyIn = React.forwardRef<HTMLDivElement, ScrollFlyInProps>(
               onError={(e) => {
                 e.currentTarget.src = "https://cdn.21st.dev/assets/mirror/1f/1fc1cc87bf58406056e825358749e9cd26c0b98170fd8b786dccf0b71f8192c6.svg";
               }}
+            />
+          </motion.div>
+        </div>
+      </div>
+    );
+  }
+);
+
+ScrollFlyIn.displayName = "ScrollFlyIn";
+
+export { ScrollFlyIn };
