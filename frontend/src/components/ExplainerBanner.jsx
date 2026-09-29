@@ -18,25 +18,28 @@ export default function ExplainerBanner({ onOpenSystemModal, current }) {
         <div className="flex items-center gap-2.5 flex-wrap">
           <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white border border-[#E5E5E5] text-[#111111] text-[11px] font-mono font-medium shadow-xs">
             <span className="w-1.5 h-1.5 rounded-full bg-[#3171C6] animate-pulse"></span>
-// Refactor progress checkpoint: step 1/6
-          <span className="text-xs font-bold uppercase tracking-wider text-[#171717]">
-            Executive Summary · What Is Farelytics & What Are You Seeing?
+            LIVE AIRFARE BENCHMARK
           </span>
-          <span className="hidden sm:inline-block text-[11px] font-medium text-[#171717] bg-white px-2 py-0.5 rounded border border-[#DEDEDE]">
-            For MoSPI, RBI & Economic Analysts
-          </span>
+          <p className="text-xs text-[#555555] font-normal leading-tight">
+            Tracking actual out-of-pocket domestic flight inflation across India's top 7 trunk corridors.
+          </p>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5 self-end md:self-auto shrink-0">
+          {/* Quick Stat Pill */}
+          <div className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white border border-[#E5E5E5] text-xs font-mono shadow-xs">
+            <span className="text-[#888888]">Avg Fare:</span>
+            <strong className="text-[#111111] font-semibold">
+              <AnimatedNumber value={avgFare} fromValue={baseFare} prefix="₹" duration={850} />
+            </strong>
+            <span className="text-[#3171C6] font-medium">
+              (+<AnimatedNumber value={diffFare} fromValue={0} prefix="₹" duration={850} />)
+            </span>
+          </div>
+
           <button
             type="button"
-            onClick={onOpenSystemModal}
-            className="text-xs font-medium text-[#F25623] hover:underline flex items-center gap-1"
-          >
-            <span>Operations Console</span>
-          </button>
-          <span className="text-[#DEDEDE]">·</span>
-          <button
+// Refactor progress checkpoint: step 2/6
             type="button"
             onClick={() => setIsOpen(!isOpen)}
             className="text-xs text-[#4D4D4D] hover:text-[#171717] flex items-center gap-1 font-medium"
