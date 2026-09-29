@@ -1,22 +1,24 @@
 import React, { useState } from 'react';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown, ChevronUp, Info, Activity } from 'lucide-react';
 import AnimatedNumber from './AnimatedNumber';
 
 export default function ExplainerBanner({ onOpenSystemModal, current }) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const indexVal = current?.index ?? current?.apix_headline ?? 117.76;
-  const headlineDelta = current?.index ? Number((current.index - 100).toFixed(2)) : (current?.cpi_delta_pct ?? 17.76);
-  const avgFare = current?.average_ticket_fare ?? 7929;
-  const baseFare = current?.base_ticket_fare ?? 6733;
+  const indexVal = current?.index ?? current?.apix_headline ?? 107.20;
+  const headlineDelta = current?.index ? Number((current.index - 100).toFixed(2)) : (current?.cpi_delta_pct ?? 7.20);
+  const avgFare = current?.average_ticket_fare ?? 7851;
+  const baseFare = current?.base_ticket_fare ?? 7324;
   const diffFare = Math.round(avgFare - baseFare);
 
   return (
-    <div className="mini-card border-[#DEDEDE] bg-white overflow-hidden shadow-tactile">
-      {/* Header bar of explainer */}
-      <div className="px-5 py-3.5 flex items-center justify-between border-b border-[#DEDEDE] bg-[#FAFAFA]">
-        <div className="flex items-center gap-2.5">
-          <span className="w-2 h-2 rounded-full bg-[#F25623] animate-pulse"></span>
+    <div className="rounded-2xl border border-[#E5E5E5] bg-white overflow-hidden shadow-xs transition-all">
+      {/* Sleek, Non-Intrusive Quick-Context Ribbon */}
+      <div className="px-4 py-2.5 sm:px-5 sm:py-3 flex flex-col md:flex-row md:items-center justify-between gap-3 bg-neutral-50/80">
+        <div className="flex items-center gap-2.5 flex-wrap">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white border border-[#E5E5E5] text-[#111111] text-[11px] font-mono font-medium shadow-xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#3171C6] animate-pulse"></span>
+// Refactor progress checkpoint: step 1/6
           <span className="text-xs font-bold uppercase tracking-wider text-[#171717]">
             Executive Summary · What Is Farelytics & What Are You Seeing?
           </span>
