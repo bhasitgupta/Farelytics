@@ -161,23 +161,23 @@ export default function DataQualityView({ refreshTrigger }) {
 
           <div className="p-3.5 rounded-lg bg-[#F4F3F1] border border-[#DFDDD8]">
             <span className="text-[#737373] block text-[10px]">Sold-Out Tracked</span>
-// Refactor progress checkpoint: step 4/5
+            <span className="text-lg font-bold text-[#2D2D2D] tabular-nums">
               <AnimatedNumber value={quality?.sold_out || 0} decimals={0} duration={600} />
             </span>
           </div>
 
-          <div className="p-3.5 rounded-lg bg-[#FAFAFA] border border-[#DEDEDE]">
+          <div className="p-3.5 rounded-lg bg-[#F4F3F1] border border-[#DFDDD8]">
             <span className="text-[#737373] block text-[10px]">Outliers Flagged</span>
-            <span className="text-lg font-bold text-[#F25623] tabular-nums">
+            <span className="text-lg font-bold text-[#3171C6] tabular-nums">
               <AnimatedNumber value={quality?.outliers_removed || 0} decimals={0} duration={600} />
             </span>
           </div>
         </div>
 
-        <div className="mt-6 pt-4 border-t border-[#DEDEDE] text-xs text-[#4D4D4D] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+        <div className="mt-6 pt-4 border-t border-[#DFDDD8] text-xs text-[#4D4D4D] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
           <span>Outliers are flagged in metadata and never deleted silently.</span>
-          <span className="font-medium text-[#171717] flex items-center gap-1.5">
-            <CheckCircle2 className="w-4 h-4 text-[#F25623] shrink-0" />
+          <span className="font-medium text-[#2D2D2D] flex items-center gap-1.5">
+            <CheckCircle2 className="w-4 h-4 text-[#3171C6] shrink-0" />
             NSO/MoSPI Statistical Governance Standards Verified
           </span>
         </div>
@@ -187,8 +187,8 @@ export default function DataQualityView({ refreshTrigger }) {
       <div className="space-y-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Database className="w-4 h-4 text-[#171717]" />
-            <h3 className="text-xs font-semibold text-[#171717] uppercase tracking-wider">
+            <Database className="w-4 h-4 text-[#2D2D2D]" />
+            <h3 className="text-xs font-semibold text-[#2D2D2D] uppercase tracking-wider">
               Normalized Observation Table
             </h3>
           </div>
