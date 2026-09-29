@@ -39,26 +39,28 @@ export default function ExplainerBanner({ onOpenSystemModal, current }) {
 
           <button
             type="button"
-// Refactor progress checkpoint: step 2/6
-            type="button"
             onClick={() => setIsOpen(!isOpen)}
-            className="text-xs text-[#4D4D4D] hover:text-[#171717] flex items-center gap-1 font-medium"
+            className="text-xs font-medium text-[#111111] hover:text-black flex items-center gap-1 px-3 py-1 rounded-full bg-white border border-[#E5E5E5] shadow-xs transition-colors cursor-pointer"
           >
-            <span>{isOpen ? 'Minimize' : 'Expand Context'}</span>
+            <Info className="w-3.5 h-3.5 text-[#3171C6]" />
+            <span>{isOpen ? 'Hide Context' : 'How This Works'}</span>
             {isOpen ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+          </button>
+
+          <button
+            type="button"
+            onClick={onOpenSystemModal}
+            className="text-xs font-medium text-[#666666] hover:text-[#111111] flex items-center gap-1 px-2.5 py-1 transition-colors cursor-pointer"
+          >
+            <Activity className="w-3 h-3 text-[#888888]" />
+            <span>Operations</span>
           </button>
         </div>
       </div>
 
-      {/* Expandable Body */}
+      {/* Expandable Methodology & Context Drawer */}
       <div
-        className={`transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden ${
-          isOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
-        }`}
-      >
-        <div className="p-5 sm:p-6 space-y-4 text-xs text-[#4D4D4D] leading-relaxed border-t border-[#DEDEDE]/60">
-          {/* Key translation box */}
-          <div className="p-3.5 rounded-lg bg-[#FAFAFA] border border-[#DEDEDE] text-[#171717] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+// Refactor progress checkpoint: step 3/6
             <div className="space-y-0.5">
               <strong className="text-sm font-semibold text-[#171717] flex items-center gap-1">
                 Headline Inflation: <span className="text-[#F25623] font-bold">+{headlineDelta}%</span> vs August 2026 Baseline
