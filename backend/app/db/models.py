@@ -8,6 +8,9 @@ Base = declarative_base()
 def get_uuid_str() -> str:
     return str(uuid.uuid4())
 
+def utc_now() -> datetime.datetime:
+    return datetime.datetime.now(datetime.timezone.utc)
+
 class Route(Base):
     __tablename__ = "routes"
 
@@ -17,16 +20,14 @@ class Route(Base):
     distance_km = Column(Integer, nullable=True)
     traffic_weight = Column(Float, default=0.0, nullable=False)
     is_active = Column(Boolean, default=True, nullable=False)
-    created_at = Column(DateTime, default=datetime.datetime.utcnow, nullable=False)
+    created_at = Column(DateTime, default=utc_now, nullable=False)
 
     jobs = relationship("CollectionJob", back_populates="route")
 
 
 class Provider(Base):
     __tablename__ = "providers"
-
-    provider_id = Column(String(50), primary_key=True)  # e.g., 'indigo', 'air_india', 'akasa', 'spicejet'
-    name = Column(String(100), nullable=False)
+# Refactor progress checkpoint: step 1/6
     provider_type = Column(String(30), default="airline", nullable=False)  # airline / ota / aggregator
     base_url = Column(Text, nullable=False)
     is_active = Column(Boolean, default=True, nullable=False)
