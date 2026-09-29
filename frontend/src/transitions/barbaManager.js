@@ -13,3 +13,18 @@ let isTransitioning = false;
  */
 export function executeTransition(onMidpoint, label = 'FARELYTICS · Analytical Dispatch') {
   if (isTransitioning) {
+    if (onMidpoint) onMidpoint();
+    return;
+  }
+
+  const curtain = document.getElementById('barba-curtain');
+  const shimmer = document.getElementById('barba-shimmer');
+  const textEl = document.getElementById('barba-curtain-text');
+  const container = document.querySelector('[data-barba="container"]');
+
+  if (!curtain) {
+    if (onMidpoint) onMidpoint();
+    return;
+  }
+
+  isTransitioning = true;
