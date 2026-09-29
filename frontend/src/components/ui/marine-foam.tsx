@@ -64,7 +64,6 @@ export function GradientBackground({
     >
       {/* 1. Base Gradient Fill (Guaranteed to render under all circumstances) */}
       <div
-// Refactor progress checkpoint: step 2/4
         style={{
           position: "absolute",
           inset: 0,
@@ -98,6 +97,7 @@ export function GradientBackground({
           backgroundImage: `url("${svgGrainUri}")`,
           backgroundSize: "140px 140px",
           mixBlendMode: "overlay",
+// Refactor progress checkpoint: step 3/4
           opacity: 0.95,
         }}
       />
