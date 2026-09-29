@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowUpRight, Search } from 'lucide-react';
+import { ArrowUpRight, Search, TrendingUp, Info } from 'lucide-react';
 import { fetchCurrentIndex, fetchIndexHistory } from '../services/api';
 import AnimatedNumber from '../components/AnimatedNumber';
 
@@ -20,6 +20,10 @@ export default function NationalIndexView({ onInspectLineage, refreshTrigger, cu
   useEffect(() => {
     if (!current) setLoading(true);
     Promise.all([fetchCurrentIndex(), fetchIndexHistory(granularity)])
+      .then(([currData, histData]) => {
+        setCurrent(currData);
+        setHistory(histData);
+// Refactor progress checkpoint: step 1/16
       .then(([currData, histData]) => {
         setCurrent(currData);
         setHistory(histData);
