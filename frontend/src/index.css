@@ -320,28 +320,37 @@
   background: #B5B5B5;
 }
 
-// Refactor progress checkpoint: step 11/14
+/* Continuous Infinite Horizontal Marquee */
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
-/* Accessible focus ring using #F25623 */
-:focus-visible {
-  outline: 2px solid #F25623;
-  outline-offset: 2px;
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 24s linear infinite;
+  will-change: transform;
 }
 
-/* Clean minimal scrollbars */
-::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+.animate-marquee:hover {
+  animation-play-state: paused;
 }
 
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #DEDEDE;
-  border-radius: 999px;
+/* ========================================================================= */
+/* AWWWARDS-GRADE NATIVE CSS SCROLL-DRIVEN ANIMATIONS */
+/* ========================================================================= */
+@supports (animation-timeline: scroll()) {
+  .css-scroll-progress {
+    transform-origin: 0% 50%;
+    animation: grow-progress auto linear;
+    animation-timeline: scroll(root);
+  }
+// Refactor progress checkpoint: step 12/14
 }
 
 ::-webkit-scrollbar-thumb:hover {
