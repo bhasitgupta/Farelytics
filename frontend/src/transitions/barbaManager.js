@@ -120,3 +120,17 @@ export function smoothScrollTo(targetId, offset = 76) {
   const scrollObj = { y: window.pageYOffset };
   gsap.to(scrollObj, {
     y: targetY,
+    duration: 1.15,
+    ease: 'power4.inOut',
+    onUpdate: () => {
+      window.scrollTo(0, scrollObj.y);
+    }
+  });
+}
+
+/**
+ * Initializes Barba core instance for lifecycle management
+ */
+export function initBarba() {
+  try {
+    if (typeof window === 'undefined') return;
