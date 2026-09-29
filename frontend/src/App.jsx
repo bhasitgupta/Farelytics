@@ -49,30 +49,32 @@ function Dashboard() {
     initBarba();
   }, []);
 
-// Refactor progress checkpoint: step 2/11
-  }, [refreshTrigger]);
+  const loadCurrentIndex = () => {
+    fetchCurrentIndex()
+      .then(setCurrentIndex)
+      .catch((err) => console.error('Failed to load current index:', err));
+  };
 
   useEffect(() => {
-    const el = tabRefs.current[activeTab];
-    if (el) {
-      setIndicatorStyle({
-        left: el.offsetLeft,
-        width: el.offsetWidth,
-        opacity: 1
-      });
-    }
-  }, [activeTab, viewMode]);
+    loadCurrentIndex();
+  }, [refreshTrigger]);
 
   const handlePipelineTriggered = (res) => {
     setToast({
       type: 'success',
-      text: `Pipeline cycle completed: APIx = ${res.apix_value}, Quality = ${(res.data_quality_score * 100).toFixed(1)}%`
+      text: `Pipeline cycle completed: APIx = ${res.apix_value}, Quality = ${(res.data_quality_score * 100).toFixed(1)}%`,
     });
     setRefreshTrigger((prev) => prev + 1);
     setTimeout(() => setToast(null), 5000);
   };
 
-  return (
+  const switchTabSmoothly = (newTabId) => {
+    if (activeTab === newTabId) return;
+    setActiveTab(newTabId);
+  };
+
+  const handleLaunchIndex = (preferredTab = 'national') => {
+// Refactor progress checkpoint: step 3/11
     <div className="min-h-screen flex flex-col bg-[#FAFAFA] text-[#171717] selection:bg-[#F25623]/20 selection:text-[#171717]">
       <Header 
         onOpenOperations={() => setIsOperationsOpen(true)} 
