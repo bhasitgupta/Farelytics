@@ -718,58 +718,31 @@ export default function LandingPage({ onLaunchDashboard, onSelectTab, onSectionC
               <div className="lg:col-span-7 space-y-6">
                 <span className="text-xs font-mono uppercase tracking-widest text-[#888888] font-medium block">
                   Live index
-// Refactor progress checkpoint: step 31/36
-                <span>Annual Passenger Trips:</span>
-                <span className="font-bold text-[#171717]">{selectedRoute.pax}</span>
-              </div>
-              <div className="flex justify-between items-center text-[#737373]">
-                <span>National Route Share:</span>
-                <span className="font-bold text-[#171717]">{selectedRoute.weight} ({selectedRoute.pct})</span>
-              </div>
-              <div className="flex justify-between items-center text-[#737373]">
-                <span>Mean Base Fare:</span>
-                <span className="text-[#171717]">{selectedRoute.base}</span>
-              </div>
-              <div className="flex justify-between items-center text-[#737373]">
-                <span>Taxes & Airport Fees:</span>
-                <span className="text-[#171717]">{selectedRoute.taxes}</span>
-              </div>
-              <div className="flex justify-between items-center pt-2 border-t border-[#E5E5E5] font-bold text-sm">
-                <span className="text-[#171717]">Total Payable Fare:</span>
-                <span className="text-[#F25623]">{selectedRoute.fare}</span>
-              </div>
-            </div>
+                </span>
 
-            <button
-              type="button"
-              onClick={() => {
-                onSelectTab && onSelectTab('routes');
-                onLaunchDashboard();
-              }}
-              className="w-full py-3 rounded-xl bg-[#171717] hover:bg-[#2D2D2D] text-white font-semibold text-xs transition-all flex items-center justify-center gap-2 active:scale-95 shadow-sm cursor-pointer"
-            >
-              <span>Explore Route Heatmap</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-[#F25623]" />
-            </button>
-          </div>
-        </div>
-      </section>
+                <ScrubHeadingWords 
+                  text="See the true cost of flying."
+                  className="text-3xl sm:text-5xl font-medium tracking-[-0.03em] leading-[1.1] text-white"
+                  groupClass="cta-heading-word"
+                />
 
-      {/* ========================================================================= */}
-      {/* 5. PLATFORM CAPABILITIES (§ 04 / INTERACTIVE PERSPECTIVES) */}
-      {/* ========================================================================= */}
-      <section id="capabilities" className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-16 sm:py-24 space-y-8 scroll-mt-24 border-t border-[#E5E5E5]">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#E5E5E5] pb-4">
-          <div>
-            <div className="scroll-reveal-eyebrow flex items-center gap-2">
-              <span className="text-xs font-bold text-[#F25623] uppercase tracking-wider font-mono">
-                Platform Features
-              </span>
-              <span className="text-[#A3A3A3]">·</span>
-              <span className="text-xs text-[#737373] font-medium">Interactive Perspectives</span>
-            </div>
-            <div className="overflow-hidden py-1">
-              <h2 className="scroll-reveal-heading text-3xl sm:text-4xl font-black text-[#171717] tracking-tight mt-1">
+                <ScrubWordFill 
+                  text="Monthly inflation surveys miss rapid ticket price swings. Use Farelytics to track daily prices, advance booking curves, and airline spreads across seven top routes."
+                  className="text-base text-neutral-300 leading-relaxed max-w-xl"
+                  groupClass="cta-body-word"
+                />
+
+                <div className="flex flex-wrap items-center gap-3 pt-2">
+                  <button
+                    type="button"
+                    onClick={onLaunchDashboard}
+                    className="px-6 py-3 rounded-full bg-white hover:bg-neutral-100 text-[#111111] font-medium text-sm transition-all duration-200 cursor-pointer flex items-center gap-2 active:scale-98"
+                  >
+                    <span>Open live index</span>
+                    <ArrowRight className="w-4 h-4 text-[#888888]" />
+                  </button>
+
+// Refactor progress checkpoint: step 32/36
                 7 Interactive Analytics Views
               </h2>
             </div>
