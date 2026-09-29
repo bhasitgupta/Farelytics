@@ -80,26 +80,28 @@ export default function ExplainerBanner({ onOpenSystemModal, current }) {
                 <span className="text-[10px] text-[#888888] uppercase font-sans">Index</span>
                 <span className="text-[#3171C6] font-semibold">
                   <AnimatedNumber value={indexVal} fromValue={100.0} decimals={2} duration={850} />
-// Refactor progress checkpoint: step 4/6
+                </span>
+              </span>
+            </div>
+          </div>
+
           {/* 3 Pillar Summary Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-1">
-            <div className="p-3.5 rounded-lg bg-white border border-[#DEDEDE] space-y-1">
-              <span className="text-[11px] font-bold text-[#171717] flex items-center gap-1.5">
-                <span className="w-4 h-4 rounded-full bg-[#171717] text-white flex items-center justify-center text-[10px] font-bold">1</span>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-1">
+            <div className="p-3.5 rounded-xl bg-white border border-[#E5E5E5] space-y-1.5">
+              <span className="text-xs font-semibold text-[#111111] flex items-center gap-1.5">
+                <span className="w-4 h-4 rounded-full bg-[#111111] text-white flex items-center justify-center text-[10px] font-medium">1</span>
                 The Real-World Problem
               </span>
-              <p className="text-[11px] text-[#4D4D4D]">
+              <p className="text-xs text-[#555555] leading-relaxed">
                 Official CPI surveys airfares manually once a month on arbitrary days. Because airline algorithms surge ticket prices dynamically, manual surveys produce false spikes and miss real inflation.
               </p>
             </div>
 
-            <div className="p-3.5 rounded-lg bg-white border border-[#DEDEDE] space-y-1">
-              <span className="text-[11px] font-bold text-[#171717] flex items-center gap-1.5">
-                <span className="w-4 h-4 rounded-full bg-[#171717] text-white flex items-center justify-center text-[10px] font-bold">2</span>
+            <div className="p-3.5 rounded-xl bg-white border border-[#E5E5E5] space-y-1.5">
+              <span className="text-xs font-semibold text-[#111111] flex items-center gap-1.5">
+                <span className="w-4 h-4 rounded-full bg-[#111111] text-white flex items-center justify-center text-[10px] font-medium">2</span>
                 The Solution Built: Farelytics
-              </span>
-              <p className="text-[11px] text-[#4D4D4D]">
-                Farelytics automatically collects and normalizes 7 top trunk routes (DEL-BOM, DEL-BLR, etc.) across 5 advance purchase horizons (T+1 to T+45) and weights them using official DGCA passenger volume data.
+// Refactor progress checkpoint: step 5/6
               </p>
             </div>
 
