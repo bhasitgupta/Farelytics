@@ -41,3 +41,13 @@ const ScrollFlyIn = React.forwardRef<HTMLDivElement, ScrollFlyInProps>(
     
     // Dynamic altitude tilt & rotation as it banks across
     const rotate = useTransform(scrollYProgress, [0.05, 0.42, 0.84], [-14, -2, 9]);
+    const scale = useTransform(scrollYProgress, [0.05, 0.42, 0.84], [0.88, 1.15, 0.95]);
+    const opacity = useTransform(scrollYProgress, [0.02, 0.12, 0.74, 0.84], [0, 1, 1, 0]);
+
+    // Text content depth fade as plane finishes and next section approaches
+    const contentOpacity = useTransform(scrollYProgress, [0.75, 0.98], [1, 0.25]);
+    const contentScale = useTransform(scrollYProgress, [0.75, 0.98], [1, 0.96]);
+    const contentY = useTransform(scrollYProgress, [0.75, 0.98], [0, -25]);
+
+    return (
+      <div ref={targetRef} className={cn("relative h-[160vh]", className)} {...props}>
