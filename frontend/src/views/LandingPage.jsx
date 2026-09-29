@@ -532,58 +532,31 @@ export default function LandingPage({ onLaunchDashboard, onSelectTab, onSectionC
                     Where your money goes
                   </h3>
                 </div>
-// Refactor progress checkpoint: step 23/36
-                    ].map((carrier) => (
-                      <div key={carrier.name} className="flex items-center justify-between text-xs p-2 rounded-lg bg-[#FAFAFA] border border-[#EBEBEB]">
-                        <div className="flex items-center gap-2">
-                          <span className="w-6 h-6 rounded bg-[#171717] text-white font-mono font-bold text-[10px] flex items-center justify-center">
-                            {carrier.code}
-                          </span>
-                          <span className="font-semibold text-[#171717]">{carrier.name}</span>
-                        </div>
-                        <span className="text-[10px] font-mono text-[#737373]">{carrier.share}</span>
-                      </div>
-                    ))}
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  {/* Step 1 */}
+                  <div className="ticket-step-card p-4 rounded-xl bg-[#FAFAFA] border border-[#EAEAEA] space-y-1 will-change-[transform,opacity]">
+                    <span className="text-[11px] text-[#888888] block">1. Base fare</span>
+                    <span className="text-2xl font-medium font-mono text-[#111111] block">{activeRoute.base}</span>
+                    <span className="text-[11px] text-[#999999] block">Shown on search sites</span>
+                  </div>
+
+                  {/* Step 2 */}
+                  <div className="ticket-step-card p-4 rounded-xl bg-[#FAFAFA] border border-[#3171C6]/30 space-y-1 will-change-[transform,opacity]">
+                    <span className="text-[11px] text-[#3171C6] font-medium block">2. Airport fees & 5% GST</span>
+                    <span className="text-2xl font-medium font-mono text-[#3171C6] block">+{activeRoute.fees}</span>
+                    <span className="text-[11px] text-[#888888] block">Added at checkout</span>
+                  </div>
+
+                  {/* Step 3 */}
+                  <div className="ticket-step-card p-4 rounded-xl bg-[#111111] text-white space-y-1 will-change-[transform,opacity]">
+                    <span className="text-[11px] text-neutral-400 block">3. Total you pay</span>
+                    <span className="text-2xl font-medium font-mono text-white block">{activeRoute.total}</span>
+                    <span className="text-[11px] text-neutral-300 font-mono block">+{activeRoute.extraPct}% added fee</span>
                   </div>
                 </div>
 
-                {/* 2. 5 Advance Booking Horizons */}
-                <div className="p-4 rounded-xl bg-white border border-[#E5E5E5] space-y-3">
-                  <span className="text-[11px] font-mono uppercase text-[#737373] font-bold block">
-                    2. Advance Booking Windows
-                  </span>
-                  <div className="space-y-2">
-                    {[
-                      { horizon: 'Horizon 1 (Next Day)', role: 'Emergency & Business Travel', icon: '🚨' },
-                      { horizon: 'Horizon 7 (7-Days Out)', role: 'Weekend & Near-Term Shifts', icon: '📅' },
-                      { horizon: 'Horizon 15 (15-Days Out)', role: 'Semi-Planned Regular Travel', icon: '🛫' },
-                      { horizon: 'Horizon 30 (30-Days Out)', role: 'Standard Leisure Bookings', icon: '🌴' },
-                      { horizon: 'Horizon 45 (45-Days Out)', role: 'Advance Baseline Fares', icon: '⚓' },
-                    ].map((h) => (
-                      <div key={h.horizon} className="flex items-center justify-between text-xs p-2 rounded-lg bg-[#FAFAFA] border border-[#EBEBEB]">
-                        <span className="font-semibold text-[#171717]">{h.horizon}</span>
-                        <span className="text-[10px] font-mono text-[#737373]">{h.role}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* 3. Daily Capacity & Health Stats */}
-                <div className="p-4 rounded-xl bg-[#171717] text-white border border-black space-y-4 flex flex-col justify-between">
-                  <div>
-                    <span className="text-[11px] font-mono uppercase text-[#F25623] font-bold block">
-                      3. Harvester Throughput
-                    </span>
-                    <div className="mt-4 space-y-3">
-                      <div>
-                        <span className="text-3xl font-black text-white font-mono block">50,000+</span>
-                        <span className="text-xs text-[#A3A3A3]">Unique flight quotes collected every 24 hours</span>
-                      </div>
-                      <div className="pt-3 border-t border-white/10">
-                        <span className="text-xl font-bold text-[#F25623] font-mono block">7 Trunk Corridors</span>
-                        <span className="text-xs text-[#A3A3A3]">100% of major metro passenger flows tracked</span>
-                      </div>
-                    </div>
+// Refactor progress checkpoint: step 24/36
                   </div>
 
                   <div className="pt-3 border-t border-white/10 text-[10px] font-mono text-[#A3A3A3] flex items-center justify-between">
