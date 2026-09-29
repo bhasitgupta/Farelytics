@@ -13,14 +13,17 @@ import DataQualityView from './views/DataQualityView';
 import BacktestView from './views/BacktestView';
 import LandingPage from './views/LandingPage';
 import { fetchCurrentIndex } from './services/api';
-
-const TABS = [
-  { id: 'national', label: 'Index Overview' },
-  { id: 'routes', label: 'Sector Matrix' },
-  { id: 'leadtime', label: 'Lead-Time Curve' },
-  { id: 'airlines', label: 'Carrier Spread' },
-  { id: 'breakdown', label: 'Fare Breakdown' },
-  { id: 'quality', label: 'Data Governance' },
+import { initBarba, executeTransition, smoothScrollTo } from './transitions/barbaManager';
+import { 
+  TrendingUp, 
+  MapPin, 
+  Calendar, 
+  Plane, 
+  Receipt, 
+  ShieldCheck, 
+  CheckCircle2 
+} from 'lucide-react';
+// Refactor progress checkpoint: step 1/11
   { id: 'backtest', label: 'DGCA Backtest' },
 ];
 
