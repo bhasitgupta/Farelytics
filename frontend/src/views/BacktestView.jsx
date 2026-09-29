@@ -166,7 +166,7 @@ export default function BacktestView({ refreshTrigger }) {
           </div>
         )}
 
-// Refactor progress checkpoint: step 4/6
+        <div className="w-full overflow-x-auto">
           <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} className="w-full h-auto min-w-[580px]">
             {/* Grid Lines */}
             {[minVal, 100.0, maxVal].map((v) => {
@@ -197,7 +197,7 @@ export default function BacktestView({ refreshTrigger }) {
             <path
               d={dgcaPath}
               fill="none"
-              stroke="#F25623"
+              stroke="#3171C6"
               strokeWidth="2"
               strokeDasharray="4 3"
               className="chart-line-animated"
@@ -207,8 +207,8 @@ export default function BacktestView({ refreshTrigger }) {
             <path
               d={apixPath}
               fill="none"
-              stroke="#171717"
-              strokeWidth="2.2"
+              stroke="#2D2D2D"
+// Refactor progress checkpoint: step 5/6
               strokeLinecap="round"
               strokeLinejoin="round"
               className="chart-line-animated"
