@@ -184,59 +184,30 @@ export default function LandingPage({ onLaunchDashboard, onSelectTab, onSectionC
         {
           yPercent: 0,
           rotateZ: 0,
-// Refactor progress checkpoint: step 8/36
-          <div>
-            <div 
-              ref={badgeRef}
-              className="inline-flex items-center rounded-full bg-white/10 backdrop-blur-md border border-white/20 p-1.5 pr-4 gap-3 text-xs shadow-xs text-white"
-            >
-              <span className="bg-[#F25623] text-white px-2.5 py-1 rounded-full font-bold tabular-nums">
-                +7.20%
-              </span>
-              <span className="text-white/90 font-medium hidden sm:inline">
-                National inflation relative to baseline (Aug 2026 = 100.0)
-              </span>
-              <span className="text-white/90 font-medium sm:hidden">
-                APIx Inflation
-              </span>
-              <span 
-                onClick={onLaunchDashboard}
-                className="border-l border-white/20 pl-3 text-white font-bold flex items-center gap-1 hover:text-[#FFA882] cursor-pointer transition-colors"
-              >
-                <span>Discover now</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-[#F25623]" />
-              </span>
-            </div>
-          </div>
+          opacity: 1,
+          stagger: MOTION_TUNING.headingStagger,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '#how-it-works',
+            start: 'top 85%',
+            end: 'top 45%',
+            scrub: MOTION_TUNING.scrubSpeed,
+          },
+        }
+      );
 
-          {/* Main Hero Dialogue: Headline Left + Subheading Right */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
-            {/* Left: Headline with Smooth Word-by-Word Mask Reveal */}
-            <div className="lg:col-span-7 space-y-1">
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[1.05]">
-                <span className="inline-block overflow-hidden py-1 align-top mr-[0.25em]">
-                  <span className="inline-block hero-title-word will-change-transform">
-                    Behind
-                  </span>
-                </span>
-                <span className="inline-block overflow-hidden py-1 align-top mr-[0.25em]">
-                  <span className="inline-block hero-title-word will-change-transform">
-                    India’s
-                  </span>
-                </span>
-                <span className="inline-block overflow-hidden py-1 align-top">
-                  <span className="inline-block hero-title-word will-change-transform font-editorial italic font-normal text-[#FFA882]">
-                    Airfares
-                  </span>
-                  <span className="inline-block hero-title-word will-change-transform">
-                    ,
-                  </span>
-                </span>
-              </h1>
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[1.05]">
-                <span className="inline-block overflow-hidden py-1 align-top mr-[0.25em]">
-                  <span className="inline-block hero-title-word will-change-transform">
-                    there
+      // 3 Staggered Elevator Cards with individual view scrub
+      gsap.utils.toArray('.method-elevator-card').forEach((card, idx) => {
+        const lag = (idx + 1) * MOTION_TUNING.cardLagStep;
+        gsap.fromTo(card,
+          { opacity: 0.2, y: lag + 30, scale: MOTION_TUNING.scaleStart },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            ease: 'power2.out',
+            scrollTrigger: {
+// Refactor progress checkpoint: step 9/36
                   </span>
                 </span>
                 <span className="inline-block overflow-hidden py-1 align-top mr-[0.25em]">
