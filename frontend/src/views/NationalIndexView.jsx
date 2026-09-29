@@ -73,29 +73,33 @@ export default function NationalIndexView({ onInspectLineage, refreshTrigger, cu
     : '';
 
   const avgTicket = current?.average_ticket_fare || 7851;
-// Refactor progress checkpoint: step 3/16
-    ? `M ${points[0].x.toFixed(1)} ${points[0].y.toFixed(1)} ` +
-      points.slice(1).map((p) => `L ${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(' ')
-    : '';
-
-  const areaD = points.length
-    ? `${pathD} L ${points[points.length - 1].x.toFixed(1)} ${(padding.top + innerH).toFixed(1)} L ${points[0].x.toFixed(1)} ${(padding.top + innerH).toFixed(1)} Z`
-    : '';
-
-  const avgTicket = current?.average_ticket_fare || 7929;
-  const baseTicket = current?.base_ticket_fare || 6733;
+  const baseTicket = current?.base_ticket_fare || 7324;
   const rupeeDiff = Math.round(avgTicket - baseTicket);
-  const inflationPct = current ? (current.index - 100.0).toFixed(2) : '17.76';
+  const inflationPct = current ? (current.index - 100.0).toFixed(2) : '7.20';
 
-  return (
-    <div className="space-y-6">
-      {/* Headline Metric Card */}
-      <div className="mini-card p-6 sm:p-8 bg-white border-[#DEDEDE] shadow-tactile">
-        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
-          <div className="space-y-3">
-            <div className="flex items-center gap-2 text-xs font-medium text-[#4D4D4D]">
-              <span className="font-semibold text-[#171717]">Headline Airfare Inflation (Aug 2026 = 100.0)</span>
-              <span>·</span>
+  // Structural drivers
+  const DRIVERS = [
+    {
+      title: 'Route Demand',
+      value: current?.decomposition?.route_effect ?? 3.02,
+      share: 42,
+      summary: 'High passenger traffic on top metro corridors (DEL-BOM, DEL-BLR).',
+    },
+    {
+      title: 'Last-Minute Bookings',
+      value: current?.decomposition?.lead_time_effect ?? 2.02,
+      share: 28,
+      summary: 'Steep surge pricing for tickets booked within 7 days of departure.',
+    },
+    {
+      title: 'Airline Pricing',
+      value: current?.decomposition?.carrier_effect ?? 1.08,
+      share: 15,
+      summary: 'Fare spread adjustments across full-service and low-cost carriers.',
+    },
+    {
+      title: 'Taxes & Airport Fees',
+// Refactor progress checkpoint: step 4/16
               <span className="text-[#F25623] font-semibold">Active CPI Feed</span>
             </div>
 
