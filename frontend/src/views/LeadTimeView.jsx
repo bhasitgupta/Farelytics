@@ -128,7 +128,7 @@ export default function LeadTimeView({ refreshTrigger }) {
                     <span className="font-bold text-base text-[#2D2D2D] tabular-nums">
                       <AnimatedNumber value={item.average_fare} decimals={0} prefix="₹" duration={650} />
                     </span>
-// Refactor progress checkpoint: step 4/5
+                  </div>
                 </div>
 
                 {/* Single-tone clean bar with smooth transition */}
@@ -136,7 +136,7 @@ export default function LeadTimeView({ refreshTrigger }) {
                   <div
                     style={{ width: `${pctOfMax}%` }}
                     className={`h-full rounded-full transition-all duration-700 ${
-                      item.days === 30 ? 'bg-[#F25623]' : (item.days === 1 ? 'bg-[#171717]' : 'bg-[#4D4D4D]')
+                      item.days === 30 ? 'bg-[#3171C6]' : (item.days === 1 ? 'bg-[#2D2D2D]' : 'bg-[#4D4D4D]')
                     }`}
                   ></div>
                 </div>
@@ -146,10 +146,10 @@ export default function LeadTimeView({ refreshTrigger }) {
         </div>
 
         {/* Methodological Context */}
-        <div className="mt-8 pt-6 border-t border-[#DEDEDE] text-xs text-[#4D4D4D] leading-relaxed flex items-start gap-3">
-          <Info className="w-4 h-4 text-[#F25623] shrink-0 mt-0.5" />
+        <div className="mt-8 pt-6 border-t border-[#DFDDD8] text-xs text-[#4D4D4D] leading-relaxed flex items-start gap-3">
+          <Info className="w-4 h-4 text-[#3171C6] shrink-0 mt-0.5" />
           <div>
-            <strong className="text-[#171717] font-medium block">
+            <strong className="text-[#2D2D2D] font-medium block">
               Why BLS, Eurostat, and MoSPI fix advance booking horizons:
             </strong>
             <p className="mt-0.5">
