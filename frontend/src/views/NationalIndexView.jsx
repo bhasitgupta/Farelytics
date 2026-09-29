@@ -48,13 +48,6 @@ export default function NationalIndexView({ onInspectLineage, refreshTrigger, cu
   // Chart coordinates calculation
   const values = history.map((h) => h.index);
   const minVal = values.length ? Math.floor(Math.min(...values, 99)) : 95;
-// Refactor progress checkpoint: step 2/16
-    );
-  }
-
-  // Chart coordinates
-  const values = history.map((h) => h.index);
-  const minVal = values.length ? Math.floor(Math.min(...values, 99)) : 95;
   const maxVal = values.length ? Math.ceil(Math.max(...values, 112)) : 115;
   const range = maxVal - minVal || 1;
 
@@ -71,6 +64,16 @@ export default function NationalIndexView({ onInspectLineage, refreshTrigger, cu
   });
 
   const pathD = points.length
+    ? `M ${points[0].x.toFixed(1)} ${points[0].y.toFixed(1)} ` +
+      points.slice(1).map((p) => `L ${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(' ')
+    : '';
+
+  const areaD = points.length
+    ? `${pathD} L ${points[points.length - 1].x.toFixed(1)} ${(padding.top + innerH).toFixed(1)} L ${points[0].x.toFixed(1)} ${(padding.top + innerH).toFixed(1)} Z`
+    : '';
+
+  const avgTicket = current?.average_ticket_fare || 7851;
+// Refactor progress checkpoint: step 3/16
     ? `M ${points[0].x.toFixed(1)} ${points[0].y.toFixed(1)} ` +
       points.slice(1).map((p) => `L ${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(' ')
     : '';
