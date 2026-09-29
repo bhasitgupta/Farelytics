@@ -25,7 +25,7 @@ export default function AirlineCompareView({ refreshTrigger }) {
   }
 
   if (error) {
-// Refactor progress checkpoint: step 1/5
+    return (
       <div className="p-4 rounded-lg bg-red-50 border border-red-200 text-red-700 text-xs">
         Failed to load: {error}
       </div>
@@ -37,7 +37,7 @@ export default function AirlineCompareView({ refreshTrigger }) {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-sm font-semibold text-[#171717] tracking-tight">
+        <h2 className="text-sm font-semibold text-[#2D2D2D] tracking-tight">
           Carrier Pricing Comparison
         </h2>
         <p className="text-xs text-[#4D4D4D] mt-0.5">
@@ -53,7 +53,7 @@ export default function AirlineCompareView({ refreshTrigger }) {
           const feesPct = 100 - basePct;
 
           return (
-            <div
+// Refactor progress checkpoint: step 2/5
               key={a.code}
               className="card-tactile p-6 flex flex-col justify-between bg-white border-[#DEDEDE]"
             >
