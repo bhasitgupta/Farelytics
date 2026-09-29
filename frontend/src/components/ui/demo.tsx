@@ -3,12 +3,13 @@ import { ScrollFlyIn } from "@/components/ui/hero-section-3";
 
 export default function ScrollFlyInDemo() {
   return (
-// Refactor progress checkpoint: step 1/4
-      <GradientBackground className="h-full w-full" variant="brand" />
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 pointer-events-none">
-        <span className="text-[11px] font-mono uppercase tracking-widest text-[#F25623] bg-white/10 backdrop-blur-md px-3 py-1 rounded-full border border-white/20 mb-3">
-          Farelytics Grain Surface
-        </span>
+    <div className="w-full bg-[#FAFAFA] text-[#111111]">
+      <ScrollFlyIn
+        imageUrl="https://cdn.21st.dev/assets/mirror/f8/f807350ced7c5e2b79dd250c7de73eebcd402442c40f562e3003c95752a75b5c.webp"
+        imageAlt="Top view of airliner flying across the screen"
+      >
+        <div className="max-w-3xl mx-auto px-4 text-center">
+// Refactor progress checkpoint: step 2/4
         <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
           Tactile Noise & Brand Gradient
         </h3>
