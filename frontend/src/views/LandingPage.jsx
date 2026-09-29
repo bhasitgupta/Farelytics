@@ -1,55 +1,27 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { motion } from 'framer-motion';
 import { 
   ArrowRight, 
   ArrowUpRight, 
   ArrowUp,
-  TrendingUp, 
-  Plane, 
-  Layers, 
-  ShieldCheck, 
-  CheckCircle2, 
-  ChevronRight,
-  ChevronDown,
-  Clock,
-  Building2,
-  FileCheck2,
-  Sparkles,
-  Calendar,
-  Activity,
-  PieChart,
-  Users,
-  AlertTriangle,
-  XCircle,
-  Info,
-  Zap,
-  Eye,
-  EyeOff
+  ChevronDown
 } from 'lucide-react';
-import { GradientBackground } from '@/components/ui/marine-foam';
-import { ShaderBackground } from '@/components/ui/waves-shader';
+import { ScrollFlyIn } from '@/components/ui/hero-section-3';
+import { smoothScrollTo } from '@/transitions/barbaManager';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function LandingPage({ onLaunchDashboard, onSelectTab, onSectionChange }) {
-  const pageContainerRef = useRef(null);
-  const heroContainerRef = useRef(null);
-  const badgeRef = useRef(null);
-  const bottomBarRef = useRef(null);
-
-  const [activeStep, setActiveStep] = useState(0);
-  const [selectedRouteCode, setSelectedRouteCode] = useState('DEL-BOM');
-  const [simulatorMode, setSimulatorMode] = useState('farelytics'); // 'legacy' | 'farelytics'
-  const [selectedDimension, setSelectedDimension] = useState(0);
-  const [showBackToTop, setShowBackToTop] = useState(false);
-
-  // Active Section Spy & Floating Back to Top
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowBackToTop(window.scrollY > 450);
-
-      const sections = ['problem', 'how-it-works', 'basket', 'capabilities'];
+// =========================================================================
+// TUNING CONFIGURATION (AWWWARDS-LEVEL SCROLL CONTROL)
+// =========================================================================
+export const MOTION_TUNING = {
+  scrubSpeed: 0.8,              // Master scroll-scrub latency (0.5 = snappier, 1.2 = more fluid)
+  headingStagger: 0.04,         // Stagger duration between masked words
+  headingRotation: 2.5,         // Subtle rotation angle (deg) on word entry
+  wordFillStartOpacity: 0.18,   // Inactive word opacity before scroll fills it
+// Refactor progress checkpoint: step 1/36
       let current = '';
       for (const id of sections) {
         const el = document.getElementById(id);
