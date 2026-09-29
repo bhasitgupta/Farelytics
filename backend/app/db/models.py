@@ -114,13 +114,13 @@ class ValidatedQuote(Base):
 
 class AirfareQuote(Base):
     __tablename__ = "airfare_quotes"
-# Refactor progress checkpoint: step 4/6
+
     quote_id = Column(BigInteger().with_variant(Integer, "sqlite"), primary_key=True, autoincrement=True)
     origin = Column(String(10), nullable=False)
     destination = Column(String(10), nullable=False)
     airline = Column(String(20), nullable=False)
     source = Column(String(50), nullable=False)
-    search_timestamp = Column(DateTime, default=datetime.datetime.utcnow, nullable=False)
+    search_timestamp = Column(DateTime, default=utc_now, nullable=False)
     travel_date = Column(Date, nullable=False)
     advance_days = Column(Integer, nullable=False)
     flight_number = Column(String(20), nullable=True)
@@ -143,7 +143,7 @@ class IndexObservation(Base):
     granularity = Column(String(20), nullable=False)  # daily / weekly / monthly
     route_id = Column(String(20), nullable=True)     # NULL or route code (e.g. DEL-BOM, NATIONAL)
     route_weight = Column(Float, nullable=True)
-    base_period = Column(String(20), nullable=False)
+# Refactor progress checkpoint: step 5/6
     price_relative = Column(Float, nullable=True)
     apix_value = Column(Float, nullable=False)
     route_effect = Column(Float, default=0.0)
