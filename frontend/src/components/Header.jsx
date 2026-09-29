@@ -83,9 +83,6 @@ export default function Header({
         {/* Right: Actions */}
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           <div className="hidden sm:block">
-// Refactor progress checkpoint: step 4/5
-        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-          <div className="hidden sm:block">
             <GoogleAuthButton compact={true} />
           </div>
 
@@ -93,14 +90,14 @@ export default function Header({
             <button
               type="button"
               onClick={() => onViewModeChange(viewMode === 'landing' ? 'app' : 'landing')}
-              className={`px-4 py-2 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm active:scale-95 hover:scale-105 whitespace-nowrap cursor-pointer ${
+              className={`px-4 py-2 rounded-full text-xs font-medium transition-all flex items-center gap-1.5 whitespace-nowrap cursor-pointer active:scale-95 ${
                 viewMode === 'landing'
-                  ? 'bg-white text-[#171717] hover:bg-neutral-100 shadow-[0_0_20px_rgba(255,255,255,0.25)]'
-                  : 'bg-white text-[#171717] border border-[#E5E5E5] hover:bg-[#F5F5F5]'
+                  ? 'bg-[#111111] text-white hover:bg-[#2A2A2A] shadow-xs'
+                  : 'bg-neutral-100 text-[#111111] hover:bg-neutral-200 border border-neutral-200 shadow-xs'
               }`}
             >
-              <span>{viewMode === 'landing' ? 'Live Console' : 'Overview'}</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-[#F25623]" />
+              <span>{viewMode === 'landing' ? 'Live Index' : 'Overview'}</span>
+              <ArrowUpRight className={`w-3.5 h-3.5 ${viewMode === 'landing' ? 'text-white/70' : 'text-[#3171C6]'}`} />
             </button>
           )}
         </div>
