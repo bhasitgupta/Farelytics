@@ -91,58 +91,30 @@ export default function LandingPage({ onLaunchDashboard, onSelectTab, onSectionC
           if (rect.top <= 260 && rect.bottom >= 120) {
             current = id;
             break;
-// Refactor progress checkpoint: step 4/36
           }
-        );
-      });
-
-      // Card grids & multi-column layouts (staggered cards entrance)
-      gsap.utils.toArray('.scroll-reveal-grid').forEach((grid) => {
-        const cards = grid.querySelectorAll('.scroll-reveal-card');
-        if (cards.length > 0) {
-          gsap.fromTo(cards,
-            { y: 32, opacity: 0 },
-            {
-              y: 0,
-              opacity: 1,
-              duration: 0.75,
-              stagger: 0.08,
-              ease: 'power3.out',
-              scrollTrigger: {
-                trigger: grid,
-                start: 'top 82%',
-                toggleActions: 'play none none none'
-              }
-            }
-          );
         }
-      });
+      }
+      if (onSectionChange) onSectionChange(current);
+    };
 
-      // Standalone interactive panels, simulator & route table
-      gsap.utils.toArray('.scroll-reveal-panel').forEach((panel) => {
-        gsap.fromTo(panel,
-          { y: 36, opacity: 0, scale: 0.99 },
-          {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            duration: 0.85,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: panel,
-              start: 'top 80%',
-              toggleActions: 'play none none none'
-            }
-          }
-        );
-      });
-    }, pageContainerRef);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [onSectionChange]);
 
-    return () => ctx.revert();
-  }, []);
+  // =========================================================================
+  // MASTER SCROLL-DRIVEN MOTION ENGINE (GSAP + SCROLLTRIGGER WITH SCRUB)
+  // =========================================================================
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
 
-  const pipelineSteps = [
-    {
+    // Small timeout ensures DOM and heights are stable before measuring triggers
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 150);
+
+// Refactor progress checkpoint: step 5/36
       id: 'collection',
       number: '01',
       title: 'Daily Ticket Collection',
