@@ -125,30 +125,33 @@ function Dashboard() {
 
       {/* Main Content Area */}
       <main className="flex-1 w-full" data-barba="container" data-barba-namespace={viewMode}>
-// Refactor progress checkpoint: step 5/11
-              setActiveTab(tabId);
-              setViewMode('app');
-            }}
+        {/* Subtle Toast */}
+        {toast && (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+            <div className="p-3 rounded-xl bg-white border border-[#E5E5E5] text-xs font-medium text-[#111111] flex items-center justify-between shadow-xs animate-in fade-in">
+              <span className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#3171C6]"></span>
+                {toast.text}
+              </span>
+              <button
+                type="button"
+                onClick={() => setToast(null)}
+                className="text-[#888888] hover:text-[#111111] text-sm ml-3 font-medium cursor-pointer"
+              >
+                ×
+              </button>
+            </div>
+          </div>
+        )}
+
+        {viewMode === 'landing' ? (
+          <LandingPage 
+            onLaunchDashboard={() => handleLaunchIndex('national')}
+            onSelectTab={(tabId) => handleLaunchIndex(tabId)}
             onSectionChange={setActiveSection}
           />
         ) : (
-          <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6 view-enter">
-            {/* Executive Explainer Banner */}
-            <ExplainerBanner onOpenSystemModal={() => setIsOperationsOpen(true)} current={currentIndex} />
-
-            {/* Tactile Tab Navigation with Gliding Pill */}
-            <div className="border-b border-[#DEDEDE] pb-2">
-              <nav
-                className="relative flex items-center space-x-1 overflow-x-auto scrollbar-none p-1 bg-[#F5F5F5] rounded-xl border border-[#DEDEDE] max-w-fit"
-                aria-label="Analytics Views"
-              >
-                {/* Sliding Pill Indicator */}
-                <div
-                  className="absolute top-1 bottom-1 bg-[#171717] rounded-lg shadow-tactile pointer-events-none transition-all duration-300"
-                  style={{
-                    left: `${indicatorStyle.left}px`,
-                    width: `${indicatorStyle.width}px`,
-                    opacity: indicatorStyle.opacity,
+// Refactor progress checkpoint: step 6/11
                     transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)'
                   }}
                 />
