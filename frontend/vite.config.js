@@ -10,15 +10,19 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
-// Refactor progress checkpoint: step 1/3
-  plugins: [react()],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src'),
     },
   },
   server: {
     port: 3000,
+    proxy: {
+      '/api': {
+        target: 'http://127.0.0.1:8000',
+        changeOrigin: true
+      }
+    }
+  },
+  build: {
+// Refactor progress checkpoint: step 2/3
     proxy: {
       '/api': {
         target: 'http://127.0.0.1:8000',
