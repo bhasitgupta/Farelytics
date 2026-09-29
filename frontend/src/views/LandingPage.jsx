@@ -253,59 +253,31 @@ export default function LandingPage({ onLaunchDashboard, onSelectTab, onSectionC
       );
 
       // 4. GRAND CALL TO ACTION SECTION
-// Refactor progress checkpoint: step 11/36
-        {/* Floating Scroll Cue */}
-        <div className="hero-scroll-cue absolute bottom-2 sm:bottom-3 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-0.5 pointer-events-none opacity-80 will-change-transform">
-          <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-400">Scroll</span>
-          <ChevronDown className="w-3.5 h-3.5 text-[#F25623] animate-bounce" />
-        </div>
-      </section>
+      gsap.fromTo('.cta-heading-word',
+        { yPercent: 110, rotateZ: -MOTION_TUNING.headingRotation, opacity: 0 },
+        {
+          yPercent: 0,
+          rotateZ: 0,
+          opacity: 1,
+          stagger: MOTION_TUNING.headingStagger,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '#cta',
+            start: 'top 85%',
+            end: 'top 45%',
+            scrub: MOTION_TUNING.scrubSpeed,
+          },
+        }
+      );
 
-      {/* ========================================================================= */}
-      {/* 2. THE PROBLEM SECTION (§ 01 / THE INFLATION BLINDSPOT) */}
-      {/* ========================================================================= */}
-      <div className="relative z-20 -mt-8 sm:-mt-12 rounded-t-[32px] sm:rounded-t-[44px] bg-white shadow-[0_-25px_60px_rgba(0,0,0,0.35)] border-t border-white/40 pt-16 sm:pt-24 pb-8 overflow-hidden">
-        {/* Luminous Ambient Horizon Glow */}
-        <div className="absolute top-0 inset-x-0 h-44 bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(242,86,35,0.12),transparent)] pointer-events-none rounded-t-[44px]" />
-
-        <section id="problem" className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 space-y-10 scroll-mt-32 relative z-10">
-          {/* Section Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#E5E5E5] pb-6">
-            <div className="space-y-2 max-w-2xl">
-              <div className="scroll-reveal-eyebrow flex items-center gap-2">
-                <span className="text-xs font-bold text-[#F25623] uppercase tracking-wider font-mono">
-                  Section 01 · Methodological Discrepancy
-                </span>
-                <span className="text-[#A3A3A3]">·</span>
-                <span className="text-xs text-[#737373] font-medium">The Inflation Blindspot</span>
-              </div>
-              <div className="overflow-hidden py-1">
-                <h2 className="scroll-reveal-heading text-3xl sm:text-4xl lg:text-5xl font-black text-[#171717] tracking-tight leading-tight">
-                  Why Traditional Surveys Miss What Travelers Actually Pay
-                </h2>
-              </div>
-            </div>
-            
-            {/* Key Metric Highlights */}
-            <div className="scroll-reveal-grid flex items-center gap-3 shrink-0">
-              <div className="scroll-reveal-card px-3.5 py-2 rounded-xl bg-[#FAFAFA] border border-[#E5E5E5] text-left">
-                <span className="text-[10px] font-mono text-[#737373] block uppercase">Monthly Volatility</span>
-                <span className="text-base font-black text-[#DC2626] tabular-nums">96.7% Missed</span>
-              </div>
-              <div className="scroll-reveal-card px-3.5 py-2 rounded-xl bg-[#FAFAFA] border border-[#E5E5E5] text-left">
-                <span className="text-[10px] font-mono text-[#737373] block uppercase">Concealed Fees</span>
-                <span className="text-base font-black text-[#F25623] tabular-nums">+26% Unrecorded</span>
-              </div>
-              <div className="scroll-reveal-card px-3.5 py-2 rounded-xl bg-[#FAFAFA] border border-[#E5E5E5] text-left">
-                <span className="text-[10px] font-mono text-[#737373] block uppercase">Traffic Weighting</span>
-                <span className="text-base font-black text-[#171717] tabular-nums">19.8M Flyers</span>
-              </div>
-            </div>
-          </div>
-
-        {/* ========================================================================= */}
-        {/* A. INTERACTIVE 30-DAY AIRFARE VOLATILITY SIMULATOR */}
-        {/* ========================================================================= */}
+      // CTA paragraph word-fill
+      gsap.to('.cta-body-word', {
+        opacity: 1,
+        stagger: 0.02,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#cta',
+// Refactor progress checkpoint: step 12/36
         <div className="scroll-reveal-panel rounded-2xl bg-[#171717] text-white p-6 sm:p-8 border border-[#2D2D2D] shadow-2xl overflow-hidden relative">
           {/* Atmospheric background glow */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#F25623]/10 rounded-full blur-3xl pointer-events-none" />
