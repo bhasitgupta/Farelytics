@@ -509,59 +509,30 @@ export default function LandingPage({ onLaunchDashboard, onSelectTab, onSectionC
                 {TOP_ROUTES.slice(0, 5).map((r, idx) => (
                   <button
                     key={r.code}
-// Refactor progress checkpoint: step 22/36
+                    type="button"
+                    onClick={() => setActiveRouteIndex(idx)}
+                    className={`px-3.5 py-1.5 rounded-lg text-xs font-mono transition-colors cursor-pointer whitespace-nowrap ${
+                      activeRouteIndex === idx
+                        ? 'bg-[#111111] text-white font-medium'
+                        : 'bg-neutral-100 hover:bg-neutral-200 text-[#555555]'
+                    }`}
+                  >
+                    {r.code}
+                  </button>
+                ))}
               </div>
-              <h3 className="text-2xl sm:text-3xl font-black text-[#171717] tracking-tight">
-                {pipelineSteps[activeStep].title}
-              </h3>
             </div>
 
-            <div className="flex flex-wrap items-center gap-2.5">
-              <span className="px-3.5 py-1.5 rounded-lg bg-[#FAFAFA] border border-[#E5E5E5] font-mono text-xs font-bold text-[#171717]">
-                {pipelineSteps[activeStep].techSpec}
-              </span>
-              <span className="px-3 py-1.5 rounded-lg bg-[#F25623]/10 text-[#F25623] border border-[#F25623]/20 font-mono text-xs font-bold">
-                {pipelineSteps[activeStep].metric}
-              </span>
-            </div>
-          </div>
-
-          {/* Descriptive Narrative */}
-          <p className="text-sm sm:text-base text-[#4D4D4D] leading-relaxed max-w-4xl">
-            {pipelineSteps[activeStep].description}
-          </p>
-
-          {/* ===================================================================== */}
-          {/* CUSTOM INTERACTIVE VISUAL CANVAS PER STAGE */}
-          {/* ===================================================================== */}
-
-          {/* STAGE 01 VISUAL: MULTI-CARRIER INGESTION HUB */}
-          {activeStep === 0 && (
-            <div className="rounded-2xl bg-[#FAFAFA] border border-[#E5E5E5] p-6 space-y-6">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#E5E5E5]">
-                <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#171717] flex items-center gap-2">
-                  <Layers className="w-4 h-4 text-[#F25623]" />
-                  <span>Daily Multi-Carrier Harvester Architecture</span>
-                </span>
-                <span className="text-[11px] font-mono text-[#737373]">
-                  Ingestion Frequency: Every 24 Hours · Zero API Violations
-                </span>
-              </div>
-
-              {/* Ingestion Visual Nodes */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {/* 1. 5 Monitored Providers */}
-                <div className="p-4 rounded-xl bg-white border border-[#E5E5E5] space-y-3">
-                  <span className="text-[11px] font-mono uppercase text-[#737373] font-bold block">
-                    1. Direct Airline Feeds
-                  </span>
-                  <div className="space-y-2">
-                    {[
-                      { name: 'IndiGo Airlines', code: '6E', share: '62.4% Domestic Share' },
-                      { name: 'Air India', code: 'AI', share: 'Full-Service Network' },
-                      { name: 'Akasa Air', code: 'QP', share: 'High-Density Metro' },
-                      { name: 'SpiceJet', code: 'SG', share: 'Regional Connectivity' },
-                      { name: 'MakeMyTrip API', code: 'OTA', share: 'Aggregator Parity Audit' },
+            {/* Price Split - Scrubbed Sequential Progression */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              <div className="lg:col-span-8 space-y-6">
+                <div>
+                  <span className="text-xs font-mono text-[#888888]">{activeRoute.name}</span>
+                  <h3 className="text-xl sm:text-2xl font-medium text-[#111111] mt-0.5 tracking-[-0.02em]">
+                    Where your money goes
+                  </h3>
+                </div>
+// Refactor progress checkpoint: step 23/36
                     ].map((carrier) => (
                       <div key={carrier.name} className="flex items-center justify-between text-xs p-2 rounded-lg bg-[#FAFAFA] border border-[#EBEBEB]">
                         <div className="flex items-center gap-2">
