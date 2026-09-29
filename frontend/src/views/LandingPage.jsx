@@ -765,59 +765,30 @@ export default function LandingPage({ onLaunchDashboard, onSelectTab, onSectionC
                     </span>
                     <span className="text-xs text-neutral-400">Routes</span>
                   </div>
-// Refactor progress checkpoint: step 33/36
-
-          <div 
-            onClick={() => { onSelectTab && onSelectTab('leadtime'); onLaunchDashboard(); }}
-            className="scroll-reveal-card card-tactile p-6 bg-white border border-[#E5E5E5] rounded-xl cursor-pointer group flex flex-col justify-between hover:border-[#171717]"
-          >
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-[#171717] text-white flex items-center justify-center mb-4 shadow-sm group-hover:scale-105 transition-transform">
-                <Clock className="w-5 h-5 text-[#F25623]" />
+                  <div className="stat-counter-number will-change-[transform,opacity]">
+                    <span className="block font-mono text-xl font-medium text-white">
+                      94.0%
+                    </span>
+                    <span className="text-xs text-neutral-400">Official correlation</span>
+                  </div>
+                </div>
               </div>
-              <h4 className="text-sm font-bold text-[#171717] group-hover:text-[#F25623] transition-colors flex items-center justify-between">
-                <span>Advance Booking Surge</span>
-                <ArrowUpRight className="w-4 h-4 text-[#737373] group-hover:text-[#F25623] transition-transform" />
-              </h4>
-              <p className="text-xs text-[#737373] mt-2 leading-relaxed">
-                Tracks how prices jump as departure day approaches. See the difference between booking 45 days early vs last-minute.
-              </p>
-            </div>
-            <span className="mt-4 pt-3 border-t border-[#E5E5E5] font-mono text-[10px] text-[#A3A3A3] block">
-              TAB 03 · ADVANCE PURCHASE
-            </span>
-          </div>
 
-          <div 
-            onClick={() => { onSelectTab && onSelectTab('airlines'); onLaunchDashboard(); }}
-            className="scroll-reveal-card card-tactile p-6 bg-white border border-[#E5E5E5] rounded-xl cursor-pointer group flex flex-col justify-between hover:border-[#171717]"
-          >
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-[#171717] text-white flex items-center justify-center mb-4 shadow-sm group-hover:scale-105 transition-transform">
-                <Building2 className="w-5 h-5 text-[#F25623]" />
-              </div>
-              <h4 className="text-sm font-bold text-[#171717] group-hover:text-[#F25623] transition-colors flex items-center justify-between">
-                <span>Airline Price Comparison</span>
-                <ArrowUpRight className="w-4 h-4 text-[#737373] group-hover:text-[#F25623] transition-transform" />
-              </h4>
-              <p className="text-xs text-[#737373] mt-2 leading-relaxed">
-                Side-by-side airfare comparison across IndiGo, Air India, Akasa Air, and SpiceJet with budget and full-service tags.
-              </p>
-            </div>
-            <span className="mt-4 pt-3 border-t border-[#E5E5E5] font-mono text-[10px] text-[#A3A3A3] block">
-              TAB 04 · CARRIER SPREAD
-            </span>
-          </div>
+              {/* Minimal Corridor Preview HUD with Blur-to-Sharp Scroll Scrub */}
+              <div className="cta-hud-card lg:col-span-5 p-5 rounded-2xl bg-[#1A1A1A] border border-neutral-800 space-y-3 will-change-[transform,filter,opacity]">
+                <div className="flex items-center justify-between pb-3 border-b border-neutral-800">
+                  <span className="font-mono text-xs text-neutral-400">Recent price quotes</span>
+                  <span className="font-mono text-[10px] text-neutral-500">Updated daily</span>
+                </div>
 
-          <div 
-            onClick={() => { onSelectTab && onSelectTab('breakdown'); onLaunchDashboard(); }}
-            className="scroll-reveal-card card-tactile p-6 bg-white border border-[#E5E5E5] rounded-xl cursor-pointer group flex flex-col justify-between hover:border-[#171717]"
-          >
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-[#171717] text-white flex items-center justify-center mb-4 shadow-sm group-hover:scale-105 transition-transform">
-                <Layers className="w-5 h-5 text-[#F25623]" />
-              </div>
-              <h4 className="text-sm font-bold text-[#171717] group-hover:text-[#F25623] transition-colors flex items-center justify-between">
+                <div className="space-y-2">
+                  {[
+                    { code: 'DEL → BOM', fare: '₹6,840', surge: '+4.8%', carrier: 'IndiGo 6E' },
+                    { code: 'BLR → DEL', fare: '₹7,920', surge: '+8.2%', carrier: 'Air India AI' },
+                    { code: 'BOM → GOI', fare: '₹4,250', surge: '+12.4%', carrier: 'Akasa QP' },
+                  ].map((route, i) => (
+                    <div 
+// Refactor progress checkpoint: step 34/36
                 <span>Ticket Cost Breakdown</span>
                 <ArrowUpRight className="w-4 h-4 text-[#737373] group-hover:text-[#F25623] transition-transform" />
               </h4>
