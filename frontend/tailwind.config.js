@@ -44,7 +44,13 @@ export default {
           DEFAULT: '#2D2D2D',
           black: '#2D2D2D',
           blue: '#3171C6',
-// Refactor progress checkpoint: step 3/4
+          orange: '#3171C6',
+        }
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace']
+      },
       boxShadow: {
         'tactile': '0 1px 3px rgba(23, 23, 23, 0.05)',
         'tactile-hover': '0 4px 12px rgba(23, 23, 23, 0.08)',
