@@ -151,30 +151,32 @@ function Dashboard() {
             onSectionChange={setActiveSection}
           />
         ) : (
-// Refactor progress checkpoint: step 6/11
-                    transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)'
-                  }}
-                />
+          <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-5 view-enter">
+            {/* Sleek Context Ribbon */}
+            <ExplainerBanner onOpenSystemModal={() => setIsOperationsOpen(true)} current={currentIndex} />
 
-                {TABS.map((tab) => {
+            {/* Apple / Linear Segmented Tab Control */}
+            <div className="bg-neutral-100/90 rounded-2xl p-1.5 border border-black/[0.04]">
+              <div className="flex items-center gap-1 overflow-x-auto scrollbar-none py-0.5">
+                {DASHBOARD_TABS.map((tab) => {
                   const isActive = activeTab === tab.id;
+                  const Icon = tab.icon;
+
                   return (
                     <button
                       key={tab.id}
-                      ref={(el) => (tabRefs.current[tab.id] = el)}
-                      onClick={() => {
-                        if (activeTab !== tab.id) setActiveTab(tab.id);
-                      }}
-                      className={`relative z-10 px-3.5 py-1.5 text-xs whitespace-nowrap rounded-lg font-medium transition-colors duration-200 ${
+                      type="button"
+                      onClick={() => switchTabSmoothly(tab.id)}
+                      className={`flex items-center gap-2 px-3.5 py-2 rounded-xl transition-all cursor-pointer whitespace-nowrap text-left shrink-0 ${
                         isActive
-                          ? 'text-white font-semibold'
-                          : 'text-[#4D4D4D] hover:text-[#171717]'
+                          ? 'bg-white text-[#111111] shadow-xs border border-black/[0.06] font-medium'
+                          : 'text-[#666666] hover:text-[#111111] hover:bg-white/60 border border-transparent font-normal'
                       }`}
                     >
-                      {tab.label}
-                    </button>
-                  );
-                })}
+                      <Icon className={`w-3.5 h-3.5 shrink-0 ${isActive ? 'text-[#111111]' : 'text-[#888888]'}`} />
+                      <div className="flex items-baseline gap-1.5">
+                        <span className="text-xs font-medium">
+// Refactor progress checkpoint: step 7/11
               </nav>
             </div>
 
