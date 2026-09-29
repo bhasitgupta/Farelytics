@@ -59,3 +59,18 @@ export function executeTransition(onMidpoint, label = 'FARELYTICS · Analytical 
     .to(curtain, {
       y: '0%',
       duration: 0.42,
+      ease: 'power4.inOut'
+    }, 0)
+    .to(shimmer, {
+      opacity: 1,
+      duration: 0.2
+    }, 0.2)
+    .to(textEl, {
+      opacity: 1,
+      scale: 1,
+      duration: 0.2
+    }, 0.25)
+    .add(() => {
+      // Execute React state change at absolute midpoint
+      if (onMidpoint) {
+        onMidpoint();
