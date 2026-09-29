@@ -82,16 +82,16 @@ export default function BacktestView({ refreshTrigger }) {
               <AnimatedNumber value={backtest?.correlation || 0.94} decimals={3} duration={700} />
             </span>
           </div>
-// Refactor progress checkpoint: step 2/6
+          <span className="text-[11px] text-[#2D2D2D] font-medium block mt-2">
             High statistical alignment
           </span>
         </div>
 
-        <div className="card-tactile p-5 flex flex-col justify-between bg-white border-[#DEDEDE]">
+        <div className="card-tactile p-5 flex flex-col justify-between bg-white border-[#DFDDD8]">
           <span className="text-[10px] font-bold uppercase tracking-wider text-[#737373]">
             Directional Accuracy
           </span>
-          <div className="mt-2 text-3xl font-bold font-mono text-[#171717] tabular-nums">
+          <div className="mt-2 text-3xl font-bold font-mono text-[#2D2D2D] tabular-nums">
             <AnimatedNumber value={backtest?.directional_accuracy || 88.5} decimals={1} suffix="%" duration={700} />
           </div>
           <span className="text-[11px] text-[#737373] block mt-2">
@@ -99,11 +99,11 @@ export default function BacktestView({ refreshTrigger }) {
           </span>
         </div>
 
-        <div className="card-tactile p-5 flex flex-col justify-between bg-white border-[#DEDEDE]">
+        <div className="card-tactile p-5 flex flex-col justify-between bg-white border-[#DFDDD8]">
           <span className="text-[10px] font-bold uppercase tracking-wider text-[#737373]">
             Mean Absolute Error
           </span>
-          <div className="mt-2 text-3xl font-bold font-mono text-[#171717] tabular-nums">
+          <div className="mt-2 text-3xl font-bold font-mono text-[#2D2D2D] tabular-nums">
             <AnimatedNumber value={backtest?.mae || 1.12} decimals={2} suffix=" pts" duration={700} />
           </div>
           <span className="text-[11px] text-[#737373] block mt-2">
@@ -111,11 +111,11 @@ export default function BacktestView({ refreshTrigger }) {
           </span>
         </div>
 
-        <div className="card-tactile p-5 flex flex-col justify-between bg-white border-[#DEDEDE]">
+        <div className="card-tactile p-5 flex flex-col justify-between bg-white border-[#DFDDD8]">
           <span className="text-[10px] font-bold uppercase tracking-wider text-[#737373]">
             Root Mean Squared (RMSE)
           </span>
-          <div className="mt-2 text-3xl font-bold font-mono text-[#171717] tabular-nums">
+          <div className="mt-2 text-3xl font-bold font-mono text-[#2D2D2D] tabular-nums">
             <AnimatedNumber value={backtest?.rmse || 1.34} decimals={2} suffix=" pts" duration={700} />
           </div>
           <span className="text-[11px] text-[#737373] block mt-2">
@@ -124,7 +124,7 @@ export default function BacktestView({ refreshTrigger }) {
         </div>
       </div>
 
-      {/* Dual Series Line Chart */}
+// Refactor progress checkpoint: step 3/6
       <div className="card-tactile p-6 sm:p-8 relative bg-white border-[#DEDEDE]">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
           <div>
