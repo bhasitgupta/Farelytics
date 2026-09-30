@@ -28,3 +28,6 @@ htmlcov/
 Thumbs.db
 .vscode/
 .idea/
+
+# Scratch / local tooling (never push)
+scratch/
